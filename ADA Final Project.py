@@ -42,28 +42,6 @@ merged_emoji_df["definition"] = merged_emoji_df["definition"].apply(
 #print(merged_emoji_df.dtypes)
 #print(merged_emoji_df.head())
 
-
-
-# Keep only the first gloss per unicode+POS
-first_sense = (
-    senses_long
-    .dropna(subset=["gloss"])
-    .sort_values(["unicode", "pos"])          # optional: makes "first" deterministic
-    .groupby(["unicode", "pos"])["gloss"]
-    .first()
-    .unstack("pos")
-    .reset_index()
-    .rename(columns={
-        "ADJ": "sense_adj_first",
-        "VERB": "sense_verb_first",
-        "NOUN": "sense_noun_first"
-    })
-)
-
-# Merge onto your existing merged_emoji_df
-merged_emoji_df = merged_emoji_df.merge(first_sense, on="unicode", how="left")
-
-
 #create csv file from merged_emoji_df of first 5 rows only
 merged_emoji_df.head(5).to_csv('merged_emoji_sample.csv', index=False)
 
