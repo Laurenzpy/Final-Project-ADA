@@ -1,6 +1,6 @@
-#,emoji,unicode,name,keywords,definition,shortcode
-1,😀,U+1F600,grinning face,"grin, face","A face with a big open (grinning) mouth, showing teeth",:grinning:
-2,😃,U+1F603,grinning face with big eyes,"smile, mouth, open, face","A classic smiley-face emoji with an open mouth showing teeth, and tall, open eyes",:smiley:
-3,😄,U+1F604,grinning face with smiling eyes,"eye, smile, mouth, open, face","A happy and smiling face with big open mouth, showing teeth",:smile:
-4,😁,U+1F601,beaming face with smiling eyes,"eye, smile, grin, face",A version of the grinning face showing smiling eyes,:grin:
-5,😆,U+1F606,grinning squinting face,"laugh, smile, mouth, open, face, satisfied","A face with a big smiling mouth, and scrunched-closed eyes",":laughing:,:satisfied:"
+#,emoji,unicode,name,keywords,definition,shortcode,sense_adj_first,sense_verb_first,sense_noun_first
+1,😀,U+1F600,grinning face,"grin, face","A face with a big open (grinning) mouth, showing teeth",:grinning:,Showing or feeling mirth or pleasure or happiness,Produce laughter,Feeling of happiness.
+2,😃,U+1F603,grinning face with big eyes,"smile, mouth, open, face","A classic smiley-face emoji with an open mouth showing teeth, and tall, open eyes",:smiley:,Enjoying or showing or marked by joy or pleasure,Produce laughter,Feeling of happiness.
+3,😄,U+1F604,grinning face with smiling eyes,"eye, smile, mouth, open, face","A happy and smiling face with big open mouth, showing teeth",:smile:,Enjoying or showing or marked by joy or pleasure,Produce laughter,Part of the body at the front of the head
+4,😁,U+1F601,beaming face with smiling eyes,"eye, smile, grin, face",A version of the grinning face showing smiling eyes,:grin:,Enjoying or showing or marked by joy or pleasure,To contort the face to indicate a certain mental or emotional state.,The emotion of being happy; joy.
+5,😆,U+1F606,grinning squinting face,"laugh, smile, mouth, open, face, satisfied","A face with a big smiling mouth, and scrunched-closed eyes",":laughing:,:satisfied:",Enjoying or showing or marked by joy or pleasure,Produce laughter,Part of the body at the front of the head
