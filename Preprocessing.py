@@ -84,15 +84,17 @@ merged_emoji_df["definition"] = merged_emoji_df["definition"].apply(
 #print(merged_emoji_df.dtypes)
 #print(merged_emoji_df.head())
 
+merged_emoji_df["shortcode"] = (
+    merged_emoji_df["shortcode"]
+    .astype(str)
+    .str.replace(":", "", regex=False)
+)
+
 # %%
 #create csv file from merged_emoji_df of first 5 rows only
-#merged_emoji_df.to_csv('merged_emoji_sample.csv', index=False)
-# %%
-
+merged_emoji_df.to_csv('merged_emoji_sample.csv', index=False)#
 
 # after you create merged_emoji_df
 merged_emoji_df.to_parquet("merged_emoji_df.parquet", index=False)
 print("Saved to data/merged_emoji_df.parquet")
-
-
 
