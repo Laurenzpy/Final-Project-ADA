@@ -1,13 +1,16 @@
 import re
+import random
 import pandas as pd
 import torch
 import regex
 import requests
-import random
+from collections import defaultdict
 from sentence_transformers import SentenceTransformer, util
 
+VS16 = "\ufe0f"
+SKIN_TONES = {chr(cp) for cp in range(0x1F3FB, 0x1F400)}  # 1F3FB..1F3FF
+
 def _clean_text(x):
-    """Return None for NaN/None/empty/'nan'/'none' and strip."""
     if x is None:
         return None
     try:
@@ -18,18 +21,11 @@ def _clean_text(x):
     s = str(x).strip()
     if not s:
         return None
-    low = s.lower().strip()
-    if low in {"nan", "none", "null"}:
+    if s.lower() in {"nan", "none", "null"}:
         return None
     return s
 
-
 def _clean_shortcode(sc):
-    """
-    Normalize shortcode:
-      ':face_with_tears_of_joy:' -> 'face with tears of joy'
-      'laughing,satisfied' -> 'laughing'
-    """
     sc = _clean_text(sc)
     if not sc:
         return None
@@ -39,19 +35,19 @@ def _clean_shortcode(sc):
     sc = re.sub(r"\s+", " ", sc).strip()
     return sc.lower() if sc else None
 
+def _normalize_seq_string(s: str) -> str:
+    s = str(s)
+    s = re.sub(r"\s+", "", s)
+    s = s.replace(VS16, "")
+    s = "".join(ch for ch in s if ch not in SKIN_TONES)
+    return s
 
-def _short_phrase(x, max_words=3):
-    """Keep only short, sentence-friendly phrases."""
-    x = _clean_text(x)
-    if not x:
-        return None
-    x = x.strip().rstrip(".")
-    x = re.sub(r"\s+", " ", x).strip()
-    wc = len(re.findall(r"[A-Za-z']+", x))
-    if wc == 0 or wc > max_words:
-        return None
-    return x.lower()
+def _is_emoji_cluster(cluster: str) -> bool:
+    # catches emojis even if not in your metadata dict
+    return bool(regex.search(r"\p{Emoji}", cluster))
 
+def _split_graphemes(s: str):
+    return [g for g in regex.findall(r"\X", str(s)) if g.strip()]
 
 def _dedupe_preserve(items):
     seen = set()
@@ -61,292 +57,229 @@ def _dedupe_preserve(items):
         if not it:
             continue
         low = it.lower()
-        if low in {"nan", "none"}:
+        if low in seen:
             continue
-        if low not in seen:
-            out.append(it)
-            seen.add(low)
+        seen.add(low)
+        out.append(it)
     return out
+
+def _pick_shortest_meaning(meanings, max_chars=140):
+    meanings = [m.strip() for m in meanings if _clean_text(m)]
+    if not meanings:
+        return None
+    meanings.sort(key=len)
+    best = meanings[0]
+    return best[:max_chars].strip()
+
+def _truncate_text(text: str, max_sentences=1, max_words=18) -> str:
+    text = re.sub(r"\s+", " ", (text or "")).strip()
+    if not text:
+        return text
+    # keep first N sentences
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    text = " ".join(sentences[:max_sentences]).strip()
+
+    words = text.split()
+    if len(words) > max_words:
+        text = " ".join(words[:max_words]).rstrip(",;:") + "."
+
+    if not text.endswith((".", "!", "?")):
+        text += "."
+    return text
+
 
 class EmojiTranslator:
     def __init__(self, ollama_url="http://localhost:11434/api/generate", ollama_model="llama3"):
         self.model = SentenceTransformer("all-MiniLM-L6-v2")
-        self.emoji_dict = {}
-        self.kb_df = pd.DataFrame()
-        self.kb_embeddings = None
-        self.use_llm_cache = False  # set True if you want repeatable outputs per buzzword set
 
-
-        # LLM integration (Ollama / Llama3)
         self.ollama_url = ollama_url
         self.ollama_model = ollama_model
-        self._llm_cache = {}  # cache by tuple(buzzwords)
+
+        self.emoji_dict = {}                 # emoji -> metadata
+        self.seq2meanings = defaultdict(list) # exact lookup: seq -> list of meanings
+
+        # For similarity lookup (emoji-side embeddings)
+        self.kb_seq = []          # list of clean_seq
+        self.kb_meaning = []      # one canonical meaning per seq
+        self.kb_desc = []         # emoji description text per seq
+        self.kb_desc_embeddings = None
 
     def load_data(self, metadata_file, stage_files):
+        # ---- 1) Metadata ----
         meta_df = pd.read_csv(metadata_file)
 
-        # try common shortcode column names
         possible_shortcode_cols = [
             "shortcode", "shortcodes", "short_code", "short_code_first",
             "shortcode_first", "shortcode_cldr", "cldr_short_name"
         ]
-        shortcode_col = None
-        for c in possible_shortcode_cols:
-            if c in meta_df.columns:
-                shortcode_col = c
-                break
+        shortcode_col = next((c for c in possible_shortcode_cols if c in meta_df.columns), None)
 
         for _, row in meta_df.iterrows():
-            emoji = _clean_text(row.get("emoji"))
-            if not emoji:
+            emo = _clean_text(row.get("emoji"))
+            if not emo:
                 continue
-
-            self.emoji_dict[emoji] = {
+            self.emoji_dict[emo] = {
                 "name": _clean_text(row.get("name")) or "something",
-                "adj": _clean_text(row.get("sense_adj_first")),
-                "verb": _clean_text(row.get("sense_verb_first")),
                 "noun": _clean_text(row.get("sense_noun_first")),
+                "verb": _clean_text(row.get("sense_verb_first")),
+                "adj":  _clean_text(row.get("sense_adj_first")),
                 "shortcode": _clean_shortcode(row.get(shortcode_col)) if shortcode_col else None,
             }
 
-        # Stage datasets: reverse mapping (emoji seq -> english)
-        all_data = []
+            # also map normalized emoji to same record (fixes ☁ vs ☁️ etc.)
+            emo_norm = _normalize_seq_string(emo)
+            if emo_norm and emo_norm not in self.emoji_dict:
+                self.emoji_dict[emo_norm] = self.emoji_dict[emo]
+
+        # ---- 2) Stage datasets: build exact seq->meanings and a per-seq KB ----
+        seq_to_all_meanings = defaultdict(list)
+
         for f in stage_files:
-            try:
-                df = pd.read_csv(f)
-                df["clean_seq"] = df["output"].astype(str).str.replace(r"\s+", "", regex=True)
-                all_data.append(df[["clean_seq", "input"]])
-            except Exception:
+            df = pd.read_csv(f)
+            if "output" not in df.columns or "input" not in df.columns:
                 continue
+            df = df.dropna(subset=["output", "input"])
 
-        if all_data:
-            self.kb_df = pd.concat(all_data, ignore_index=True).drop_duplicates()
-            self.kb_embeddings = self.model.encode(self.kb_df["input"].tolist(), convert_to_tensor=True)
+            for _, r in df.iterrows():
+                out_raw = re.sub(r"\s+", "", str(r["output"]))
+                out_norm = _normalize_seq_string(r["output"])
+                meaning = _clean_text(r["input"])
+                if not meaning:
+                    continue
+
+                # exact lookups (raw + normalized)
+                self.seq2meanings[out_raw].append(meaning)
+                self.seq2meanings[out_norm].append(meaning)
+
+                seq_to_all_meanings[out_norm].append(meaning)
+
+        # Build KB unique sequences for similarity retrieval
+        self.kb_seq = []
+        self.kb_meaning = []
+        self.kb_desc = []
+
+        for seq, meanings in seq_to_all_meanings.items():
+            canonical = _pick_shortest_meaning(meanings)
+            if not canonical:
+                continue
+            self.kb_seq.append(seq)
+            self.kb_meaning.append(canonical)
+            self.kb_desc.append(self._sequence_to_description(seq))
+
+        # Embed emoji-side descriptions for SIM stage
+        if self.kb_desc:
+            self.kb_desc_embeddings = self.model.encode(self.kb_desc, convert_to_tensor=True)
         else:
-            self.kb_df = pd.DataFrame(columns=["clean_seq", "input"])
-            self.kb_embeddings = None
+            self.kb_desc_embeddings = None
 
-    def _get_emoji_list(self, text):
-        """
-        Grapheme split to support multi-codepoint emojis (☁️, flags, families, etc.)
-        """
-        text = str(text)
-        clusters = [c for c in regex.findall(r"\X", text) if c.strip()]
-        return [c for c in clusters if c in self.emoji_dict]
+        print(f"[INFO] Exact keys: {len(self.seq2meanings)} | SIM KB seq: {len(self.kb_seq)}")
 
-    def _collect_buzzwords(self, emojis, max_total=10):
-        """
-        Prefer shortcode, then noun/name. Optionally add short adj/verb.
-        Produces compact buzzwords for LLM.
-        """
-        buzz = []
-        for emo in emojis:
-            d = self.emoji_dict.get(emo, {})
-            if not d:
-                continue
+    def _sequence_to_emojis(self, seq_string: str):
+        # split into graphemes from the raw string (no spaces)
+        clusters = _split_graphemes(seq_string)
+        # keep emoji-like clusters (even if not in dict)
+        return [c for c in clusters if _is_emoji_cluster(c)]
 
-            sc = _clean_text(d.get("shortcode"))
-            noun = _clean_text(d.get("noun"))
-            name = _clean_text(d.get("name"))
-            adj = _short_phrase(d.get("adj"), max_words=2)
-            verb = _short_phrase(d.get("verb"), max_words=2)
+    def _emoji_to_buzzword(self, emo: str) -> str:
+        # normalize for lookup
+        emo_norm = _normalize_seq_string(emo)
+        d = self.emoji_dict.get(emo) or self.emoji_dict.get(emo_norm)
+        if d:
+            return (d.get("shortcode") or d.get("noun") or d.get("name") or emo).strip().lower()
+        # if not in metadata, give the emoji itself to the LLM
+        return emo
 
-            # Priority: shortcode > noun > name
-            base = sc or noun or name
-            base = _clean_text(base)
-            if base:
-                buzz.append(base.lower())
+    def _sequence_to_description(self, seq_string: str) -> str:
+        emojis = self._sequence_to_emojis(seq_string)
+        buzz = [_clean_text(self._emoji_to_buzzword(e)) for e in emojis]
+        buzz = [b for b in buzz if b]
+        return " ".join(_dedupe_preserve(buzz))
 
-            # Add optional modifiers if they are short and useful
-            if adj and adj not in buzz:
-                buzz.append(adj)
-            if verb and verb not in buzz:
-                buzz.append(verb)
-
-            if len(buzz) >= max_total:
-                break
-
-        buzz = _dedupe_preserve(buzz)
-        return buzz[:max_total]
-
-    def _ollama_generate(self, buzzwords):
-        """
-        Calls local Ollama (Llama3) to turn buzzwords into 1–2 coherent sentences.
-        Produces varied style and length. Avoids the generic 'It relates to ...' pattern.
-        """
-
+    def _ollama_generate_short(self, buzzwords):
         buzzwords = [bw for bw in buzzwords if _clean_text(bw)]
+        buzzwords = _dedupe_preserve(buzzwords)
+
         if not buzzwords:
-            return "Unknown sequence."
+            return "I couldn’t interpret that emoji sequence."
 
-        # Optional caching (OFF by default to allow diversity)
-        cache_key = tuple(buzzwords)
-        if getattr(self, "use_llm_cache", False) and cache_key in self._llm_cache:
-            return self._llm_cache[cache_key]
-
-        # A few styles to diversify outputs across calls
-        styles = [
-            "a casual text message",
-            "a short descriptive caption",
-            "a tiny story with a human subject (I/we)",
-            "a playful tone with mild humor",
-            "a neutral informative tone",
-            "a motivational tone",
-        ]
-        style = random.choice(styles)
-
+        # Keep output short + close to buzzword meaning
         keywords = "; ".join(buzzwords)
 
-        def contains_all_keywords(text: str) -> bool:
-            low = (text or "").lower()
-            return all(bw.lower() in low for bw in buzzwords)
-
-        def bad_generic(text: str) -> bool:
-            low = (text or "").lower().strip()
-            # block common generic starts
-            return low.startswith("it relates to") or low.startswith("this relates to") or "it relates to" in low
-
-        def call_ollama(prompt: str, temperature: float, seed: int):
-            try:
-                resp = requests.post(
-                    self.ollama_url,
-                    json={
-                        "model": self.ollama_model,
-                        "prompt": prompt,
-                        "stream": False,
-                        "options": {
-                            "temperature": temperature,
-                            "top_p": 0.9,
-                            "repeat_penalty": 1.12,
-                            "num_predict": 110,
-                            "seed": seed,
-                        },
-                    },
-                    timeout=40,
-                )
-                resp.raise_for_status()
-                out = resp.json().get("response", "")
-            except Exception:
-                out = ""
-
-            out = re.sub(r"\s+", " ", (out or "")).strip()
-            out = out.replace("nan", "").replace("Nan", "").strip()
-            return out
-
-        # Prompt: explicitly discourages the generic pattern, encourages coherence and style variation
-        base_prompt = (
-            "You are a writing assistant.\n"
-            f"Write 1–2 coherent English sentences in {style}.\n"
-            "You MUST include every keyword (case-insensitive). Use them naturally.\n"
-            "Do NOT output a list. Do NOT use bullet points. Do NOT use hashtags.\n"
-            "Do NOT start with 'It relates to' and do NOT use the phrase 'it relates to'.\n"
-            "Do NOT use the word 'nan'.\n"
+        prompt = (
+            "You are a careful English writer.\n"
+            "Write ONE short sentence that stays close to the literal meaning of the keywords.\n"
+            "Constraints:\n"
+            "- Max 14 words.\n"
+            "- Use the keywords naturally (include as many as possible).\n"
+            "- Do not add new details beyond the keywords.\n"
+            "- No lists, no bullet points, no hashtags.\n"
+            "- Do NOT use the word 'nan'.\n"
             f"Keywords: {keywords}\n"
-            "Output:"
+            "Sentence:"
         )
 
-        # Try multiple candidates for diversity & higher chance of satisfying constraints
-        candidates = []
-        for i, temp in enumerate([0.85, 0.95, 0.75]):
-            seed = random.randint(1, 10_000_000)
-            out = call_ollama(base_prompt, temperature=temp, seed=seed)
-            if out:
-                candidates.append(out)
-
-        # Pick best candidate: has all keywords, not generic, reasonably sentence-like
-        def score(text: str) -> float:
-            s = 0.0
-            if contains_all_keywords(text):
-                s += 5.0
-            else:
-                # partial credit
-                low = text.lower()
-                s += sum(1.0 for bw in buzzwords if bw.lower() in low)
-            if bad_generic(text):
-                s -= 4.0
-            # prefer 1–2 sentences
-            n_sent = len(re.findall(r"[.!?]", text))
-            if 1 <= n_sent <= 2:
-                s += 1.5
-            # avoid being too short or too long
-            n_words = len(text.split())
-            if 8 <= n_words <= 35:
-                s += 1.0
-            return s
-
-        candidates.sort(key=score, reverse=True)
-        best = candidates[0] if candidates else ""
-
-        # If best still misses keywords, retry with stricter instructions (no template patch)
-        if best and not contains_all_keywords(best):
-            strict_prompt = (
-                "You are a precise writing assistant.\n"
-                "Rewrite the output as 1–2 coherent English sentences.\n"
-                "You MUST include EVERY keyword exactly as written (case-insensitive is fine).\n"
-                "No lists, no bullets, no hashtags.\n"
-                "Do NOT use or include the phrase 'it relates to'.\n"
-                "Do NOT use the word 'nan'.\n"
-                f"Keywords: {keywords}\n"
-                f"Draft: {best}\n"
-                "Final:"
+        try:
+            r = requests.post(
+                self.ollama_url,
+                json={
+                    "model": self.ollama_model,
+                    "prompt": prompt,
+                    "stream": False,
+                    "options": {
+                        "temperature": 0.3,
+                        "top_p": 0.8,
+                        "repeat_penalty": 1.15,
+                        "num_predict": 40,
+                        "seed": random.randint(1, 10_000_000),
+                        "stop": ["\n"]  # helps keep it short
+                    },
+                },
+                timeout=30,
             )
-            retry = call_ollama(strict_prompt, temperature=0.6, seed=random.randint(1, 10_000_000))
-            if retry:
-                best = retry
+            r.raise_for_status()
+            out = (r.json().get("response", "") or "").strip()
+        except Exception:
+            out = ""
 
-        # Final cleanup / safety
-        best = re.sub(r"\s+", " ", (best or "")).strip()
-        best = best.replace("nan", "").replace("Nan", "").strip()
+        out = out.replace("nan", "").replace("Nan", "").strip()
+        out = _truncate_text(out, max_sentences=1, max_words=18)
 
-        if not best:
-            # fallback without the hated pattern
-            best = f"I’m thinking about {', '.join(buzzwords[:4])}."
+        # If ollama failed, return a short template (not “unknown sequence”)
+        if not out:
+            # minimal, still meaningful
+            out = _truncate_text(f"{', '.join(buzzwords[:4])}.", max_sentences=1, max_words=12)
 
-        if not best.endswith((".", "!", "?")):
-            best += "."
+        return out
 
-        if getattr(self, "use_llm_cache", False):
-            self._llm_cache[cache_key] = best
+    def translate(self, input_sequence: str) -> str:
+        raw = re.sub(r"\s+", "", str(input_sequence))
+        norm = _normalize_seq_string(input_sequence)
 
-        return best
+        # 1) Direct DB match (exact)
+        meanings = self.seq2meanings.get(raw) or self.seq2meanings.get(norm)
+        if meanings:
+            best = _pick_shortest_meaning(meanings, max_chars=140)
+            return f"🎯 [DB] {best}"
 
+        # 2) Similar combinations (SIM) using emoji-side description embeddings
+        if self.kb_desc_embeddings is not None and self.kb_desc:
+            desc = self._sequence_to_description(norm)
+            if _clean_text(desc):
+                q = self.model.encode(desc, convert_to_tensor=True)
+                scores = util.cos_sim(q, self.kb_desc_embeddings)[0]
+                best_idx = int(torch.argmax(scores).item())
+                if float(scores[best_idx]) > 0.70:  # lower than before because it's emoji-side now
+                    return f"💡 [SIM] {self.kb_meaning[best_idx]}"
 
-    def translate(self, input_sequence):
-        clean_input = str(input_sequence).replace(" ", "").replace("\t", "").replace("\n", "")
+        # 3) LLM fallback (buzzwords)
+        emojis = self._sequence_to_emojis(norm)
+        if not emojis:
+            # only happens if the input contains no emoji-like characters
+            return "❓ Please enter 1–6 emojis."
 
-        # 1) Exact DB match
-        if not self.kb_df.empty:
-            exact = self.kb_df[self.kb_df["clean_seq"] == clean_input]
-            if not exact.empty:
-                meanings = list(pd.unique(exact["input"]))[:3]
-                meanings = [m for m in meanings if _clean_text(m)]
-                return f"🎯 [DB] {' | '.join(meanings)}"
-
-        # 2) Similarity match (emoji description -> nearest english meaning)
-        if self.kb_embeddings is not None and len(self.kb_df) > 0:
-            input_emojis = self._get_emoji_list(clean_input)
-
-            # Prefer shortcode in the description signal, then name
-            desc_parts = []
-            for e in input_emojis:
-                d = self.emoji_dict.get(e, {})
-                desc_parts.append(d.get("shortcode") or d.get("name") or "")
-            input_desc = " ".join([p for p in desc_parts if _clean_text(p)])
-
-            if input_desc:
-                input_vec = self.model.encode(input_desc, convert_to_tensor=True)
-                scores = util.cos_sim(input_vec, self.kb_embeddings)[0]
-                best_idx = torch.argmax(scores).item()
-                if scores[best_idx] > 0.80:
-                    best = _clean_text(self.kb_df.iloc[best_idx]["input"])
-                    if best:
-                        return f"💡 [SIM] {best}"
-
-        # 3) LLM fallback: buzzwords -> fluent sentence(s)
-        input_emojis = self._get_emoji_list(clean_input)
-        buzzwords = self._collect_buzzwords(input_emojis, max_total=10)
-        return f"🦙 [LLM] {self._ollama_generate(buzzwords)}"
-    
+        buzzwords = [self._emoji_to_buzzword(e) for e in emojis]
+        buzzwords = [b for b in buzzwords if _clean_text(b)]
+        return f"🦙 [LLM] {self._ollama_generate_short(buzzwords)}"
 
     # backend/emoji_translator.py
 
