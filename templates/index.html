@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emoji Translator</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="page">
+    <h1 class="title">Emoji Translator</h1>
+
+    <div class="card">
+      <label class="label" for="instructions">Instructions for the user</label>
+      <textarea id="instructions" class="textarea" rows="3"
+        placeholder="Example: Enter 1–6 emojis (with or without spaces)."></textarea>
+
+      <label class="label" for="emojiInput">Emoji sequence</label>
+      <input id="emojiInput" class="input" type="text" inputmode="text"
+        placeholder="🍕 ❤️  or  🧑‍💻☕😴" />
+
+      <button id="translateBtn" class="button">Translate</button>
+
+      <div id="resultWrap" class="resultWrap hidden">
+        <div class="resultLabel">Result</div>
+        <div id="result" class="resultText"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
