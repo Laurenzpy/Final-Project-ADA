@@ -212,7 +212,7 @@ class EmojiTranslator:
             "- Max 14 words.\n"
             "- Use the keywords naturally (include as many as possible).\n"
             "- Do not add new details beyond the keywords.\n"
-            "- No lists, no bullet points, no hashtags.\n"
+            "- No lists, no bullet points, no hashtags, no emojis.\n"
             "- Do NOT use the word 'nan'.\n"
             f"Keywords: {keywords}\n"
             "Sentence:"
