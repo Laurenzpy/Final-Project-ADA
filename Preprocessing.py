@@ -97,4 +97,3 @@ merged_emoji_df.to_csv('merged_emoji_sample.csv', index=False)#
 # after you create merged_emoji_df
 merged_emoji_df.to_parquet("merged_emoji_df.parquet", index=False)
 print("Saved to data/merged_emoji_df.parquet")
-
