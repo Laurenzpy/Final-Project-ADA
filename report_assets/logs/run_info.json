@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-01-15 00:28:57",
+  "git_commit": "e121b1943e1cb2da3ec828657ad7c0a9985a25b8",
+  "python_version": "Python 3.12.3",
+  "torch_version": "2.9.1",
+  "device": "mps",
+  "model_dir": "artifacts/t5_e2t",
+  "eval_file": "data/emoji_dataset_stage5_e2t.csv"
+}

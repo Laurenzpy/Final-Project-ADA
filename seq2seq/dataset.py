@@ -6,11 +6,35 @@ from seq2seq.tokenizers import tokenize_emojis, tokenize_text
 from seq2seq.vocab import Vocab
 
 
+def _choose_canonical_output(outputs: list[str]) -> str:
+    """
+    Pick ONE canonical target sentence for a given input.
+    Strategy:
+      1) most frequent (mode)
+      2) tie-break: shortest (often less noisy)
+    """
+    outs = [" ".join(str(o).split()) for o in outputs if str(o).strip()]
+    if not outs:
+        return ""
+
+    counts: dict[str, int] = {}
+    for o in outs:
+        counts[o] = counts.get(o, 0) + 1
+
+    max_c = max(counts.values())
+    candidates = [o for o, c in counts.items() if c == max_c]
+    candidates.sort(key=lambda s: (len(s.split()), len(s)))
+    return candidates[0]
+
+
 class Emoji2TextDataset(Dataset):
     """
     Flexible dataset for either:
-      - emoji2text: input=emojis, output=text  (your intended project)
-      - text2emoji: input=text, output=emojis  (what your stage6 eval looked like)
+      - emoji2text: input=emojis, output=text  (intended project)
+      - text2emoji: input=text, output=emojis  (optional)
+
+    Important option:
+      - deduplicate=True: makes mapping input -> ONE output (fixes one-to-many instability)
     """
     def __init__(
         self,
@@ -18,6 +42,7 @@ class Emoji2TextDataset(Dataset):
         src_vocab: Vocab,
         tgt_vocab: Vocab,
         direction: str = "emoji2text",
+        deduplicate: bool = True,
     ):
         frames = []
         for p in csv_paths:
@@ -25,14 +50,24 @@ class Emoji2TextDataset(Dataset):
             if "input" not in df.columns or "output" not in df.columns:
                 raise ValueError(f"{p} must have columns: input, output")
             frames.append(df[["input", "output"]])
-        self.df = pd.concat(frames, ignore_index=True)
 
-        self.src_vocab = src_vocab
-        self.tgt_vocab = tgt_vocab
+        df = pd.concat(frames, ignore_index=True)
+        df["input"] = df["input"].astype(str)
+        df["output"] = df["output"].astype(str)
 
         if direction not in {"emoji2text", "text2emoji"}:
             raise ValueError("direction must be 'emoji2text' or 'text2emoji'")
         self.direction = direction
+
+        # ✅ Key fix: reduce one-to-many
+        if deduplicate:
+            grouped = df.groupby("input")["output"].apply(list).reset_index()
+            grouped["output"] = grouped["output"].apply(_choose_canonical_output)
+            df = grouped
+
+        self.df = df.reset_index(drop=True)
+        self.src_vocab = src_vocab
+        self.tgt_vocab = tgt_vocab
 
     def __len__(self):
         return len(self.df)
@@ -41,11 +76,9 @@ class Emoji2TextDataset(Dataset):
         row = self.df.iloc[idx]
 
         if self.direction == "emoji2text":
-            # ✅ Intended task: emojis -> meaning text
             src_tokens = tokenize_emojis(str(row["input"]))
             tgt_tokens = tokenize_text(str(row["output"]))
         else:
-            # Reverse task: text -> emojis
             src_tokens = tokenize_text(str(row["input"]))
             tgt_tokens = tokenize_emojis(str(row["output"]))
 

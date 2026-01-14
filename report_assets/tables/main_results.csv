@@ -1,0 +1,3 @@
+model,decoding,avg_pred_len_words,unique_rate,top1_freq,top_prediction_preview
+t5_e2t,greedy,6.0,0.06666666666666667,0.9666666666666667,The sailor sat in the sun
+t5_e2t,beam,6.066666666666666,0.1,0.9333333333333333,The man sat on the couch

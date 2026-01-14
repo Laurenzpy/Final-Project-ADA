@@ -18,3 +18,21 @@ eval_*.txt
 artifacts/
 checkpoints/
 *.pt
+
+# temp export folder
+_share/
+*_share
+
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.cache/
+wandb/
+
+# Local artifacts (do not commit)
+project_share.tar.gz
+check_dataset.py
+check_datset.py
+train_*.txt
+.DS_Store

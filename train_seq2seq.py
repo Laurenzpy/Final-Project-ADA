@@ -1,173 +1,195 @@
 import os
-import torch
-import torch.nn as nn
-from torch.utils.data import DataLoader
-from tqdm import tqdm
+import inspect
+import numpy as np
 import pandas as pd
 
-from seq2seq.tokenizers import tokenize_emojis, tokenize_text
-from seq2seq.vocab import build_vocab
-from seq2seq.dataset import Emoji2TextDataset, collate_batch
-from seq2seq.model import Encoder, Decoder, Seq2Seq
+import torch
+from datasets import Dataset
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSeq2SeqLM,
+    DataCollatorForSeq2Seq,
+    Seq2SeqTrainer,
+    Seq2SeqTrainingArguments,
+)
 
 DATA_DIR = "data"
-
 TRAIN_FILES = [os.path.join(DATA_DIR, f"emoji_dataset_stage{i}_e2t.csv") for i in range(1, 5)]
 VAL_FILES   = [os.path.join(DATA_DIR, "emoji_dataset_stage5_e2t.csv")]
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+MODEL_NAME = "t5-small"
+OUT_DIR = "artifacts/t5_e2t"
 
 
-def load_tokens_emoji2text(csv_paths):
-    """
-    Build vocab for EMOJI -> TEXT
-    src = emojis
-    tgt = text
-    """
-    src_tokens, tgt_tokens = [], []
-    for p in csv_paths:
-        df = pd.read_csv(p)
-        for _, r in df.iterrows():
-            src_tokens.append(tokenize_emojis(str(r["input"])))
-            tgt_tokens.append(tokenize_text(str(r["output"])))
-    return src_tokens, tgt_tokens
+def choose_canonical_output(outputs):
+    outputs = [" ".join(str(o).split()) for o in outputs if str(o).strip()]
+    if not outputs:
+        return ""
+    counts = {}
+    for o in outputs:
+        counts[o] = counts.get(o, 0) + 1
+    mx = max(counts.values())
+    cand = [o for o, c in counts.items() if c == mx]
+    cand.sort(key=lambda s: (len(s.split()), len(s)))
+    return cand[0]
+
+
+def load_and_dedup(csv_paths):
+    df = pd.concat([pd.read_csv(p)[["input", "output"]] for p in csv_paths], ignore_index=True)
+    df["input"] = df["input"].astype(str)
+    df["output"] = df["output"].astype(str)
+
+    grouped = df.groupby("input")["output"].apply(list).reset_index()
+    grouped["output"] = grouped["output"].apply(choose_canonical_output)
+    return grouped.reset_index(drop=True)
 
 
 def main():
-    print(">>> Training started", flush=True)
-    print(">>> DEVICE:", DEVICE, flush=True)
+    print(">>> SCRIPT ENTERED", flush=True)
+    os.makedirs(OUT_DIR, exist_ok=True)
 
-    # 1) Build vocabs from TRAIN only (emoji -> text)
-    src_tokens, tgt_tokens = load_tokens_emoji2text(TRAIN_FILES)
+    train_df = load_and_dedup(TRAIN_FILES)
+    val_df   = load_and_dedup(VAL_FILES)
 
-    src_vocab = build_vocab(src_tokens, max_size=5000)
-    tgt_vocab = build_vocab(tgt_tokens, max_size=20000)
+    print(">>> train size:", len(train_df), flush=True)
+    print(">>> val size  :", len(val_df), flush=True)
+    print(">>> model     :", MODEL_NAME, flush=True)
 
-    print(f">>> vocab built: src={len(src_vocab.itos)} tgt={len(tgt_vocab.itos)}", flush=True)
+    print(">>> loading tokenizer/model...", flush=True)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
 
-    os.makedirs("artifacts", exist_ok=True)
-    src_vocab.save("artifacts/src_vocab.json")
-    tgt_vocab.save("artifacts/tgt_vocab.json")
+    train_ds = Dataset.from_pandas(train_df)
+    val_ds   = Dataset.from_pandas(val_df)
 
-    # 2) Datasets / loaders  (IMPORTANT: direction!)
-    train_ds = Emoji2TextDataset(
-        TRAIN_FILES, src_vocab, tgt_vocab, direction="emoji2text"
-    )
-    val_ds = Emoji2TextDataset(
-        VAL_FILES, src_vocab, tgt_vocab, direction="emoji2text"
-    )
+    max_src_len = 64
+    max_tgt_len = 64
 
-    train_dl = DataLoader(
-        train_ds,
-        batch_size=64,
-        shuffle=True,
-        collate_fn=lambda b: collate_batch(b, src_vocab.pad_id, tgt_vocab.pad_id)
-    )
-    val_dl = DataLoader(
-        val_ds,
-        batch_size=64,
-        shuffle=False,
-        collate_fn=lambda b: collate_batch(b, src_vocab.pad_id, tgt_vocab.pad_id)
-    )
+    def preprocess(batch):
+        inputs = batch["input"]
+        targets = batch["output"]
 
-    print(
-        f">>> dataloaders built: train_batches={len(train_dl)} val_batches={len(val_dl)}",
-        flush=True
-    )
-
-    # 3) Model
-    encoder = Encoder(len(src_vocab.itos), emb_dim=128, hid_dim=256)
-    decoder = Decoder(len(tgt_vocab.itos), emb_dim=128, hid_dim=256)
-    model = Seq2Seq(encoder, decoder, pad_id=tgt_vocab.pad_id).to(DEVICE)
-
-    # 4) Optimizer + Loss
-    optimizer = torch.optim.Adam(model.parameters(), lr=5e-4)
-    criterion = nn.CrossEntropyLoss(ignore_index=tgt_vocab.pad_id)
-
-    best_val_loss = float("inf")
-
-    # 5) Training loop
-    EPOCHS = 25
-    for epoch in range(1, EPOCHS + 1):
-        print(f"\n>>> Epoch {epoch}/{EPOCHS}", flush=True)
-
-        model.train()
-        train_loss_sum = 0.0
-
-        for src_pad, src_lens, tgt_pad, _ in tqdm(train_dl, desc=f"Epoch {epoch} [train]"):
-            src_pad = src_pad.to(DEVICE)
-            src_lens = src_lens.to(DEVICE)
-            tgt_pad = tgt_pad.to(DEVICE)
-
-            optimizer.zero_grad()
-
-            tf = max(0.1, 1.0 - (epoch - 1) / (EPOCHS * 0.8))  # von ~1.0 runter bis 0.1
-            logits = model(src_pad, src_lens, tgt_pad, teacher_forcing_ratio=tf)
-
-            print(f">>> teacher_forcing={tf:.2f}", flush=True)
-            
-            gold = tgt_pad[:, 1:]
-
-            loss = criterion(
-                logits.reshape(-1, logits.size(-1)),
-                gold.reshape(-1)
-            )
-
-            loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-            optimizer.step()
-
-            train_loss_sum += loss.item()
-
-        train_loss = train_loss_sum / max(1, len(train_dl))
-
-        # 6) Validation
-        model.eval()
-        val_loss_sum = 0.0
-        with torch.no_grad():
-            for src_pad, src_lens, tgt_pad, _ in tqdm(val_dl, desc=f"Epoch {epoch} [val]"):
-                src_pad = src_pad.to(DEVICE)
-                src_lens = src_lens.to(DEVICE)
-                tgt_pad = tgt_pad.to(DEVICE)
-
-                logits = model(
-                    src_pad,
-                    src_lens,
-                    tgt_pad,
-                    teacher_forcing_ratio=0.0
-                )
-
-                gold = tgt_pad[:, 1:]
-                loss = criterion(
-                    logits.reshape(-1, logits.size(-1)),
-                    gold.reshape(-1)
-                )
-                val_loss_sum += loss.item()
-
-        val_loss = val_loss_sum / max(1, len(val_dl))
-
-        print(
-            f"Epoch {epoch}: train_loss={train_loss:.4f}  val_loss={val_loss:.4f}",
-            flush=True
+        # ✅ Modern: targets über text_target (statt as_target_tokenizer)
+        model_inputs = tokenizer(
+            inputs,
+            text_target=targets,
+            max_length=max_src_len,
+            truncation=True,
+            padding=False,
         )
 
-        # 7) Save best model
-        if val_loss < best_val_loss:
-            best_val_loss = val_loss
-            torch.save(
-                {
-                    "model_state": model.state_dict(),
-                    "src_vocab_itos": src_vocab.itos,
-                    "tgt_vocab_itos": tgt_vocab.itos,
-                    "emb_dim": 128,
-                    "hid_dim": 256,
-                },
-                "artifacts/seq2seq_best.pt"
-            )
-            print("✅ Saved artifacts/seq2seq_best.pt", flush=True)
+        # labels werden automatisch als input_ids für text_target gesetzt
+        # aber: max_length für target separat clampen (robust)
+        # -> wenn tokenizer das schon passend macht, ist es ok; sonst kürzen wir:
+        if "labels" in model_inputs:
+            # manchmal sind labels direkt da
+            pass
+        else:
+            # fallback: manche tokenizer legen targets in "labels" anders ab
+            labels = tokenizer(
+                targets,
+                max_length=max_tgt_len,
+                truncation=True,
+                padding=False,
+            )["input_ids"]
+            model_inputs["labels"] = labels
 
-    print("\n>>> Training finished", flush=True)
-    
+        return model_inputs
+
+    print(">>> tokenizing...", flush=True)
+    train_tok = train_ds.map(preprocess, batched=True, remove_columns=train_ds.column_names)
+    val_tok   = val_ds.map(preprocess, batched=True, remove_columns=val_ds.column_names)
+
+    data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
+
+    # ---- METRICS (ohne evaluate -> stabiler)
+    # pip install sacrebleu
+    import sacrebleu
+    print(">>> metrics: sacrebleu enabled", flush=True)
+
+    def compute_metrics(eval_pred):
+        preds, labels = eval_pred
+
+        if isinstance(preds, tuple):
+            preds = preds[0]
+
+        preds = np.asarray(preds)
+
+        # preds kann logits sein: [B, T, V]
+        if preds.ndim == 3:
+            preds = preds.argmax(axis=-1)
+
+        preds = preds.astype(np.int32)
+        preds = np.clip(preds, 0, tokenizer.vocab_size - 1)
+
+        labels = np.asarray(labels)
+        labels = np.where(labels != -100, labels, tokenizer.pad_token_id).astype(np.int32)
+        labels = np.clip(labels, 0, tokenizer.vocab_size - 1)
+
+        pred_texts = tokenizer.batch_decode(preds, skip_special_tokens=True)
+        label_texts = tokenizer.batch_decode(labels, skip_special_tokens=True)
+
+        bleu = sacrebleu.corpus_bleu(pred_texts, [label_texts]).score
+        return {"bleu": float(bleu)}
+
+    # ---- TRAINING ARGS (versions-sicher)
+    sig = inspect.signature(Seq2SeqTrainingArguments.__init__).parameters
+
+    args_kwargs = dict(
+        output_dir="checkpoints/t5_e2t",
+        per_device_train_batch_size=8,
+        per_device_eval_batch_size=8,
+        learning_rate=5e-5,
+        num_train_epochs=5,
+        predict_with_generate=True,
+        logging_steps=25,
+        logging_first_step=True,
+        save_total_limit=2,
+        report_to=[],
+        fp16=False,
+    )
+
+    # eval strategy heißt je nach Version anders
+    if "evaluation_strategy" in sig:
+        args_kwargs["evaluation_strategy"] = "epoch"
+    elif "eval_strategy" in sig:
+        args_kwargs["eval_strategy"] = "epoch"
+
+    # save strategy
+    if "save_strategy" in sig:
+        args_kwargs["save_strategy"] = "epoch"
+
+    # generation length heißt manchmal anders
+    if "generation_max_length" in sig:
+        args_kwargs["generation_max_length"] = 32
+
+    # best model laden (nicht jede Version kann das)
+    if "load_best_model_at_end" in sig:
+        args_kwargs["load_best_model_at_end"] = True
+    if "metric_for_best_model" in sig:
+        args_kwargs["metric_for_best_model"] = "bleu"
+    if "greater_is_better" in sig:
+        args_kwargs["greater_is_better"] = True
+
+    training_args = Seq2SeqTrainingArguments(**args_kwargs)
+
+    trainer = Seq2SeqTrainer(
+        model=model,
+        args=training_args,
+        train_dataset=train_tok,
+        eval_dataset=val_tok,
+        tokenizer=tokenizer,
+        data_collator=data_collator,
+        compute_metrics=compute_metrics,
+    )
+
+    print(">>> Training start", flush=True)
+    trainer.train()
+
+    print(">>> Saving model", flush=True)
+    trainer.save_model(OUT_DIR)
+    tokenizer.save_pretrained(OUT_DIR)
+    print("✅ Saved:", OUT_DIR, flush=True)
 
 
 if __name__ == "__main__":

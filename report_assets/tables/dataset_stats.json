@@ -1,0 +1,12 @@
+{
+  "file": "data/emoji_dataset_stage5_e2t.csv",
+  "n_samples": 300,
+  "avg_emoji_len_tokens": 5.0,
+  "median_emoji_len_tokens": 5.0,
+  "max_emoji_len_tokens": 5,
+  "avg_text_len_words": 11.363333333333333,
+  "median_text_len_words": 11.0,
+  "max_text_len_words": 15,
+  "max_input_len_used_in_tokenizer": 64,
+  "max_new_tokens_generation": 32
+}
