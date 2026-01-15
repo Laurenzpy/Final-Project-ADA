@@ -36,3 +36,10 @@ check_dataset.py
 check_datset.py
 train_*.txt
 .DS_Store
+
+# Local / temp
+.DS_Store
+project_share.tar.gz
+train_*.txt
+__pycache__/
+*.pyc

@@ -1,0 +1,51 @@
+idx,emoji_input,reference,pred_pipeline,stage
+106,🦘 🦮 🦖 🦋 🦈,The kangaroo dog and dinosaur watched the butterfly and shark,She has a pouch,retrieval_lowconf
+239,🦈 🥐 🕸️ 🦘 🐏,A ram and kangaroo saw a shark eating a croissant near the web,I eat a croissant,retrieval_lowconf
+37,🐻 🧊 🧣 🧤 🧥,In the ice and cold the bear needed a scarf and coat,Wear a scarf and gloves in the snow,retrieval
+89,🧻 🧼 🧽 🧴 🌊,She washed with soap and water using a sponge and tissue,Use paper and a broom to tidy,retrieval
+32,🐻 🦊 🐗 🌲 🌳,The bear fox and boar live among the pine and deciduous trees,The forest has a boar,retrieval_lowconf
+250,🥟 🥦 🥕 🍖 🥄,She used a spoon to eat the dumpling meat broccoli and carrot,Eat broccoli and carrots,retrieval
+192,🚒 🥡 🤥 💯 ✴️,The fire truck brought a hundred boxes of food and stars,I see the star,retrieval_lowconf
+120,🌾 🥙 🥦 🍐 🍖,The meal included rice meat broccoli and a pear,I eat some meat,retrieval_lowconf
+19,🐮 🐷 🐴 🐏 🏡,We saw a cow pig horse and ram living on the farm,We saw farm animals eating grain,retrieval_lowconf
+225,🍜 🥐 🕊️ 🦉 🦈,A shark ate a croissant and noodles while birds watched,"A bird, a fish, and a joker together",retrieval_lowconf
+24,🦅 🦉 🕊️ 🦜 🦢,The eagle owl dove parrot and swan are all birds,The eagle and the owl,retrieval_lowconf
+295,📕 🦷 🌍 1️⃣ 🗝️,One tooth and a key were found on the map in the book,I see the globe,retrieval_lowconf
+103,🥡 🦩 🦉 🐟 🐃,We fed the flamingo owl and buffalo with fish from the box,They are strong,retrieval_lowconf
+220,🦙 🐐 🦋 🗃️ 🌹,The llama and goat found a rose and butterfly in the file box,I see a goat,retrieval_lowconf
+205,🛢️ ⛰️ 🏄 📻 🏡,The house near the mountain had an oil drum and radio for the surfer,We play the hits,retrieval_lowconf
+297,🦽 🗯️ 🦜 👏 🧘,He sat in the wheelchair and clapped while the parrot meditated,I use a chair,retrieval_lowconf
+291,🧅 🧞 🧻 👚 👈,She pointed left to the genie holding paper onions and a shirt,We go that way,retrieval_lowconf
+38,🏫 📖 🎓 🏢 🤓,The student read a book at school and graduated with glasses,The student studied the notes at school,retrieval_lowconf
+158,🥯 😶 🌗 💼 🥎,The silent worker carried a briefcase bagel and softball,I see the moon,retrieval_lowconf
+173,🥗 💱 🚉 🍗 🧷,He used a safety pin to hold the money for the chicken salad,The meal is hot,retrieval_lowconf
+245,🥩 🍐 🧀 🌾 🏢,He brought a lunch of steak cheese and pear to the building,We go to work,retrieval_lowconf
+1,🥚 🧀 🍞 🥛 😋,He ate a delicious meal of eggs cheese and toast with milk,He made breakfast with eggs and toast,retrieval_lowconf
+224,🍜 🥐 🕊️ 🦉 🦈,The owl and dove watched the shark eat noodles and a croissant,"A bird, a fish, and a joker together",retrieval_lowconf
+251,🥟 🥦 🥕 🍖 🥄,The stew contained carrots broccoli dumplings and meat,Eat broccoli and carrots,retrieval
+144,🏜️ 🌞 💋 0️⃣ 🖕,The sun shone on the desert kiss and the zero finger sign,He feels angry,retrieval_lowconf
+133,🥪 🌾 🥥 🌮 🥜,He prepared a meal of peanuts coconut rice bread and tacos,I eat a peanut,retrieval_lowconf
+246,🍷 🍎 🧂 🍲 🥫,The cook used wine salt and an apple in the canned soup,I open the can,retrieval_lowconf
+206,🚟 🚚 🧥 🔬 💔,The scientist with a broken heart left his coat in the truck,She is so sad,retrieval_lowconf
+86,🔧 🔩 🧲 🔗 🧷,The tools included a wrench bolt magnet link and pin,He fixed the chain with tools,retrieval_lowconf
+5,🍚 🍜 🥟 🥢 🥡,The dinner was rice noodles and dumplings served with chopsticks,The asian dinner included noodles,retrieval_lowconf
+283,🧲 🤞 🤏 🐂 🚗,The driver used a small magnet to fix the ox cart and car,He makes a wish,retrieval_lowconf
+123,🥘 🥥 🌮 🥖 🥛,She cooked a taco and bread in the pan with coconut milk,We eat paella,retrieval_lowconf
+190,💩 🤏 🤮 ⚔️ 😵,The smell of poop made him vomit and feel dizzy in the fight,We faint away,retrieval_lowconf
+34,🦖 🦕 🦎 🌿 🍖,The dinosaur and lizard ate plants and meat in the wild,The t-rex and sauropod,retrieval
+231,🦎 🌿 🦢 🥡 🐂,A swan and ox found herbs and a box for the lizard,He sees a swan,retrieval_lowconf
+181,🚣 🧐 🦬 🐮 🧝,A magical elf saw the bison cow and rower wearing a monocle,I see a cow,retrieval_lowconf
+252,🌾 🥚 🧁 🥔 🍋,The recipe needs rice eggs potatoes lemon and a cupcake,We like citrus,retrieval_lowconf
+107,🦘 🦮 🦖 🦋 🦈,A dog chased the kangaroo and dinosaur while a shark and butterfly watched,She has a pouch,retrieval_lowconf
+115,🦈 🦖 🦘 🐀 🦇,A kangaroo rat and bat ran from the shark and ancient lizard,She has a pouch,retrieval_lowconf
+48,💍 👜 🧣 🧤 👒,She wore a ring and carried a bag scarf gloves and hat,The snow is cold and we need winter gear,retrieval_lowconf
+253,🌾 🥚 🧁 🥔 🍋,She baked a cupcake and cooked eggs potatoes and rice with lemon,We like citrus,retrieval_lowconf
+242,📙 🍴 🥛 🥜 🔩,He read the book while eating peanuts with milk and a fork,I read the book,retrieval_lowconf
+276,💿 🎲 🥍 6️⃣ ✡️,He played lacrosse and rolled a six with the star and cd,We count to six,retrieval_lowconf
+73,4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣,He counted the items four five six seven and eight,We count to seven,retrieval_lowconf
+268,🤽 💃 🕳️ 🔗 🔵,The dancer and water polo player found a hole linked to the blue circle,We draw a dot,retrieval_lowconf
+100,🦇 🐃 🥊 🐟 🐛,The bat and water buffalo saw a fish and a bug near the boxing glove,They are strong,retrieval_lowconf
+261,💤 🥗 📍 💍 🌃,He pinned the location of the ring and salad before sleeping,I see a pin,retrieval_lowconf
+159,🥯 😶 🌗 💼 🥎,He ate a bagel and held his case under the half moon,I see the moon,retrieval_lowconf
+208,😬 🥯 🙃 🍾 👉,He made a grimace while pointing at the bagel and champagne,They look goofy,retrieval_lowconf
+55,🏦 💵 💸 🏧 💲,He withdrew cash and dollars from the bank machine,I see the sign,retrieval_lowconf
