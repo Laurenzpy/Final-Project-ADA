@@ -1,35 +1,121 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Optional
+
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
 
-from backend.emoji_translator import build_translator
-
-# Uvicorn looks for this variable: "app"
-app = FastAPI(title="Emoji Translator")
-
-templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-translator = build_translator()
+from backend.final_emoji_translator import FinalEmojiTranslator, HybridConfig
 
 
-class TranslateRequest(BaseModel):
-    emoji_sequence: str
-    instructions: str | None = None
+BASE_DIR = Path(__file__).resolve().parent.parent  # Projekt-Root
+TEMPLATES_DIR = BASE_DIR / "templates"
+STATIC_DIR = BASE_DIR / "static"
+
+app = FastAPI()
+
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR)) if TEMPLATES_DIR.exists() else None
+
+_TRANSLATOR: Optional[FinalEmojiTranslator] = None
+
+
+def get_translator() -> FinalEmojiTranslator:
+    global _TRANSLATOR
+    if _TRANSLATOR is not None:
+        return _TRANSLATOR
+
+    # WICHTIG: TM nur aus Stage 1–4 (Stage 5 niemals)
+    cfg = HybridConfig(
+        tm_train_paths=[
+            str(BASE_DIR / "data" / "emoji_dataset_stage1_e2t.csv"),
+            str(BASE_DIR / "data" / "emoji_dataset_stage2_e2t.csv"),
+            str(BASE_DIR / "data" / "emoji_dataset_stage3_e2t.csv"),
+            str(BASE_DIR / "data" / "emoji_dataset_stage4_e2t.csv"),
+        ],
+        t5_dir=str(BASE_DIR / "artifacts" / "t5_e2t"),
+        exact_match_first=True,
+        retrieval_high_threshold=0.85,
+        retrieval_low_threshold=0.55,
+        t5_min_score_to_skip=0.25,
+        enable_t5_fallback=True,
+        enable_llm_fallback=False,
+        device=None,  # oder "mps"
+    )
+
+    _TRANSLATOR = FinalEmojiTranslator(cfg)
+    return _TRANSLATOR
 
 
 @app.get("/", response_class=HTMLResponse)
-def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+async def index(request: Request):
+    if templates is not None and (TEMPLATES_DIR / "index.html").exists():
+        return templates.TemplateResponse("index.html", {"request": request})
+    return HTMLResponse("<h1>Emoji Translator Backend läuft</h1>")
 
 
 @app.post("/api/translate")
-def translate(req: TranslateRequest):
-    seq = (req.emoji_sequence or "").strip()
-    if not seq:
-        return JSONResponse({"ok": False, "result": "Please enter 1–6 emojis."})
+async def api_translate(request: Request):
+    """
+    Akzeptiert mehrere Body-Formate (Frontend-sicher):
+      - {"emoji_sequence": "..."}
+      - {"text": "..."}
+      - {"input": "..."}
+      - {"emoji": "..."}
+      - raw string body
 
-    result = translator.translate(seq)
-    return JSONResponse({"ok": True, "result": result})
+    UND liefert mehrere Response-Felder (Frontend-sicher):
+      - output (unser Standard)
+      - result / translation / text (Legacy/Frontend)
+    """
+    try:
+        body = await request.body()
+        if not body:
+            return JSONResponse({"error": "empty body"}, status_code=400)
+
+        # JSON oder raw string
+        try:
+            payload = json.loads(body.decode("utf-8"))
+            if not isinstance(payload, dict):
+                payload = {"emoji_sequence": str(payload)}
+        except Exception:
+            payload = {"emoji_sequence": body.decode("utf-8")}
+
+        emoji_seq = (
+            payload.get("emoji_sequence")
+            or payload.get("text")
+            or payload.get("input")
+            or payload.get("emoji")
+        )
+
+        if not emoji_seq or not isinstance(emoji_seq, str):
+            return JSONResponse(
+                {"error": "missing input. Use emoji_sequence/text/input"},
+                status_code=422,
+            )
+
+        tr = get_translator()
+        out = tr.translate(emoji_seq)  # dict mit output/mode/score/...
+
+        # Frontend-Kompatibilität: liefere zusätzlich "result"/"translation"/"text"
+        result_text = out.get("output", "")
+
+        response = {
+            # Legacy keys (damit UI NICHT "Error" zeigt)
+            "result": result_text,
+            "translation": result_text,
+            "text": result_text,
+
+            # unser Standard
+            **out,
+        }
+        return JSONResponse(response)
+
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)

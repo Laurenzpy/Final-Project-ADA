@@ -1,0 +1,26 @@
+input,gt,pred,mode,retrieval_score,latency_ms,sentence_bleu
+🌮 🥙 🥑 🌽 🥤,They ordered tacos and salad with avocado and corn for lunch,We had tacos with avocado and corn,tm_retrieval_high,0.9033193369932432,0.3036660054931417,24.549475440235113
+🥗 🥕 🥒 🥦 🥛,He ate a fresh salad containing carrots cucumber and broccoli,He ate a bowl of fresh vegetables,tm_retrieval_high,0.7090755440035562,0.2589579962659627,17.112717058426785
+🔧 🔩 🧲 🔗 🧷,He connected the link with a wrench bolt and safety pin,The worker fixed the chain with a wrench,tm_retrieval_high,0.6417584369388553,0.2406249986961484,15.181939159382823
+🦈 🐟 🌊 ⛵ ☁️,The shark and fish swam in the ocean near the boat and clouds,He swam near the fish in the ocean,tm_retrieval_high,0.6454154021768046,0.25112500588875264,15.049981051832416
+➡️ 🥒 💔 😐 🦽,He sat in the wheelchair with a neutral face and broken heart,Take a selfie in the wheelchair and go right,tm_retrieval_low,0.5381488699548522,0.2527499964344315,14.448814886766836
+🏢 💼 📠 🗂️ 📊,She organized the files charts and fax machine in the office,He worked in the office with data,tm_retrieval_high,0.8746011245002935,0.246666997554712,13.805184551789745
+🐻 🧊 🧣 🧤 🧥,In the ice and cold the bear needed a scarf and coat,Wear a scarf and gloves in the snow,tm_retrieval_high,0.6576605330006186,0.24462500005029142,13.398014283383116
+🍷 🥂 🍾 🍺 🥃,They drank wine champagne beer and whiskey at the party,We drank wine and whiskey,tm_retrieval_high,0.9022803299690522,0.2549580021877773,11.115018927487522
+🏠 🔧 🧰 🔩 🚪,He fixed the house door using a wrench toolbox and bolt,The man fixed the tool with a wrench,tm_retrieval_high,0.6946882954884457,0.2512499995646067,10.735252131161188
+🏫 📖 🎓 🏢 🤓,The student read a book at school and graduated with glasses,The student studied the notes at school,tm_retrieval_high,0.6574591664153484,0.24545899941585958,10.489671869455934
+🥛 🧊 🥟 🥔 📙,He read the book while eating dumplings potatoes and iced milk,I read the book,tm_retrieval_low,0.47875691434445067,0.24783300614217296,10.332660497667492
+🧁 🥛 🥨 🥜 😋,The snack was a cupcake with milk pretzels and peanuts,We ate a cupcake and drank milk,tm_retrieval_high,0.6770971369988663,0.2632909963722341,10.175282441454787
+🔧 🔩 🧲 🔗 🧷,The tools included a wrench bolt magnet link and pin,The worker fixed the chain with a wrench,tm_retrieval_high,0.6417584369388553,0.2373750030528754,9.519340818348473
+🏠 🔧 🧰 🔩 🚪,The repairman used a wrench and bolts from his toolbox,The man fixed the tool with a wrench,tm_retrieval_high,0.6946882954884457,0.24787500296952203,9.519340818348473
+❤️ 💍 👰 🤵 🛐,The groom and bride exchanged rings at the place of worship,The groom gave the bride a ring,tm_retrieval_high,0.874055158744033,0.2491249979357235,8.820727472213227
+🔚 🔤 ➗ 🚉 🦹,The villain ended the math lesson at the train station,The villain weighed the alphabet,tm_retrieval_low,0.559618761814666,0.24258300254587084,8.697972365316726
+🍷 🥂 🍾 🍺 🥃,The bar served wine champagne beer and whiskey all night,We drank wine and whiskey,tm_retrieval_high,0.9022803299690522,0.2695420043892227,8.697972365316726
+💣 🎷 👹 🔑 🏝️,The ogre on the island played the sax and held the key and bomb,The monster whistled on the island,tm_retrieval_low,0.49991910917672655,0.25591700250515714,8.558153335723473
+🔞 🥩 🤤 👃 👰,The bride smelled the steak and drooled in the restricted area,The bride used a compass for the adult trip,tm_retrieval_low,0.5060800531409532,0.2510419944883324,8.449917822620138
+🦉 🦇 🐺 🌙 🌟,The owl bat and wolf came out under the moon and stars,The owl looks at the moon,tm_retrieval_high,0.6027005340091778,0.30520899599650875,8.44558802779791
+🧻 🧼 🧽 🧴 🌊,She washed with soap and water using a sponge and tissue,Brush your teeth and wash with soap,tm_retrieval_high,0.6869490035697765,0.23908400180516765,8.208611846457007
+🦽 🤠 😭 😏 😘,The cowboy in the wheelchair cried and then kissed his friend,The cowboy smirked at the thought bubble,tm_retrieval_low,0.4725796109231514,0.24575000134063885,8.208611846457007
+🥚 🧀 🍞 🥛 😋,He ate a delicious meal of eggs cheese and toast with milk,He made breakfast with eggs and toast,tm_retrieval_high,0.6738943737743153,0.4016670063720085,8.085182710148956
+📙 🍴 🥛 🥜 🔩,He read the book while eating peanuts with milk and a fork,I read the book,tm_retrieval_low,0.49150320078813053,0.24779199884505942,8.047084086794415
+🦬 🗃️ 🦉 🦎 🦗,An owl lizard and cricket watched the bison open the archive box,The owl watched the boy organize the files,tm_retrieval_low,0.49752471339410387,0.24249999842140824,7.966506956353643

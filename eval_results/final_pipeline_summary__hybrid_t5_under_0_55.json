@@ -1,0 +1,48 @@
+{
+  "run": "hybrid_t5_under_0_55",
+  "config": {
+    "tm_train_paths": [
+      "data/emoji_dataset_stage1_e2t.csv",
+      "data/emoji_dataset_stage2_e2t.csv",
+      "data/emoji_dataset_stage3_e2t.csv",
+      "data/emoji_dataset_stage4_e2t.csv"
+    ],
+    "t5_model_dir": "artifacts/t5_e2t",
+    "retrieval_high_conf": 0.6,
+    "retrieval_low_conf": 0.35,
+    "t5_fallback_below_conf": 0.55,
+    "enable_t5_fallback": true,
+    "device": "auto",
+    "max_new_tokens": 32,
+    "num_beams": 4
+  },
+  "num_samples": 300,
+  "corpus_bleu": 1.3190356491128998,
+  "corpus_chrf": 15.096984713434486,
+  "exact_match_accuracy": 0.0,
+  "mode_distribution": {
+    "tm_retrieval_high": 82,
+    "t5_fallback": 216,
+    "tm_retrieval_low": 2
+  },
+  "avg_sentence_bleu_by_mode": {
+    "tm_retrieval_high": 5.889818743815263,
+    "t5_fallback": 4.977342377953874,
+    "tm_retrieval_low": 5.957690847056336
+  },
+  "retrieval_score_buckets": {
+    "0.60-0.79": 62,
+    ">=0.80": 20,
+    "0.35-0.59": 216,
+    "0.20-0.34": 2
+  },
+  "latency": {
+    "mean_ms": 280.9584324933773,
+    "p50_ms": 384.56164650051505,
+    "p90_ms": 408.4362086003239,
+    "p99_ms": 455.3117800933978
+  },
+  "avg_pred_len_words": 8.686666666666667,
+  "avg_gt_len_words": 11.363333333333333,
+  "has_sacrebleu": true
+}

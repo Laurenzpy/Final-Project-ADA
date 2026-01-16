@@ -1,0 +1,301 @@
+idx,emoji_input,reference,pred_greedy,pred_beam
+0,🦘 🦮 🦖 🦋 🦈,The kangaroo dog and dinosaur watched the butterfly and shark,The sailor sat in the sun,The man sat on the couch
+1,🦈 🥐 🕸️ 🦘 🐏,A ram and kangaroo saw a shark eating a croissant near the web,The sailor sat in the sun,The man sat on the couch
+2,🐻 🧊 🧣 🧤 🧥,In the ice and cold the bear needed a scarf and coat,The sailor sat in the sun,The man sat on the couch
+3,🧻 🧼 🧽 🧴 🌊,She washed with soap and water using a sponge and tissue,The sailor sat in the sun,The man sat on the couch
+4,🐻 🦊 🐗 🌲 🌳,The bear fox and boar live among the pine and deciduous trees,The sailor sat in the sun,The man sat on the couch
+5,🥟 🥦 🥕 🍖 🥄,She used a spoon to eat the dumpling meat broccoli and carrot,The sailor sat in the sun,The man sat on the couch
+6,🚒 🥡 🤥 💯 ✴️,The fire truck brought a hundred boxes of food and stars,The sailor sat in the sun,The man sat on the couch
+7,🌾 🥙 🥦 🍐 🍖,The meal included rice meat broccoli and a pear,The sailor sat in the sun,The man sat on the couch
+8,🐮 🐷 🐴 🐏 🏡,We saw a cow pig horse and ram living on the farm,The sailor sat in the sun,The man sat on the couch
+9,🍜 🥐 🕊️ 🦉 🦈,A shark ate a croissant and noodles while birds watched,The sailor sat in the sun,The man sat on the couch
+10,🦅 🦉 🕊️ 🦜 🦢,The eagle owl dove parrot and swan are all birds,The sailor sat in the sun,The man sat on the couch
+11,📕 🦷 🌍 1️⃣ 🗝️,One tooth and a key were found on the map in the book,The sailor sat in the sun,He sat on the couch
+12,🥡 🦩 🦉 🐟 🐃,We fed the flamingo owl and buffalo with fish from the box,The sailor sat in the sun,The man sat on the couch
+13,🦙 🐐 🦋 🗃️ 🌹,The llama and goat found a rose and butterfly in the file box,The sailor sat in the sun,The man sat on the couch
+14,🛢️ ⛰️ 🏄 📻 🏡,The house near the mountain had an oil drum and radio for the surfer,The sailor sat in the sun,The man sat on the couch
+15,🦽 🗯️ 🦜 👏 🧘,He sat in the wheelchair and clapped while the parrot meditated,The sailor sat in the sun,The man sat on the couch
+16,🧅 🧞 🧻 👚 👈,She pointed left to the genie holding paper onions and a shirt,The sailor sat in the sun,The man sat on the couch
+17,🏫 📖 🎓 🏢 🤓,The student read a book at school and graduated with glasses,The sailor sat in the sun,The man sat on the couch
+18,🥯 😶 🌗 💼 🥎,The silent worker carried a briefcase bagel and softball,The sailor sat in the sun,The man sat on the couch
+19,🥗 💱 🚉 🍗 🧷,He used a safety pin to hold the money for the chicken salad,The sailor sat in the sun,The man sat on the couch
+20,🥩 🍐 🧀 🌾 🏢,He brought a lunch of steak cheese and pear to the building,The sailor sat in the sun,The man sat on the couch
+21,🥚 🧀 🍞 🥛 😋,He ate a delicious meal of eggs cheese and toast with milk,The sailor sat in the sun,The man sat on the couch
+22,🍜 🥐 🕊️ 🦉 🦈,The owl and dove watched the shark eat noodles and a croissant,The sailor sat in the sun,The man sat on the couch
+23,🥟 🥦 🥕 🍖 🥄,The stew contained carrots broccoli dumplings and meat,The sailor sat in the sun,The man sat on the couch
+24,🏜️ 🌞 💋 0️⃣ 🖕,The sun shone on the desert kiss and the zero finger sign,The snazzy sat in the sun,He sat in the sun and ate a meal
+25,🥪 🌾 🥥 🌮 🥜,He prepared a meal of peanuts coconut rice bread and tacos,The sailor sat in the sun,The man sat on the couch
+26,🍷 🍎 🧂 🍲 🥫,The cook used wine salt and an apple in the canned soup,The sailor sat in the sun,The man sat on the couch
+27,🚟 🚚 🧥 🔬 💔,The scientist with a broken heart left his coat in the truck,The sailor sat in the sun,The man sat on the couch
+28,🔧 🔩 🧲 🔗 🧷,The tools included a wrench bolt magnet link and pin,The sailor sat in the sun,The man sat on the couch
+29,🍚 🍜 🥟 🥢 🥡,The dinner was rice noodles and dumplings served with chopsticks,The sailor sat in the sun,The man sat on the couch
+30,🧲 🤞 🤏 🐂 🚗,The driver used a small magnet to fix the ox cart and car,The sailor sat in the sun,The man sat on the couch
+31,🥘 🥥 🌮 🥖 🥛,She cooked a taco and bread in the pan with coconut milk,The sailor sat in the sun,The man sat on the couch
+32,💩 🤏 🤮 ⚔️ 😵,The smell of poop made him vomit and feel dizzy in the fight,The sailor sat in the sun,The man sat on the couch
+33,🦖 🦕 🦎 🌿 🍖,The dinosaur and lizard ate plants and meat in the wild,The sailor sat in the sun,The man sat on the couch
+34,🦎 🌿 🦢 🥡 🐂,A swan and ox found herbs and a box for the lizard,The sailor sat in the sun,The man sat on the couch
+35,🚣 🧐 🦬 🐮 🧝,A magical elf saw the bison cow and rower wearing a monocle,The sailor sat in the sun,The man sat on the couch
+36,🌾 🥚 🧁 🥔 🍋,The recipe needs rice eggs potatoes lemon and a cupcake,The sailor sat in the sun,The man sat on the couch
+37,🦘 🦮 🦖 🦋 🦈,A dog chased the kangaroo and dinosaur while a shark and butterfly watched,The sailor sat in the sun,The man sat on the couch
+38,🦈 🦖 🦘 🐀 🦇,A kangaroo rat and bat ran from the shark and ancient lizard,The sailor sat in the sun,The man sat on the couch
+39,💍 👜 🧣 🧤 👒,She wore a ring and carried a bag scarf gloves and hat,The sailor sat in the sun,The man sat on the couch
+40,🌾 🥚 🧁 🥔 🍋,She baked a cupcake and cooked eggs potatoes and rice with lemon,The sailor sat in the sun,The man sat on the couch
+41,📙 🍴 🥛 🥜 🔩,He read the book while eating peanuts with milk and a fork,The sailor sat in the sun,The man sat on the couch
+42,💿 🎲 🥍 6️⃣ ✡️,He played lacrosse and rolled a six with the star and cd,The sailor sat in the sun,He sat in the sun and ate a meal
+43,4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣,He counted the items four five six seven and eight,The sailor is a scavenge,I have a baby and a little girl
+44,🤽 💃 🕳️ 🔗 🔵,The dancer and water polo player found a hole linked to the blue circle,The sailor sat in the sun,The man sat on the couch
+45,🦇 🐃 🥊 🐟 🐛,The bat and water buffalo saw a fish and a bug near the boxing glove,The sailor sat in the sun,The man sat on the couch
+46,💤 🥗 📍 💍 🌃,He pinned the location of the ring and salad before sleeping,The sailor sat in the sun,The man sat on the couch
+47,🥯 😶 🌗 💼 🥎,He ate a bagel and held his case under the half moon,The sailor sat in the sun,The man sat on the couch
+48,😬 🥯 🙃 🍾 👉,He made a grimace while pointing at the bagel and champagne,The sailor sat in the sun,The man sat on the couch
+49,🏦 💵 💸 🏧 💲,He withdrew cash and dollars from the bank machine,The sailor sat in the sun,The man sat on the couch
+50,🥗 🥕 🥒 🥦 🥛,She prepared a healthy salad with carrots cucumber and broccoli,The sailor sat in the sun,The man sat on the couch
+51,🤽 💃 🕳️ 🔗 🔵,She danced near the blue circle and the linked hole in the water,The sailor sat in the sun,The man sat on the couch
+52,🦋 🐛 🐜 🦟 🦗,The garden was full of butterflies bugs ants mosquitoes and crickets,The sailor sat in the sun,The man sat on the couch
+53,🦘 🥡 🧰 ✖️ 🦇,A bat and kangaroo marked the toolbox and food with a cross,The sailor sat in the sun,The man sat on the couch
+54,🐂 🌹 🦖 🦩 🐗,A flamingo and dinosaur stood by the ox boar and red flower,The sailor sat in the sun,The man sat on the couch
+55,🥝 🍐 🥨 🍲 🧀,She dipped the pretzel in cheese soup and ate the fruit,The sailor sat in the sun,The man sat on the couch
+56,🍳 📕 🐷 🐶 🥁,She cooked with a pan while the animals played music and read,The sailor sat in the sun,The man sat on the couch
+57,🦔 🐣 🍺 🌷 🎞️,A hedgehog and a small bird sat by the flower beer and movie film,The sailor sat in the sun,The man sat on the couch
+58,🎅 🍾 🐗 🐱 🌿,Santa opened champagne with the cat and boar in the herbs,The sailor sat in the sun,The man sat on the couch
+59,➡️ 🥒 💔 😐 🦽,He sat in the wheelchair with a neutral face and broken heart,The sailor sat in the sun,The man sat on the couch
+60,🦘 🥡 🧰 ✖️ 🦇,The kangaroo put the takeout and bat in the toolbox,The sailor sat in the sun,The man sat on the couch
+61,📙 🍴 🥛 🥜 🔩,The mechanic ate peanuts and milk with a fork near the bolt,The sailor sat in the sun,The man sat on the couch
+62,👗 👚 👠 👢 👞,She bought a dress blouse heels boots and shoes,The sailor sat in the sun,The man sat on the couch
+63,🥛 🧊 🥟 🥔 📙,He read the book while eating dumplings potatoes and iced milk,The sailor sat in the sun,The man sat on the couch
+64,🐀 🦎 🐛 🐣 🥡,The rat lizard and bug found food in the takeout box,The sailor sat in the sun,The man sat on the couch
+65,🦓 🚆 🌞 🤤 🧎,He kneeled and drooled looking at the zebra and sunny train,The sailor sat in the sun,The man sat on the couch
+66,🐦 🍺 🦖 📶 🐗,The dinosaur and boar drank beer near the bird and signal,The sailor sat in the sun,The man sat on the couch
+67,🥪 🌾 🥥 🌮 🥜,The sandwich taco and peanuts were made with rice and coconut,The sailor sat in the sun,The man sat on the couch
+68,🛳️ ⛴️ 🚢 🗺️ 🌊,We navigated the ferry and ship through the sea waves,The sailor sat in the sun,The man sat on the couch
+69,🚟 🚚 🧥 🔬 💔,She took the train and truck to move the microscope and coat,The sailor sat in the sun,The man sat on the couch
+70,🎵 🎷 🥁 🎤 📻,The band played music with a saxophone drum microphone and radio,The sailor sat in the sun,The man sat on the couch
+71,🧉 🧋 🏣 🥒 🔶,She drank tea and ate a cucumber near the orange diamond building,The sailor sat in the sun,The man sat on the couch
+72,🤺 🧿 🎇 👠 🚺,The fencer with heels held a sparkler and amulet in the ladies room,The sailor sat in the sun,The man sat on the couch
+73,🤺 🧿 🎇 👠 🚺,A woman fencing wore heels and carried a charm and fireworks,The sailor sat in the sun,The man sat on the couch
+74,🦖 🦫 🥡 🦢 🐦,A bird and swan watched the beaver and dinosaur eat takeout,The sailor sat in the sun,The man sat on the couch
+75,🍎 🍐 🍑 🥝 🍈,She mixed apple pear peach kiwi and melon in a bowl,The sailor sat in the sun,The man sat on the couch
+76,🍲 🥖 🥪 🥑 🍴,The fork was used for the soup bread sandwich and avocado,The sailor sat in the sun,The man sat on the couch
+77,👩 🍳 🥘 🍷 😋,She prepared a delicious meal of hot food and wine,The sailor sat in the sun,The man sat on the couch
+78,🔚 🔟 🌨️ 🏫 👰,After ten days of snow the bride went to the school end,The sailor sat in the sun,The man sat on the couch
+79,🎓 🏊 🥂 👦 😄,The graduate swam and drank champagne with the happy boy,The sailor sat in the sun,The man sat on the couch
+80,🥯 🌘 🥁 🧅 🦻,He heard the drum beat while eating a bagel and onion at night,The sailor sat in the sun,The man sat on the couch
+81,🔟 🤢 🥭 🗻 6️⃣,He felt nauseous after eating six or ten mangoes on the mountain,The sailor sat in the sun,He sat in the sun and ate a meal
+82,🎓 🏊 🥂 👦 😄,The happy boy wore a graduation cap while swimming and drinking,The sailor sat in the sun,The man sat on the couch
+83,🦔 🍜 🐀 🌹 🌷,The hedgehog and rat ate noodles near the rose and tulip,The sailor sat in the sun,The man sat on the couch
+84,🐻 👉 🚪 😑 🤐,The bear pointed at the door and kept his mouth shut,The sailor sat in the sun,The man sat on the couch
+85,🥵 2️⃣ 💤 📖 🔬,The hot student fell asleep reading two books near the microscope,The sailor ate a sardine,He sat on the couch
+86,🦉 🦇 🐺 🌙 🌟,At night the owl bat and wolf appeared below the stars,The sailor sat in the sun,The man sat on the couch
+87,🥜 😎 📘 🐦 🦜,The cool bird and parrot ate peanuts on the blue book,The sailor sat in the sun,The man sat on the couch
+88,🐗 🥵 🚒 ⚖️ 🦘,A kangaroo and boar felt hot near the fire engine and scales,The sailor sat in the sun,The man sat on the couch
+89,🔥 🚒 🏥 💊 🤒,The fire truck rushed to the hospital with medicine for the fever,The sailor sat in the sun,The man sat on the couch
+90,🆓 💸 🏩 ✡️ ⛏️,He used a pickaxe to get the cash and star from the building,The sailor sat in the sun,The man sat on the couch
+91,🥯 🌘 🥁 🧅 🦻,Under the moon the ear heard a drum while he ate an onion bagel,The sailor sat in the sun,The man sat on the couch
+92,😬 🥯 🙃 🍾 👉,The upside down face pointed at the bagel and popping bottle,The sailor sat in the sun,The man sat on the couch
+93,💬 💭 🗣️ 🔉 🔇,He thought quietly while the speaker volume was turned off,The sailor sat in the sun,The man sat on the couch
+94,🏠 🏡 🛌 🚪 🔑,He locked the door of the home and went to his bed,The sailor sat in the sun,The man sat on the couch
+95,🥝 🍐 🥨 🍲 🧀,The cheese soup came with a pretzel kiwi and pear,The sailor sat in the sun,The man sat on the couch
+96,➡️ 🔙 🔚 🔜 🔝,The signs pointed right back end soon and to the top,The sailor sat in the sun,The man sat on the couch
+97,🥕 🥫 🧇 📙 🍐,The meal was canned food waffles carrots and a fresh pear,The sailor sat in the sun,The man sat on the couch
+98,🧻 🧼 🧽 🧴 🌊,The bathroom had paper soap a sponge lotion and water,The sailor sat in the sun,The man sat on the couch
+99,🧛 🎁 👂 🚣 💺,A vampire in the rowboat seat heard a sound from the box,The sailor sat in the sun,The man sat on the couch
+100,❤️ 💋 🏩 🌹 🎁,She received a kiss a ring a rose and a gift at the hotel,The sailor sat in the sun,The man sat on the couch
+101,💍 📠 😊 🏙️ 🔉,She smiled at the ring while the city fax machine beeped,The sailor sat in the sun,The man sat on the couch
+102,⛵ 🥶 👨 👧 📐,The man and girl felt cold on the boat measuring with a ruler,The sailor sat in the sun,The man sat on the couch
+103,🏙️ 🚗 🤗 🥖 ⚧️,We shared a hug and baguette in the car near the transgender symbol,The sailor sat in the sun,The man sat on the couch
+104,🧪 🔬 🧬 🧠 🦴,We examined the tube dna brain and bone in the lab,The sailor sat in the sun,The man sat on the couch
+105,🥁 🚪 🐮 🧻 🦻,The cow heard the drum through the door and grabbed the tissue,The sailor sat in the sun,The man sat on the couch
+106,🐻 🦊 🐗 🌲 🌳,We saw a bear fox and boar in the deep forest,The sailor sat in the sun,The man sat on the couch
+107,🦁 🦓 🦒 🦘 🐻,We watched the lion zebra giraffe kangaroo and bear exhibit,The sailor sat in the sun,The man sat on the couch
+108,🕰️ 0️⃣ 1️⃣ 2️⃣ 3️⃣,The old clock struck one two three in the afternoon,The snazzy sat in the sun,He ate a cup of tea and sat at the table
+109,🧹 🧽 🧼 🧴 🏠,She cleaned the house with a broom sponge soap and lotion,The sailor sat in the sun,The man sat on the couch
+110,💬 💭 🗣️ 🔉 🔇,The speaker spoke but the sound was muted in the thought bubble,The sailor sat in the sun,The man sat on the couch
+111,🥢 🏢 🏣 🧇 🧉,The office workers ate waffles and drank mate with chopsticks,The sailor sat in the sun,The man sat on the couch
+112,🦖 🦫 🥡 🦢 🐦,The dinosaur and beaver shared a takeout box with the swan,The sailor sat in the sun,The man sat on the couch
+113,💩 🤏 🤮 ⚔️ 😵,He felt sick and dizzy after seeing the waste and swords,The sailor sat in the sun,The man sat on the couch
+114,🏦 🧗 🦊 👏 😠,The angry fox clapped for the climber at the bank,The sailor sat in the sun,The man sat on the couch
+115,🦌 🐦 🏙️ 👉 🤱,The mother pointed at the deer and bird in the city,The sailor sat in the sun,The man sat on the couch
+116,🛢️ ⛰️ 🏄 📻 🏡,He listened to the radio while surfing near the house and oil drum,The sailor sat in the sun,The man sat on the couch
+117,🦔 🐣 🍺 🌷 🎞️,The hedgehog and chick drank beer near the tulip and film strip,The sailor sat in the sun,The man sat on the couch
+118,💵 🏋️ ✋ 😕 🔔,He paid dollars to lift weights but stopped at the bell,The sailor sat in the sun,The man sat on the couch
+119,💤 🥗 📍 💍 🌃,She fell asleep at night after eating salad and finding the ring,The sailor sat in the sun,The man sat on the couch
+120,🥘 🥥 🌮 🥖 🥛,The pan contained a coconut taco bread and milk,The sailor sat in the sun,The man sat on the couch
+121,🧁 🥛 🥨 🥜 😋,The snack was a cupcake with milk pretzels and peanuts,The sailor sat in the sun,The man sat on the couch
+122,🌾 🥙 🥦 🍐 🍖,He ate a pita sandwich with meat broccoli pear and rice grains,The sailor sat in the sun,The man sat on the couch
+123,4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣,The numbers listed were four five six seven and eight,The sailor is a scavenge,I have a baby and a little girl
+124,🦌 🐦 🏙️ 👉 🤱,She fed the baby and pointed to the bird and deer in town,The sailor sat in the sun,The man sat on the couch
+125,🦉 🦇 🐺 🌙 🌟,The owl bat and wolf came out under the moon and stars,The sailor sat in the sun,The man sat on the couch
+126,🥗 🥕 🥒 🥦 🥛,He ate a fresh salad containing carrots cucumber and broccoli,The sailor sat in the sun,The man sat on the couch
+127,🧹 🧽 🧼 🧴 🏠,He used soap a sponge and a broom to clean the home,The sailor sat in the sun,The man sat on the couch
+128,🧙 🧛 🧜 🧞 🦄,The wizard vampire mermaid genie and unicorn are mythical creatures,The sailor sat in the sun,The man sat on the couch
+129,📼 🎲 🤽 💴 🌨️,The gamer played water polo in the snow with a tape and money,The sailor sat in the sun,The man sat on the couch
+130,🦔 🍜 🐀 🌹 🌷,A rat and hedgehog shared a bowl of noodles in the flower garden,The sailor sat in the sun,The man sat on the couch
+131,🍚 🍜 🥟 🥢 🥡,We ate rice and noodles with dumplings from the takeout box,The sailor sat in the sun,The man sat on the couch
+132,🦽 🗯️ 🦜 👏 🧘,The parrot clapped for the person meditating in the wheelchair,The sailor sat in the sun,The man sat on the couch
+133,🎁 🧁 🎇 🥳 🍾,We celebrated with gifts cupcakes fireworks and champagne,The sailor sat in the sun,The man sat on the couch
+134,🧂 🧊 🍐 🍑 🥨,The snack was a salted pretzel with ice pear and peach,The sailor sat in the sun,The man sat on the couch
+135,🥙 🍞 🥫 🍐 🍎,He ate a sandwich with an apple pear and canned food,The sailor sat in the sun,The man sat on the couch
+136,🥩 🍐 🧀 🌾 🏢,The office worker ate meat cheese pear and rice for lunch,The sailor sat in the sun,The man sat on the couch
+137,👪 👨 👩 👶 🏠,A man woman and baby live together as a family,The sailor sat in the sun,The man sat on the couch
+138,🔔 🧆 🏩 ❔ 🗣️,The hotel bell rang and the person spoke about the falafel,The sailor sat in the sun,The man sat on the couch
+139,🏠 🏡 🛌 🚪 🔑,The house has a bed a door and a secure key,The sailor sat in the sun,The man sat on the couch
+140,🧂 🧊 🍐 🍑 🥨,He ate a peach and pear with a salty pretzel and ice,The sailor sat in the sun,The man sat on the couch
+141,🧪 🔬 🧬 🧠 🦴,The scientist studied the dna brain and bone with a microscope,The sailor sat in the sun,The man sat on the couch
+142,🦋 🐛 🐜 🦟 🦗,She found a butterfly caterpillar ant mosquito and cricket outside,The sailor sat in the sun,The man sat on the couch
+143,🍐 🍈 🧋 🥙 🥫,He bought a can of fruit juice melon pear and a sandwich,The sailor sat in the sun,The man sat on the couch
+144,🥊 🥋 🏊 🏄 🏋️,He enjoys sports like boxing martial arts swimming and lifting,The sailor sat in the sun,The man sat on the couch
+145,🍐 🍈 🧋 🥙 🥫,The canned food included pear melon tea and a stuffed pita,The sailor sat in the sun,The man sat on the couch
+146,🍷 🍎 🧂 🍲 🥫,She made a stew with canned food apple wine and salt,The sailor sat in the sun,The man sat on the couch
+147,🥚 🧀 🍞 🥛 😋,The breakfast included eggs cheese bread and fresh milk,The sailor sat in the sun,The man sat on the couch
+148,🦈 🥐 🕸️ 🦘 🐏,The shark and kangaroo found a croissant in the spider web,The sailor sat in the sun,The man sat on the couch
+149,🤺 🛌 🥯 🚆 🥎,The fencer slept on the train with a bagel and ball,The sailor sat in the sun,The man sat on the couch
+150,📼 🥡 🥟 👉 🥎,He pointed at the video tape takeout dumplings and softball,The sailor sat in the sun,The man sat on the couch
+151,0️⃣ 1️⃣ 🔟 💯 ✖️,He learned numbers like zero ten and one hundred in multiplication,The snazzy sat on the couch,He ate a cup of tea
+152,🦎 🌿 🦢 🥡 🐂,The lizard and ox ate herbs and takeout near the swan,The sailor sat in the sun,The man sat on the couch
+153,🔧 🔩 🧲 🔗 🧷,He connected the link with a wrench bolt and safety pin,The sailor sat in the sun,The man sat on the couch
+154,💍 🤓 💷 🕰️ 🔊,He turned up the volume when the nerd showed the ring and money,The sailor sat in the sun,The man sat on the couch
+155,🤬 ❗ 7️⃣ 🛢️ ☪️,He cursed at the oil drum number seven and the crescent star,The sailor sat on the beach,The saxophone screamed at the bell
+156,🐶 🐱 🏠 🦴 🐾,Our pet dog and cat played with a bone inside the home,The sailor sat in the sun,The man sat on the couch
+157,🌮 🥙 🥑 🌽 🥤,They ordered tacos and salad with avocado and corn for lunch,The sailor sat in the sun,The man sat on the couch
+158,💵 🎤 🔬 🙁 🏫,He frowned because the school spent money on audio and science gear,The sailor sat in the sun,The man sat on the couch
+159,🛳️ ⛴️ 🚢 🗺️ 🌊,The ships and boats sailed across the ocean using a chart,The sailor sat in the sun,The man sat on the couch
+160,💣 🎷 👹 🔑 🏝️,The ogre on the island played the sax and held the key and bomb,The sailor sat in the sun,The man sat on the couch
+161,🎅 🍾 🐗 🐱 🌿,The cat and boar watched Santa pop the cork near the plants,The sailor sat in the sun,The man sat on the couch
+162,➗ 🦹 🦣 🆕 🚚,The superhero divided the new mammoth into the truck,The sailor sat in the sun,The man sat on the couch
+163,🔚 🔟 🌨️ 🏫 👰,The bride left the school at the end of the ten snowy days,The sailor sat in the sun,The man sat on the couch
+164,👩 🍳 🥘 🍷 😋,The woman cooked a stew and served it with wine,The sailor sat in the sun,The man sat on the couch
+165,💍 🤓 💷 🕰️ 🔊,The nerd bought a ring and clock with his pound notes,The sailor sat in the sun,The man sat on the couch
+166,🍳 📕 🐷 🐶 🥁,The pig and dog played the drum while reading the cookbook,The sailor sat in the sun,The man sat on the couch
+167,🦬 🗃️ 🦉 🦎 🦗,The bison found a file box near the owl lizard and cricket,The sailor sat in the sun,The man sat on the couch
+168,🥛 🧊 🥟 🥔 📙,The meal was cold milk dumplings and potatoes near the book,The sailor sat in the sun,The man sat on the couch
+169,🧛 🎁 👂 🚣 💺,The vampire listened to the gift on the boat seat,The sailor sat in the sun,The man sat on the couch
+170,🏫 📖 🎓 🏢 🤓,He wore glasses while studying books at the university building,The sailor sat in the sun,The man sat on the couch
+171,🐶 🐱 🏠 🦴 🐾,The dog and cat live in the house with their bone,The sailor sat in the sun,The man sat on the couch
+172,🐗 🥵 🚒 ⚖️ 🦘,The hot boar and kangaroo saw the fire truck and scale,The sailor sat in the sun,The man sat on the couch
+173,🦈 🐟 🌊 ⛵ ☁️,We saw a shark and fish while sailing on the cloudy sea,The sailor sat in the sun,The man sat on the couch
+174,🥝 🧁 🍴 🧂 🍈,The kiwi cupcake and melon were served with a fork and salt,The sailor sat in the sun,The man sat on the couch
+175,🧉 🧋 🏣 🥒 🔶,The post office served tea cucumber and a large orange gem,The sailor sat in the sun,The man sat on the couch
+176,😶 🍑 🦩 🌾 🥁,He beat the drum for the bird and fruit without speaking,The sailor sat in the sun,The man sat on the couch
+177,🥵 2️⃣ 💤 📖 🔬,He felt hot and sleepy after studying two slides under the microscope,The sailor ate a sardine,He sat on the couch
+178,✅ ❎ 🔞 📶 🚹,The signs showed check cross under eighteen signal and men's room,The sailor sat in the sun,The man sat on the couch
+179,🚪 🏃 🙁 👈 🗺️,He ran out the door frowning and pointing at the map,The sailor sat in the sun,The man sat on the couch
+180,🔞 🥩 🤤 👃 👰,The bride smelled the steak and drooled in the restricted area,The sailor sat in the sun,The man sat on the couch
+181,🦬 🗃️ 🦉 🦎 🦗,An owl lizard and cricket watched the bison open the archive box,The sailor sat in the sun,The man sat on the couch
+182,🐻 👉 🚪 😑 🤐,He pointed the bear to the door and remained silent,The sailor sat in the sun,The man sat on the couch
+183,➡️ 🥒 💔 😐 🦽,The arrow pointed to the cucumber broken heart and wheelchair,The sailor sat in the sun,The man sat on the couch
+184,🥦 🍐 🥒 🍲 💪,He built muscle by eating soup broccoli cucumber and pears,The sailor sat in the sun,The man sat on the couch
+185,🦽 🤠 😭 😏 😘,He smirked and kissed the crying cowboy who sat in the wheelchair,The sailor sat in the sun,The man sat on the couch
+186,🍲 🥩 🥔 🥄 🧊,The spoon was used for the meat and potato soup served with ice,The sailor sat in the sun,The man sat on the couch
+187,🦖 🦕 🦎 🌿 🍖,Ancient dinosaurs and lizards consumed herbs and meat,The sailor sat in the sun,The man sat on the couch
+188,🔥 🚒 🏥 💊 🤒,He had a fever so the ambulance took him to get pills,The sailor sat in the sun,The man sat on the couch
+189,🐻 🧊 🧣 🧤 🧥,The bear felt cold so he wore a scarf gloves and coat,The sailor sat in the sun,The man sat on the couch
+190,🥡 🦅 🦗 ✖️ 🌹,He marked the box with a cross and rose for the bird and insect,The sailor sat in the sun,The man sat on the couch
+191,🚚 👹 🛑 🥻 🧅,The truck carried an ogre onions a sari and a stop sign,The sailor sat in the sun,The man sat on the couch
+192,🧲 🤞 🤏 🐂 🚗,He crossed his fingers that the magnet would pull the ox and car,The sailor sat in the sun,The man sat on the couch
+193,🥝 🧁 🍴 🧂 🍈,She ate the sweet fruit and cake using a fork and salt,The sailor sat in the sun,The man sat on the couch
+194,➗ 🦹 🦣 🆕 🚚,A new truck arrived with a mammoth and a math villain,The sailor sat in the sun,The man sat on the couch
+195,🥋 😮 🔩 🔗 🤫,He quietly linked the metal bolt while wearing his karate uniform,The sailor sat in the sun,The man sat on the couch
+196,🚪 🏃 🙁 👈 🗺️,The runner left the door sad while pointing to the map,The sailor sat in the sun,The man sat on the couch
+197,❕ 🍗 🧙 6️⃣ 🧳,The wizard packed six chicken legs in his luggage!,The sailor sat in the sun,He sat in the sun and ate a meal
+198,🏜️ 🌞 💋 0️⃣ 🖕,He showed a rude finger and a kiss in the hot desert sun,The snazzy sat in the sun,He sat in the sun and ate a meal
+199,🏦 💵 💸 🏧 💲,The bank exchanged dollar bills and money at the atm,The sailor sat in the sun,The man sat on the couch
+200,🥜 😎 📘 🐦 🦜,He wore sunglasses reading a book about parrots and peanuts,The sailor sat in the sun,The man sat on the couch
+201,🔚 🔤 ➗ 🚉 🦹,The villain ended the math lesson at the train station,The sailor sat in the sun,The man sat on the couch
+202,🥡 🦩 🦉 🐟 🐃,The takeout box had fish for the flamingo owl and buffalo,The sailor sat in the sun,The man sat on the couch
+203,👻 🧟 🧛 👹 😱,The ghost zombie and vampire made the ogre scream in fear,The sailor sat in the sun,The man sat on the couch
+204,🍎 🍐 🍑 🥝 🍈,The fruit salad had apple pear peach kiwi and melon slices,The sailor sat in the sun,The man sat on the couch
+205,🥙 🍞 🥫 🍐 🍎,The picnic included flatbread bread canned fruit pear and apple,The sailor sat in the sun,The man sat on the couch
+206,🍗 🍖 🥩 🥘 🍷,We cooked chicken meat and steak in a pan with wine,The sailor sat in the sun,The man sat on the couch
+207,🥋 😮 🔩 🔗 🤫,The martial artist was shocked by the nut link and silence,The sailor sat in the sun,The man sat on the couch
+208,🧼 📜 🧞 💶 📒,The genie came from the scroll with soap money and a book,The sailor sat in the sun,The man sat on the couch
+209,🎁 🧁 🎇 🥳 🍾,The party had presents cakes sparkles and a bottle of wine,The sailor sat in the sun,The man sat on the couch
+210,✴️ 🥗 🔓 🚚 📃,He unlocked the truck to find the paper salad and orange star,The sailor sat in the sun,The man sat on the couch
+211,❤️ 💍 👰 🤵 🛐,The groom and bride exchanged rings at the place of worship,The sailor sat in the sun,The man sat on the couch
+212,💵 ❕ 📠 🔙 🎅,Santa sent a fax about the money and said go back!,The sailor sat in the sun,The man sat on the couch
+213,💣 🎷 👹 🔑 🏝️,A monster with a key and bomb played jazz on the desert island,The sailor sat in the sun,The man sat on the couch
+214,🧅 💲 💷 🚣 ☁️,He paid pounds and dollars for the onions on the cloudy boat,The sailor sat in the sun,The man sat on the couch
+215,☀️ ☁️ 🌧️ 🌊 🧊,It was sunny and cloudy before the rain and ice arrived,The sailor sat in the sun,The man sat on the couch
+216,🥕 🥫 🧇 📙 🍐,She read the book while eating a waffle carrot and pear,The sailor sat in the sun,The man sat on the couch
+217,🦮 🐂 🐐 🎋 🐦,The guide dog led the ox and goat past the tree and bird,The sailor sat in the sun,The man sat on the couch
+218,🦎 🌹 🍺 🦢 🦙,The lizard and llama drank beer near the rose and swan,The sailor sat in the sun,The man sat on the couch
+219,🚗 🚚 🛑 🗺️ 🏙️,The car and truck stopped at the sign on the city map,The sailor sat in the sun,The man sat on the couch
+220,😶 🍑 🦩 🌾 🥁,The flamingo played the drum silently near the peach and rice,The sailor sat in the sun,The man sat on the couch
+221,🥦 🍐 🥒 🍲 💪,The strong man ate broccoli pear cucumber and soup,The sailor sat in the sun,The man sat on the couch
+222,🎵 🎷 🥁 🎤 📻,We listened to the saxophone drum and singer on the radio,The sailor sat in the sun,The man sat on the couch
+223,🐦 🍺 🦖 📶 🐗,A bird perched on the signal while the boar and dino had beer,The sailor sat in the sun,The man sat on the couch
+224,🏦 🧗 🦊 👏 😠,He climbed the bank wall while the angry fox applauded,The sailor sat in the sun,The man sat on the couch
+225,🐮 🐷 🐴 🐏 🏡,The farm had a cow pig horse and ram near the house,The sailor sat in the sun,The man sat on the couch
+226,🚚 👹 🛑 🥻 🧅,We stopped the truck to see the monster wearing a dress,The sailor sat in the sun,The man sat on the couch
+227,💵 ❕ 📠 🔙 🎅,Santa Claus faxed a dollar bill and an alert to return,The sailor sat in the sun,The man sat on the couch
+228,📼 🎲 🤽 💴 🌨️,He watched a video of the snowy water sport and rolled the die,The sailor sat in the sun,The man sat on the couch
+229,☀️ ☁️ 🌧️ 🌊 🧊,The weather changed from sun and cloud to rain and ice,The sailor sat in the sun,The man sat on the couch
+230,🔔 🧆 🏩 ❔ 🗣️,He asked a question about the food and bell at the love hotel,The sailor sat in the sun,The man sat on the couch
+231,🏠 🔧 🧰 🔩 🚪,The repairman used a wrench and bolts from his toolbox,The sailor sat in the sun,The man sat on the couch
+232,➡️ 🔙 🔚 🔜 🔝,Follow the arrows forward back end soon and top,The sailor sat in the sun,The man sat on the couch
+233,👪 👨 👩 👶 🏠,The family includes a father mother and baby in the house,The sailor sat in the sun,The man sat on the couch
+234,🏢 💼 📠 🗂️ 📊,She organized the files charts and fax machine in the office,The sailor sat in the sun,The man sat on the couch
+235,✅ ❎ 🔞 📶 🚹,He checked the signal and the restricted area symbols,The sailor sat in the sun,The man sat on the couch
+236,⛵ 🥶 👨 👧 📐,A cold man and girl used a ruler on the sailboat,The sailor sat in the sun,The man sat on the couch
+237,🧅 💲 💷 🚣 ☁️,The cloud floated over the boat filled with onions and money,The sailor sat in the sun,The man sat on the couch
+238,🥡 🦅 🦗 ✖️ 🌹,The eagle and cricket sat on the takeout box with a cross and rose,The sailor sat in the sun,The man sat on the couch
+239,📕 🦷 🌍 1️⃣ 🗝️,The first key opened the book about the world and teeth,The sailor sat in the sun,He sat on the couch
+240,❤️ 💋 🏩 🌹 🎁,He gave her love a rose and a present for the wedding,The sailor sat in the sun,The man sat on the couch
+241,🦅 🦉 🕊️ 🦜 🦢,He studied the eagle owl dove parrot and swan in nature,The sailor sat in the sun,The man sat on the couch
+242,🦙 🐐 🦋 🗃️ 🌹,A butterfly and rose were kept in the box near the llama and goat,The sailor sat in the sun,The man sat on the couch
+243,😴 💤 🛌 🌙 🌃,She fell asleep in bed dreaming of the moon and stars,The sailor sat in the sun,The man sat on the couch
+244,💵 🏋️ ✋ 😕 🔔,The confused lifter held up a hand when the bell rang for money,The sailor sat in the sun,The man sat on the couch
+245,🦁 🦓 🦒 🦘 🐻,The zoo animals included a lion zebra giraffe kangaroo and bear,The sailor sat in the sun,The man sat on the couch
+246,0️⃣ 1️⃣ 🔟 💯 ✖️,The student scored zero one ten and one hundred on the math test,The snazzy sat on the couch,He ate a cup of tea
+247,🧼 📜 🧞 💶 📒,She wrote in the ledger about the magic genie soap and cash,The sailor sat in the sun,The man sat on the couch
+248,😴 💤 🛌 🌙 🌃,He went to sleep in his bed under the moon and city night,The sailor sat in the sun,The man sat on the couch
+249,🤺 🛌 🥯 🚆 🥎,She played softball then slept in the train bed with bread,The sailor sat in the sun,The man sat on the couch
+250,🧁 🥛 🥨 🥜 😋,He enjoyed a treat of cupcakes milk pretzels and salty peanuts,The sailor sat in the sun,The man sat on the couch
+251,🥪 🧀 🍞 🧺 ☀️,The picnic basket held sandwiches cheese and bread under the sun,The sailor sat in the sun,The man sat on the couch
+252,🚣 🧐 🦬 🐮 🧝,The elf and rich man rowed past the cow and buffalo,The sailor sat in the sun,The man sat on the couch
+253,❕ 🍗 🧙 6️⃣ 🧳,Alert! The mage put six turkey legs in the suitcase,The sailor sat in the sun,He sat in the sun and ate a meal
+254,🥁 🚪 🐮 🧻 🦻,We heard the drum and cow behind the door with our ear,The sailor sat in the sun,The man sat on the couch
+255,🤬 ❗ 7️⃣ 🛢️ ☪️,The angry face shouted near the fuel drum and religious symbol,The sailor sat on the beach,The saxophone screamed at the bell
+256,🔟 🤢 🥭 🗻 6️⃣,The sick person ate mango near the mountain at ten and six,The sailor sat in the sun,He sat in the sun and ate a meal
+257,🏢 💼 📠 🗂️ 📊,The office worker used a briefcase fax machine and files for the chart,The sailor sat in the sun,The man sat on the couch
+258,🚒 🥡 🤥 💯 ✴️,The liar said there were one hundred takeout boxes on the truck,The sailor sat in the sun,The man sat on the couch
+259,🚗 🚚 🛑 🗺️ 🏙️,We drove the car and truck through the city following the map,The sailor sat in the sun,The man sat on the couch
+260,🦎 🌹 🍺 🦢 🦙,A swan and lizard sat by the rose and beer with the llama,The sailor sat in the sun,The man sat on the couch
+261,🦈 🐟 🌊 ⛵ ☁️,The shark and fish swam in the ocean near the boat and clouds,The sailor sat in the sun,The man sat on the couch
+262,🍲 🥖 🥪 🥑 🍴,She ate the avocado soup and baguette sandwich with a fork,The sailor sat in the sun,The man sat on the couch
+263,🆓 💸 🏩 ✡️ ⛏️,The miner found free money and a star at the hotel,The sailor sat in the sun,The man sat on the couch
+264,🔞 🥩 🤤 👃 👰,The hungry bride smelled the meat in the adults only zone,The sailor sat in the sun,The man sat on the couch
+265,💍 👜 🧣 🧤 👒,The accessories included a ring handbag scarf and sun hat,The sailor sat in the sun,The man sat on the couch
+266,🏙️ 🚗 🤗 🥖 ⚧️,The car drove through the city with bread and a hug,The sailor sat in the sun,The man sat on the couch
+267,📼 🥡 🥟 👉 🥎,She ate a dumpling watched a tape and pointed to the ball,The sailor sat in the sun,The man sat on the couch
+268,🔬 🦬 🐃 🌘 🔷,We used a microscope to see the diamond on the buffalo at night,The sailor sat in the sun,The man sat on the couch
+269,🥗 💱 🚉 🍗 🧷,The salad and chicken were exchanged at the station safely,The sailor sat in the sun,The man sat on the couch
+270,🦙 🥊 🦗 🐦 🦋,The llama wore a boxing glove to fight the cricket bird and butterfly,The sailor sat in the sun,The man sat on the couch
+271,🧙 🧛 🧜 🧞 🦄,Stories tell of a mage vampire mermaid and a magical unicorn,The sailor sat in the sun,The man sat on the couch
+272,💿 🎲 🥍 6️⃣ ✡️,The game included a disc a die showing six a star and lacrosse,The sailor sat in the sun,He sat in the sun and ate a meal
+273,✴️ 🥗 🔓 🚚 📃,The truck document listed a salad unlock code and star,The sailor sat in the sun,The man sat on the couch
+274,🧅 🧞 🧻 👚 👈,The genie pointed at the onion toilet paper and clothes,The sailor sat in the sun,The man sat on the couch
+275,👻 🧟 🧛 👹 😱,He screamed when he saw the ghost zombie and monster,The sailor sat in the sun,The man sat on the couch
+276,🌮 🥙 🥑 🌽 🥤,She enjoyed a mexican feast of tacos salad avocado and sweet corn,The sailor sat in the sun,The man sat on the couch
+277,🦽 🤠 😭 😏 😘,The cowboy in the wheelchair cried and then kissed his friend,The sailor sat in the sun,The man sat on the couch
+278,🐀 🦎 🐛 🐣 🥡,A chick and lizard ate from the takeout box with the rat and bug,The sailor sat in the sun,The man sat on the couch
+279,🐂 🌹 🦖 🦩 🐗,The ox and boar ate a rose while the dinosaur and flamingo watched,The sailor sat in the sun,The man sat on the couch
+280,💍 📠 😊 🏙️ 🔉,The office in the city sent a fax about the ring with a smile,The sailor sat in the sun,The man sat on the couch
+281,🔬 🦬 🐃 🌘 🔷,The scientist studied the bison and buffalo under the moon and diamond,The sailor sat in the sun,The man sat on the couch
+282,🦇 🐃 🥊 🐟 🐛,A bat flying over the buffalo spotted a fish bug and a glove,The sailor sat in the sun,The man sat on the couch
+283,🍷 🥂 🍾 🍺 🥃,They drank wine champagne beer and whiskey at the party,The sailor sat in the sun,The man sat on the couch
+284,🍲 🥩 🥔 🥄 🧊,She ate the hot meat and potato stew with a spoon and ice water,The sailor sat in the sun,The man sat on the couch
+285,🦮 🐂 🐐 🎋 🐦,A bird sat in the bamboo while the dog ox and goat walked by,The sailor sat in the sun,The man sat on the couch
+286,🦙 🥊 🦗 🐦 🦋,A bird butterfly and cricket saw the llama with a red glove,The sailor sat in the sun,The man sat on the couch
+287,👗 👚 👠 👢 👞,Her closet contains a dress shirt high heels and boots,The sailor sat in the sun,The man sat on the couch
+288,🍗 🍖 🥩 🥘 🍷,The chef prepared chicken meat and steak with a wine sauce,The sailor sat in the sun,The man sat on the couch
+289,🥪 🧀 🍞 🧺 ☀️,We packed sandwiches cheese and bread in the basket for a sunny day,The sailor sat in the sun,The man sat on the couch
+290,🦓 🚆 🌞 🤤 🧎,The zebra watched the train under the sun while the person kneeled,The sailor sat in the sun,The man sat on the couch
+291,🥊 🥋 🏊 🏄 🏋️,The athlete practiced boxing swimming surfing and weightlifting,The sailor sat in the sun,The man sat on the couch
+292,🔚 🔤 ➗ 🚉 🦹,At the station the supervillain divided the letters at the end,The sailor sat in the sun,The man sat on the couch
+293,🏠 🔧 🧰 🔩 🚪,He fixed the house door using a wrench toolbox and bolt,The sailor sat in the sun,The man sat on the couch
+294,🕰️ 0️⃣ 1️⃣ 2️⃣ 3️⃣,Time passed from twelve to one two and three o'clock,The snazzy sat in the sun,He ate a cup of tea and sat at the table
+295,🦈 🦖 🦘 🐀 🦇,The shark and dinosaur frightened the kangaroo rat and bat,The sailor sat in the sun,The man sat on the couch
+296,🥢 🏢 🏣 🧇 🧉,He used chopsticks to eat waffles and tea at the post office,The sailor sat in the sun,The man sat on the couch
+297,💵 🎤 🔬 🙁 🏫,The school bought a microphone and microscope with the dollar bills,The sailor sat in the sun,The man sat on the couch
+298,🍷 🥂 🍾 🍺 🥃,The bar served wine champagne beer and whiskey all night,The sailor sat in the sun,The man sat on the couch
+299,❤️ 💍 👰 🤵 🛐,They got married with rings and love in the chapel,The sailor sat in the sun,The man sat on the couch

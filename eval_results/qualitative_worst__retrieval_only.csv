@@ -1,0 +1,26 @@
+input,gt,pred,mode,retrieval_score,latency_ms,sentence_bleu
+🐻 👉 🚪 😑 🤐,He pointed the bear to the door and remained silent,She looks annoyed,tm_retrieval_low,0.486253638505906,0.2463750060996972,0.0
+🏦 🧗 🦊 👏 😠,He climbed the bank wall while the angry fox applauded,The sick person clapped angrily,tm_retrieval_low,0.5381158861894552,0.2537499967729673,0.0
+🥯 😶 🌗 💼 🥎,The silent worker carried a briefcase bagel and softball,I see the moon,tm_retrieval_low,0.47742741792648075,0.2549170021666214,0.0
+🧛 🎁 👂 🚣 💺,The vampire listened to the gift on the boat seat,They are rowing,tm_retrieval_low,0.4787480181436041,0.25999999343184754,0.0
+🧛 🎁 👂 🚣 💺,A vampire in the rowboat seat heard a sound from the box,They are rowing,tm_retrieval_low,0.4787480181436041,0.2549999990151264,0.0
+🚚 👹 🛑 🥻 🧅,We stopped the truck to see the monster wearing a dress,I chop an onion,tm_retrieval_low,0.4822368883636341,0.26295800489606336,0.0
+➗ 🦹 🦣 🆕 🚚,The superhero divided the new mammoth into the truck,He starts fresh,tm_retrieval_low,0.4774129236933972,0.2559589993325062,0.0
+➗ 🦹 🦣 🆕 🚚,A new truck arrived with a mammoth and a math villain,He starts fresh,tm_retrieval_low,0.4774129236933972,0.35841699718730524,0.0
+🤺 🛌 🥯 🚆 🥎,The fencer slept on the train with a bagel and ball,We have breakfast,tm_retrieval_low,0.473563584143568,0.334249998559244,0.0
+🤺 🛌 🥯 🚆 🥎,She played softball then slept in the train bed with bread,We have breakfast,tm_retrieval_low,0.473563584143568,0.29645800532307476,0.0
+🐻 👉 🚪 😑 🤐,The bear pointed at the door and kept his mouth shut,She looks annoyed,tm_retrieval_low,0.486253638505906,0.2494999935152009,0.0
+🔔 🧆 🏩 ❔ 🗣️,The hotel bell rang and the person spoke about the falafel,She is unsure,tm_retrieval_low,0.4549111684998249,0.28362499870127067,0.0
+🥗 💱 🚉 🍗 🧷,He used a safety pin to hold the money for the chicken salad,The meal is hot,tm_retrieval_low,0.47815505360850985,0.2739169940468855,0.0
+✴️ 🥗 🔓 🚚 📃,The truck document listed a salad unlock code and star,I read the page,tm_retrieval_low,0.5391983492903901,0.2729580010054633,0.0
+🤬 ❗ 7️⃣ 🛢️ ☪️,He cursed at the oil drum number seven and the crescent star,We pay attention,tm_retrieval_low,0.5280799274465441,0.2606250054668635,0.0
+🤬 ❗ 7️⃣ 🛢️ ☪️,The angry face shouted near the fuel drum and religious symbol,We pay attention,tm_retrieval_low,0.5280799274465441,0.26112499472219497,0.0
+😶 🍑 🦩 🌾 🥁,The flamingo played the drum silently near the peach and rice,He keeps quiet,tm_retrieval_low,0.49373091942146535,0.25712500064400956,0.0
+💩 🤏 🤮 ⚔️ 😵,The smell of poop made him vomit and feel dizzy in the fight,We faint away,tm_retrieval_low,0.4852693271157973,0.6550410034833476,0.0
+💩 🤏 🤮 ⚔️ 😵,He felt sick and dizzy after seeing the waste and swords,We faint away,tm_retrieval_low,0.4852693271157973,0.2585420006653294,0.0
+🚒 🥡 🤥 💯 ✴️,The fire truck brought a hundred boxes of food and stars,We agree wholly,tm_retrieval_low,0.5208437939572214,0.24883400328690186,0.0
+🚒 🥡 🤥 💯 ✴️,The liar said there were one hundred takeout boxes on the truck,We agree wholly,tm_retrieval_low,0.5208437939572214,0.24770799791440368,0.0
+🔔 🧆 🏩 ❔ 🗣️,He asked a question about the food and bell at the love hotel,She is unsure,tm_retrieval_low,0.4549111684998249,0.2798330024234019,0.0
+🏜️ 🌞 💋 0️⃣ 🖕,The sun shone on the desert kiss and the zero finger sign,He feels angry,tm_retrieval_low,0.4699158009303398,0.25224999990314245,0.0
+💵 🎤 🔬 🙁 🏫,He frowned because the school spent money on audio and science gear,I feel unhappy,tm_retrieval_low,0.5195838591586529,0.24762499378994107,0.0
+💵 🎤 🔬 🙁 🏫,The school bought a microphone and microscope with the dollar bills,I feel unhappy,tm_retrieval_low,0.5195838591586529,0.24783299886621535,0.0

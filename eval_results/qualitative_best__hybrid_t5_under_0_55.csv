@@ -1,0 +1,26 @@
+input,gt,pred,mode,retrieval_score,latency_ms,sentence_bleu
+🦽 🗯️ 🦜 👏 🧘,He sat in the wheelchair and clapped while the parrot meditated,He sat in the sun and sat in the sun,t5_fallback,0.4583607307588819,389.7791249983129,26.305014340253436
+🌮 🥙 🥑 🌽 🥤,They ordered tacos and salad with avocado and corn for lunch,We had tacos with avocado and corn,tm_retrieval_high,0.9033193369932432,0.3030829975614324,24.549475440235113
+➡️ 🥒 💔 😐 🦽,He sat in the wheelchair with a neutral face and broken heart,He sat in the sun and sat in the sun,t5_fallback,0.5381488699548522,393.1967909957166,22.741221234802104
+🥗 🥕 🥒 🥦 🥛,He ate a fresh salad containing carrots cucumber and broccoli,He ate a bowl of fresh vegetables,tm_retrieval_high,0.7090755440035562,0.40499999886378646,17.112717058426785
+🦽 🤠 😭 😏 😘,He smirked and kissed the crying cowboy who sat in the wheelchair,He sat in the sun and sat in the sun,t5_fallback,0.4725796109231514,380.5025000037858,15.20797122409784
+🔧 🔩 🧲 🔗 🧷,He connected the link with a wrench bolt and safety pin,The worker fixed the chain with a wrench,tm_retrieval_high,0.6417584369388553,0.3443329987931065,15.181939159382823
+🦈 🐟 🌊 ⛵ ☁️,The shark and fish swam in the ocean near the boat and clouds,He swam near the fish in the ocean,tm_retrieval_high,0.6454154021768046,0.2515839951229282,15.049981051832416
+🏢 💼 📠 🗂️ 📊,She organized the files charts and fax machine in the office,He worked in the office with data,tm_retrieval_high,0.8746011245002935,0.23741600307403132,13.805184551789745
+🐻 🧊 🧣 🧤 🧥,In the ice and cold the bear needed a scarf and coat,Wear a scarf and gloves in the snow,tm_retrieval_high,0.6576605330006186,0.2409999942756258,13.398014283383116
+🦮 🐂 🐐 🎋 🐦,A bird sat in the bamboo while the dog ox and goat walked by,He sat in the sun and sat in the sun,t5_fallback,0.46639549422100995,404.88558300421573,11.896441524336442
+🍷 🥂 🍾 🍺 🥃,They drank wine champagne beer and whiskey at the party,We drank wine and whiskey,tm_retrieval_high,0.9022803299690522,0.265957998635713,11.115018927487522
+🏠 🔧 🧰 🔩 🚪,He fixed the house door using a wrench toolbox and bolt,The man fixed the tool with a wrench,tm_retrieval_high,0.6946882954884457,0.3072499966947362,10.735252131161188
+🏫 📖 🎓 🏢 🤓,The student read a book at school and graduated with glasses,The student studied the notes at school,tm_retrieval_high,0.6574591664153484,0.24337499780813232,10.489671869455934
+🧁 🥛 🥨 🥜 😋,The snack was a cupcake with milk pretzels and peanuts,We ate a cupcake and drank milk,tm_retrieval_high,0.6770971369988663,0.2834579936461523,10.175282441454787
+🦘 🥡 🧰 ✖️ 🦇,The kangaroo put the takeout and bat in the toolbox,He sat in the sun and sat in the sun,t5_fallback,0.4464843560398091,384.774500002095,9.980099403873663
+🔧 🔩 🧲 🔗 🧷,The tools included a wrench bolt magnet link and pin,The worker fixed the chain with a wrench,tm_retrieval_high,0.6417584369388553,0.5245840002316982,9.519340818348473
+🏠 🔧 🧰 🔩 🚪,The repairman used a wrench and bolts from his toolbox,The man fixed the tool with a wrench,tm_retrieval_high,0.6946882954884457,0.29187499603722245,9.519340818348473
+🦽 🗯️ 🦜 👏 🧘,The parrot clapped for the person meditating in the wheelchair,He sat in the sun and sat in the sun,t5_fallback,0.4583607307588819,347.2279999987222,9.287528999566801
+🎅 🍾 🐗 🐱 🌿,Santa opened champagne with the cat and boar in the herbs,He sat in the sun and sat in the sun,t5_fallback,0.46636087720984487,388.0597500028671,9.030367376343264
+🦌 🐦 🏙️ 👉 🤱,The mother pointed at the deer and bird in the city,He sat in the sun and sat in the sun,t5_fallback,0.4805053959048733,388.8509999960661,9.030367376343264
+🔞 🥩 🤤 👃 👰,The bride smelled the steak and drooled in the restricted area,He sat in the sun and sat in the sun,t5_fallback,0.5060800531409532,380.91029199858895,9.030367376343264
+❤️ 💍 👰 🤵 🛐,The groom and bride exchanged rings at the place of worship,The groom gave the bride a ring,tm_retrieval_high,0.874055158744033,0.27620900073088706,8.820727472213227
+🔚 🔤 ➗ 🚉 🦹,The villain ended the math lesson at the train station,The villain weighed the alphabet,tm_retrieval_low,0.559618761814666,0.5156249972060323,8.697972365316726
+🍷 🥂 🍾 🍺 🥃,The bar served wine champagne beer and whiskey all night,We drank wine and whiskey,tm_retrieval_high,0.9022803299690522,0.25299999833805487,8.697972365316726
+🦉 🦇 🐺 🌙 🌟,The owl bat and wolf came out under the moon and stars,The owl looks at the moon,tm_retrieval_high,0.6027005340091778,0.3303749981569126,8.44558802779791

@@ -1,0 +1,301 @@
+input,gt,pred,mode,retrieval_score,latency_ms,sentence_bleu
+🥚 🧀 🍞 🥛 😋,The breakfast included eggs cheese bread and fresh milk,He made breakfast with eggs and toast,tm_retrieval_high,0.6738943737743153,0.8095830053207465,6.495032985064742
+🥚 🧀 🍞 🥛 😋,He ate a delicious meal of eggs cheese and toast with milk,He made breakfast with eggs and toast,tm_retrieval_high,0.6738943737743153,0.3282089965068735,8.085182710148956
+🌮 🥙 🥑 🌽 🥤,They ordered tacos and salad with avocado and corn for lunch,We had tacos with avocado and corn,tm_retrieval_high,0.9033193369932432,0.3030829975614324,24.549475440235113
+🌮 🥙 🥑 🌽 🥤,She enjoyed a mexican feast of tacos salad avocado and sweet corn,We had tacos with avocado and corn,tm_retrieval_high,0.9033193369932432,0.3452079981798306,7.64649370538093
+🍚 🍜 🥟 🥢 🥡,We ate rice and noodles with dumplings from the takeout box,The asian dinner included noodles,tm_retrieval_high,0.8923510187763147,0.33474999509053305,3.217409328795944
+🍚 🍜 🥟 🥢 🥡,The dinner was rice noodles and dumplings served with chopsticks,The asian dinner included noodles,tm_retrieval_high,0.8923510187763147,0.46520800242433324,5.171845311465849
+🥗 🥕 🥒 🥦 🥛,She prepared a healthy salad with carrots cucumber and broccoli,He ate a bowl of fresh vegetables,tm_retrieval_high,0.7090755440035562,0.3541249971021898,4.278179264606695
+🥗 🥕 🥒 🥦 🥛,He ate a fresh salad containing carrots cucumber and broccoli,He ate a bowl of fresh vegetables,tm_retrieval_high,0.7090755440035562,0.40499999886378646,17.112717058426785
+🍎 🍐 🍑 🥝 🍈,The fruit salad had apple pear peach kiwi and melon slices,He ate a melon and other fruits,tm_retrieval_high,0.8930525990422444,0.31416699494002387,4.410363736106612
+🍎 🍐 🍑 🥝 🍈,She mixed apple pear peach kiwi and melon in a bowl,He ate a melon and other fruits,tm_retrieval_high,0.8930525990422444,0.2849580050678924,4.880869806051147
+🧁 🥛 🥨 🥜 😋,The snack was a cupcake with milk pretzels and peanuts,We ate a cupcake and drank milk,tm_retrieval_high,0.6770971369988663,0.2834579936461523,10.175282441454787
+🧁 🥛 🥨 🥜 😋,He enjoyed a treat of cupcakes milk pretzels and salty peanuts,We ate a cupcake and drank milk,tm_retrieval_high,0.6770971369988663,0.25520800409140065,4.880869806051147
+🍷 🥂 🍾 🍺 🥃,The bar served wine champagne beer and whiskey all night,We drank wine and whiskey,tm_retrieval_high,0.9022803299690522,0.25299999833805487,8.697972365316726
+🍷 🥂 🍾 🍺 🥃,They drank wine champagne beer and whiskey at the party,We drank wine and whiskey,tm_retrieval_high,0.9022803299690522,0.265957998635713,11.115018927487522
+🍗 🍖 🥩 🥘 🍷,We cooked chicken meat and steak in a pan with wine,The meat cooked over the hot flame,tm_retrieval_high,0.7065786306185582,0.2622499960125424,4.410363736106612
+🍗 🍖 🥩 🥘 🍷,The chef prepared chicken meat and steak with a wine sauce,The meat cooked over the hot flame,tm_retrieval_high,0.7065786306185582,0.3948340017814189,4.410363736106612
+🥪 🧀 🍞 🧺 ☀️,We packed sandwiches cheese and bread in the basket for a sunny day,The lunch was bread with steak,tm_retrieval_high,0.6628014274101414,0.3001669974764809,2.5275658895144484
+🥪 🧀 🍞 🧺 ☀️,The picnic basket held sandwiches cheese and bread under the sun,The lunch was bread with steak,tm_retrieval_high,0.6628014274101414,0.28154199389973655,4.194930905450255
+🐮 🐷 🐴 🐏 🏡,The farm had a cow pig horse and ram near the house,We saw farm animals eating grain,tm_retrieval_high,0.7214732754418365,0.28208299772813916,2.9859662827819125
+🐮 🐷 🐴 🐏 🏡,We saw a cow pig horse and ram living on the farm,We saw farm animals eating grain,tm_retrieval_high,0.7214732754418365,0.2750000057858415,6.60902979597904
+🦁 🦓 🦒 🦘 🐻,The zoo animals included a lion zebra giraffe kangaroo and bear,The giraffe and zebra are wild animals,tm_retrieval_high,0.8799430829540763,0.2699589967960492,5.545738798841781
+🦁 🦓 🦒 🦘 🐻,We watched the lion zebra giraffe kangaroo and bear exhibit,The giraffe and zebra are wild animals,tm_retrieval_high,0.8799430829540763,0.2627499998197891,5.630400552901077
+🦈 🐟 🌊 ⛵ ☁️,The shark and fish swam in the ocean near the boat and clouds,He swam near the fish in the ocean,tm_retrieval_high,0.6454154021768046,0.2515839951229282,15.049981051832416
+🦈 🐟 🌊 ⛵ ☁️,We saw a shark and fish while sailing on the cloudy sea,He swam near the fish in the ocean,tm_retrieval_high,0.6454154021768046,0.2519590052543208,3.9832534781768225
+🦅 🦉 🕊️ 🦜 🦢,The eagle owl dove parrot and swan are all birds,We saw an eagle and an owl,tm_retrieval_high,0.6541882107705338,0.32416700560133904,5.630400552901077
+🦅 🦉 🕊️ 🦜 🦢,He studied the eagle owl dove parrot and swan in nature,We saw an eagle and an owl,tm_retrieval_high,0.6541882107705338,0.36433300556382164,4.880869806051147
+🦋 🐛 🐜 🦟 🦗,The garden was full of butterflies bugs ants mosquitoes and crickets,The butterfly flew over the ants,tm_retrieval_high,0.6451915286046271,0.29187500331318006,4.194930905450255
+🦋 🐛 🐜 🦟 🦗,She found a butterfly caterpillar ant mosquito and cricket outside,The butterfly flew over the ants,tm_retrieval_high,0.6451915286046271,0.26775000151246786,4.167251645138561
+🐶 🐱 🏠 🦴 🐾,The dog and cat live in the house with their bone,Puppy played outside with a treat,tm_retrieval_high,0.6450501763205101,0.2622499960125424,3.5275023606301383
+🐶 🐱 🏠 🦴 🐾,Our pet dog and cat played with a bone inside the home,Puppy played outside with a treat,tm_retrieval_high,0.6450501763205101,0.25512499996693805,6.60902979597904
+🦉 🦇 🐺 🌙 🌟,The owl bat and wolf came out under the moon and stars,The owl looks at the moon,tm_retrieval_high,0.6027005340091778,0.3303749981569126,8.44558802779791
+🦉 🦇 🐺 🌙 🌟,At night the owl bat and wolf appeared below the stars,The owl looks at the moon,tm_retrieval_high,0.6027005340091778,0.276708000455983,4.194930905450255
+🐻 🦊 🐗 🌲 🌳,The bear fox and boar live among the pine and deciduous trees,The fox hides in the trees,tm_retrieval_high,0.630756096290677,0.2500420014257543,4.222794013898957
+🐻 🦊 🐗 🌲 🌳,We saw a bear fox and boar in the deep forest,The fox hides in the trees,tm_retrieval_high,0.630756096290677,0.25187500432366505,7.807646168419154
+🦖 🦕 🦎 🌿 🍖,The dinosaur and lizard ate plants and meat in the wild,Ancient lizards and amphibians,tm_retrieval_high,0.65941035117561,0.25100000493694097,2.7757915716335906
+🦖 🦕 🦎 🌿 🍖,Ancient dinosaurs and lizards consumed herbs and meat,Ancient lizards and amphibians,tm_retrieval_high,0.65941035117561,0.24420800036750734,7.733712583165139
+🐻 🧊 🧣 🧤 🧥,The bear felt cold so he wore a scarf gloves and coat,Wear a scarf and gloves in the snow,tm_retrieval_high,0.6576605330006186,0.24375000066356733,7.966506956353643
+🐻 🧊 🧣 🧤 🧥,In the ice and cold the bear needed a scarf and coat,Wear a scarf and gloves in the snow,tm_retrieval_high,0.6576605330006186,0.2409999942756258,13.398014283383116
+🏫 📖 🎓 🏢 🤓,The student read a book at school and graduated with glasses,The student studied the notes at school,tm_retrieval_high,0.6574591664153484,0.24337499780813232,10.489671869455934
+🏫 📖 🎓 🏢 🤓,He wore glasses while studying books at the university building,The student studied the notes at school,tm_retrieval_high,0.6574591664153484,0.240250003116671,5.087641220727392
+🏢 💼 📠 🗂️ 📊,The office worker used a briefcase fax machine and files for the chart,He worked in the office with data,tm_retrieval_high,0.8746011245002935,0.2414170012343675,3.3142882018868014
+🏢 💼 📠 🗂️ 📊,She organized the files charts and fax machine in the office,He worked in the office with data,tm_retrieval_high,0.8746011245002935,0.23741600307403132,13.805184551789745
+🎵 🎷 🥁 🎤 📻,The band played music with a saxophone drum microphone and radio,The singer performed while the music played,tm_retrieval_high,0.8796949035898506,0.28258300153538585,4.880869806051147
+🎵 🎷 🥁 🎤 📻,We listened to the saxophone drum and singer on the radio,The singer performed while the music played,tm_retrieval_high,0.8796949035898506,0.3181669962941669,4.410363736106612
+🥊 🥋 🏊 🏄 🏋️,The athlete practiced boxing swimming surfing and weightlifting,He sat in the sun and sat in the sun,t5_fallback,0.46992696171573417,427.93637499562465,4.196114906296549
+🥊 🥋 🏊 🏄 🏋️,He enjoys sports like boxing martial arts swimming and lifting,He sat in the sun and sat in the sun,t5_fallback,0.46992696171573417,380.82262499665376,4.990049701936832
+👗 👚 👠 👢 👞,She bought a dress blouse heels boots and shoes,She painted a picture of shoes,tm_retrieval_high,0.6713777252272509,0.5042080010753125,6.4790667469036025
+👗 👚 👠 👢 👞,Her closet contains a dress shirt high heels and boots,She painted a picture of shoes,tm_retrieval_high,0.6713777252272509,0.3172090000589378,4.167251645138561
+💍 👜 🧣 🧤 👒,She wore a ring and carried a bag scarf gloves and hat,He sat in the sun and sat in the sun,t5_fallback,0.5332980203168481,385.7247079940862,3.435488317233919
+💍 👜 🧣 🧤 👒,The accessories included a ring handbag scarf and sun hat,He sat in the sun and sat in the sun,t5_fallback,0.5332980203168481,375.6523330011987,4.990049701936832
+🏠 🏡 🛌 🚪 🔑,The house has a bed a door and a secure key,She swept the entry way,tm_retrieval_high,0.6709916807392963,0.5076669986010529,0.0
+🏠 🏡 🛌 🚪 🔑,He locked the door of the home and went to his bed,She swept the entry way,tm_retrieval_high,0.6709916807392963,0.32262500462820753,2.6341919627252284
+🏠 🔧 🧰 🔩 🚪,He fixed the house door using a wrench toolbox and bolt,The man fixed the tool with a wrench,tm_retrieval_high,0.6946882954884457,0.3072499966947362,10.735252131161188
+🏠 🔧 🧰 🔩 🚪,The repairman used a wrench and bolts from his toolbox,The man fixed the tool with a wrench,tm_retrieval_high,0.6946882954884457,0.29187499603722245,9.519340818348473
+🏦 💵 💸 🏧 💲,The bank exchanged dollar bills and money at the atm,The ATM gives money,tm_retrieval_high,0.6117478722933122,0.2731670028879307,4.238556455648295
+🏦 💵 💸 🏧 💲,He withdrew cash and dollars from the bank machine,The ATM gives money,tm_retrieval_high,0.6117478722933122,0.2663750055944547,0.0
+❤️ 💍 👰 🤵 🛐,The groom and bride exchanged rings at the place of worship,The groom gave the bride a ring,tm_retrieval_high,0.874055158744033,0.27620900073088706,8.820727472213227
+❤️ 💍 👰 🤵 🛐,They got married with rings and love in the chapel,The groom gave the bride a ring,tm_retrieval_high,0.874055158744033,0.26454200269654393,4.278179264606695
+😴 💤 🛌 🌙 🌃,He went to sleep in his bed under the moon and city night,He slept well during the night,tm_retrieval_high,0.8996952215196,0.26579099358059466,3.3264637832151163
+😴 💤 🛌 🌙 🌃,She fell asleep in bed dreaming of the moon and stars,He slept well during the night,tm_retrieval_high,0.8996952215196,0.26775000151246786,3.5275023606301383
+🧹 🧽 🧼 🧴 🏠,She cleaned the house with a broom sponge soap and lotion,He washed the floor and tidied up,tm_retrieval_high,0.8623029836885903,0.26700000307755545,4.410363736106612
+🧹 🧽 🧼 🧴 🏠,He used soap a sponge and a broom to clean the home,He washed the floor and tidied up,tm_retrieval_high,0.8623029836885903,0.26583300495985895,4.231118166423695
+🚗 🚚 🛑 🗺️ 🏙️,The car and truck stopped at the sign on the city map,Cars and fire engines waited,tm_retrieval_high,0.6889719582820046,0.2566249968367629,2.6341919627252284
+🚗 🚚 🛑 🗺️ 🏙️,We drove the car and truck through the city following the map,Cars and fire engines waited,tm_retrieval_high,0.6889719582820046,0.2562500012572855,2.6341919627252284
+🛳️ ⛴️ 🚢 🗺️ 🌊,The ships and boats sailed across the ocean using a chart,Boats sailed on the ocean waves,tm_retrieval_high,0.6855631388470823,0.25762500445125625,7.807646168419154
+🛳️ ⛴️ 🚢 🗺️ 🌊,We navigated the ferry and ship through the sea waves,Boats sailed on the ocean waves,tm_retrieval_high,0.6855631388470823,0.2571660006651655,4.955725306405571
+🔥 🚒 🏥 💊 🤒,The fire truck rushed to the hospital with medicine for the fever,Emergency fire response vehicle,tm_retrieval_high,0.6943176873506192,0.25800000003073364,2.1617886496312457
+🔥 🚒 🏥 💊 🤒,He had a fever so the ambulance took him to get pills,Emergency fire response vehicle,tm_retrieval_high,0.6943176873506192,0.25929099501809105,0.0
+☀️ ☁️ 🌧️ 🌊 🧊,The weather changed from sun and cloud to rain and ice,Clouds brought rain and cold,tm_retrieval_high,0.6326081653591834,0.2582499946583994,6.434818657591886
+☀️ ☁️ 🌧️ 🌊 🧊,It was sunny and cloudy before the rain and ice arrived,Clouds brought rain and cold,tm_retrieval_high,0.6326081653591834,0.2569999996921979,6.434818657591886
+🕰️ 0️⃣ 1️⃣ 2️⃣ 3️⃣,The old clock struck one two three in the afternoon,He ate a cup of tea and ate a cup,t5_fallback,0.5342072289173447,393.16750000580214,0.0
+🕰️ 0️⃣ 1️⃣ 2️⃣ 3️⃣,Time passed from twelve to one two and three o'clock,He ate a cup of tea and ate a cup,t5_fallback,0.5342072289173447,379.3627499981085,4.196114906296549
+4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣,The numbers listed were four five six seven and eight,We eat fish and eat fish,t5_fallback,0.3465776730369646,329.3206249945797,4.167251645138561
+4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣,He counted the items four five six seven and eight,We eat fish and eat fish,t5_fallback,0.3465776730369646,250.99220799893374,4.167251645138561
+0️⃣ 1️⃣ 🔟 💯 ✖️,The student scored zero one ten and one hundred on the math test,He sat in the sun and sat down,t5_fallback,0.5267708623495672,283.9735000015935,3.5152088567003625
+0️⃣ 1️⃣ 🔟 💯 ✖️,He learned numbers like zero ten and one hundred in multiplication,He sat in the sun and sat down,t5_fallback,0.5267708623495672,290.8363750029821,4.995138898472386
+🧪 🔬 🧬 🧠 🦴,The scientist studied the dna brain and bone with a microscope,Scientists studied dna and medicine,tm_retrieval_high,0.6852732564685291,0.5297080060699955,4.234348806659263
+🧪 🔬 🧬 🧠 🦴,We examined the tube dna brain and bone in the lab,Scientists studied dna and medicine,tm_retrieval_high,0.6852732564685291,0.32858399936230853,3.826166065680266
+🧙 🧛 🧜 🧞 🦄,The wizard vampire mermaid genie and unicorn are mythical creatures,He sat in the sun and sat in the sun,t5_fallback,0.47469490928294644,320.0242500024615,4.196114906296549
+🧙 🧛 🧜 🧞 🦄,Stories tell of a mage vampire mermaid and a magical unicorn,He sat in the sun and sat in the sun,t5_fallback,0.47469490928294644,379.80366600095294,3.7968017775955714
+👻 🧟 🧛 👹 😱,The ghost zombie and vampire made the ogre scream in fear,He sat in the sun and sat in the sun,t5_fallback,0.46746810397259464,374.78925000323215,4.996872151825361
+👻 🧟 🧛 👹 😱,He screamed when he saw the ghost zombie and monster,He sat in the sun and sat in the sun,t5_fallback,0.46746810397259464,378.16429200029233,5.522397783539471
+🎁 🧁 🎇 🥳 🍾,We celebrated with gifts cupcakes fireworks and champagne,He sat in the sun and sat in the sun,t5_fallback,0.47909075765445497,391.86808300291887,4.196114906296549
+🎁 🧁 🎇 🥳 🍾,The party had presents cakes sparkles and a bottle of wine,He sat in the sun and sat in the sun,t5_fallback,0.47909075765445497,377.2232920018723,3.7968017775955714
+💬 💭 🗣️ 🔉 🔇,The speaker spoke but the sound was muted in the thought bubble,He sat in the sun and sat in the sun,t5_fallback,0.47674590511171755,383.1141659975401,7.603985612048923
+💬 💭 🗣️ 🔉 🔇,He thought quietly while the speaker volume was turned off,He sat in the sun and sat in the sun,t5_fallback,0.47674590511171755,385.8636250006384,4.990049701936832
+🔧 🔩 🧲 🔗 🧷,The tools included a wrench bolt magnet link and pin,The worker fixed the chain with a wrench,tm_retrieval_high,0.6417584369388553,0.5245840002316982,9.519340818348473
+🔧 🔩 🧲 🔗 🧷,He connected the link with a wrench bolt and safety pin,The worker fixed the chain with a wrench,tm_retrieval_high,0.6417584369388553,0.3443329987931065,15.181939159382823
+🧻 🧼 🧽 🧴 🌊,The bathroom had paper soap a sponge lotion and water,Brush your teeth and wash with soap,tm_retrieval_high,0.6869490035697765,0.3155410013278015,5.087641220727392
+🧻 🧼 🧽 🧴 🌊,She washed with soap and water using a sponge and tissue,Brush your teeth and wash with soap,tm_retrieval_high,0.6869490035697765,0.30579200392821804,8.208611846457007
+➡️ 🔙 🔚 🔜 🔝,Follow the arrows forward back end soon and top,Direction arrows,tm_retrieval_high,0.6526604783458988,0.297334001515992,1.509869171115925
+➡️ 🔙 🔚 🔜 🔝,The signs pointed right back end soon and to the top,Direction arrows,tm_retrieval_high,0.6526604783458988,0.28620800003409386,0.0
+✅ ❎ 🔞 📶 🚹,The signs showed check cross under eighteen signal and men's room,He sat in the sun and sat in the sun,t5_fallback,0.4824467851250306,385.38708399573807,3.7968017775955714
+✅ ❎ 🔞 📶 🚹,He checked the signal and the restricted area symbols,He sat in the sun and sat in the sun,t5_fallback,0.4824467851250306,383.6792080037412,5.934202609760488
+👪 👨 👩 👶 🏠,The family includes a father mother and baby in the house,He sat in the sun and sat in the sun,t5_fallback,0.4836448899736562,377.29366699932143,8.403703759902122
+👪 👨 👩 👶 🏠,A man woman and baby live together as a family,He sat in the sun and sat in the sun,t5_fallback,0.4836448899736562,395.0301659933757,4.196114906296549
+❤️ 💋 🏩 🌹 🎁,She received a kiss a ring a rose and a gift at the hotel,The couple celebrated their wedding,tm_retrieval_high,0.6926700031700198,0.5352079970180057,0.0
+❤️ 💋 🏩 🌹 🎁,He gave her love a rose and a present for the wedding,The couple celebrated their wedding,tm_retrieval_high,0.6926700031700198,0.3370830017956905,2.6341919627252284
+👩 🍳 🥘 🍷 😋,The woman cooked a stew and served it with wine,He sat in the sun and sat in the sun,t5_fallback,0.48685385032917833,401.64820900099585,4.196114906296549
+👩 🍳 🥘 🍷 😋,She prepared a delicious meal of hot food and wine,He sat in the sun and sat in the sun,t5_fallback,0.48685385032917833,490.8196249962202,4.196114906296549
+🦇 🐃 🥊 🐟 🐛,The bat and water buffalo saw a fish and a bug near the boxing glove,He sat in the sun and sat in the sun,t5_fallback,0.49091942182713455,535.7980409971788,3.0266181377145767
+🦇 🐃 🥊 🐟 🐛,A bat flying over the buffalo spotted a fish bug and a glove,He sat in the sun and sat in the sun,t5_fallback,0.49091942182713455,455.2453330034041,3.696719741302181
+🥡 🦩 🦉 🐟 🐃,The takeout box had fish for the flamingo owl and buffalo,He sat in the sun and sat in the sun,t5_fallback,0.47694675643331347,403.8765829973272,4.515183688171633
+🥡 🦩 🦉 🐟 🐃,We fed the flamingo owl and buffalo with fish from the box,He sat in the sun and sat in the sun,t5_fallback,0.47694675643331347,389.5017499962705,4.521356896113449
+🦔 🐣 🍺 🌷 🎞️,The hedgehog and chick drank beer near the tulip and film strip,He sat in the sun and sat in the sun,t5_fallback,0.47458666665856236,441.8718750021071,4.085507150363302
+🦔 🐣 🍺 🌷 🎞️,A hedgehog and a small bird sat by the flower beer and movie film,He sat in the sun and sat in the sun,t5_fallback,0.47458666665856236,417.97075000067707,3.701773936489291
+🦘 🦮 🦖 🦋 🦈,The kangaroo dog and dinosaur watched the butterfly and shark,He sat in the sun and sat in the sun,t5_fallback,0.471726626507058,400.1403340007528,4.990049701936832
+🦘 🦮 🦖 🦋 🦈,A dog chased the kangaroo and dinosaur while a shark and butterfly watched,He sat in the sun and sat in the sun,t5_fallback,0.471726626507058,404.9568749978789,3.696719741302181
+🦬 🗃️ 🦉 🦎 🦗,The bison found a file box near the owl lizard and cricket,He sat in the sun and sat in the sun,t5_fallback,0.49752471339410387,407.4659999969299,4.085507150363302
+🦬 🗃️ 🦉 🦎 🦗,An owl lizard and cricket watched the bison open the archive box,He sat in the sun and sat in the sun,t5_fallback,0.49752471339410387,405.1825420028763,4.521356896113449
+🦙 🥊 🦗 🐦 🦋,The llama wore a boxing glove to fight the cricket bird and butterfly,He sat in the sun and sat in the sun,t5_fallback,0.46748616562556605,390.68987499922514,3.696719741302181
+🦙 🥊 🦗 🐦 🦋,A bird butterfly and cricket saw the llama with a red glove,He sat in the sun and sat in the sun,t5_fallback,0.46748616562556605,399.5463329993072,4.085507150363302
+🐂 🌹 🦖 🦩 🐗,The ox and boar ate a rose while the dinosaur and flamingo watched,He sat in the sun and sat in the sun,t5_fallback,0.5221500713703514,382.96333300240804,3.696719741302181
+🐂 🌹 🦖 🦩 🐗,A flamingo and dinosaur stood by the ox boar and red flower,He sat in the sun and sat in the sun,t5_fallback,0.5221500713703514,395.5084170011105,4.085507150363302
+🦈 🦖 🦘 🐀 🦇,The shark and dinosaur frightened the kangaroo rat and bat,He sat in the sun and sat in the sun,t5_fallback,0.48961885514762826,401.70866699918406,4.990049701936832
+🦈 🦖 🦘 🐀 🦇,A kangaroo rat and bat ran from the shark and ancient lizard,He sat in the sun and sat in the sun,t5_fallback,0.48961885514762826,405.4101250003441,4.085507150363302
+🥡 🦅 🦗 ✖️ 🌹,The eagle and cricket sat on the takeout box with a cross and rose,He sat in the sun and sat in the sun,t5_fallback,0.44352228989730097,401.59966600185726,3.701773936489291
+🥡 🦅 🦗 ✖️ 🌹,He marked the box with a cross and rose for the bird and insect,He sat in the sun and sat in the sun,t5_fallback,0.44352228989730097,403.8616249963525,3.9778149665594618
+🦮 🐂 🐐 🎋 🐦,The guide dog led the ox and goat past the tree and bird,He sat in the sun and sat in the sun,t5_fallback,0.46639549422100995,391.8338750008843,4.091092899898373
+🦮 🐂 🐐 🎋 🐦,A bird sat in the bamboo while the dog ox and goat walked by,He sat in the sun and sat in the sun,t5_fallback,0.46639549422100995,404.88558300421573,11.896441524336442
+🌾 🥙 🥦 🍐 🍖,The meal included rice meat broccoli and a pear,He sat in the sun and sat in the sun,t5_fallback,0.491103198186466,401.55525000591297,4.196114906296549
+🌾 🥙 🥦 🍐 🍖,He ate a pita sandwich with meat broccoli pear and rice grains,He sat in the sun and sat in the sun,t5_fallback,0.491103198186466,397.98899999732384,4.085507150363302
+🥘 🥥 🌮 🥖 🥛,The pan contained a coconut taco bread and milk,He sat in the sun and sat in the sun,t5_fallback,0.48434513916365807,402.6975829983712,4.196114906296549
+🥘 🥥 🌮 🥖 🥛,She cooked a taco and bread in the pan with coconut milk,He sat in the sun and sat in the sun,t5_fallback,0.48434513916365807,399.1736660027527,7.603985612048923
+🥢 🏢 🏣 🧇 🧉,The office workers ate waffles and drank mate with chopsticks,He sat in the sun and sat in the sun,t5_fallback,0.4670655830705692,416.80279100546613,4.196114906296549
+🥢 🏢 🏣 🧇 🧉,He used chopsticks to eat waffles and tea at the post office,He sat in the sun and sat in the sun,t5_fallback,0.4670655830705692,410.7996670063585,4.521356896113449
+🥝 🧁 🍴 🧂 🍈,The kiwi cupcake and melon were served with a fork and salt,He sat in the sun and sat in the sun,t5_fallback,0.48090435133619996,404.9433330001193,3.435488317233919
+🥝 🧁 🍴 🧂 🍈,She ate the sweet fruit and cake using a fork and salt,He sat in the sun and sat in the sun,t5_fallback,0.48090435133619996,390.90691699675517,4.085507150363302
+🍐 🍈 🧋 🥙 🥫,The canned food included pear melon tea and a stuffed pita,He sat in the sun and sat in the sun,t5_fallback,0.5133763895843986,400.6838749992312,3.7968017775955714
+🍐 🍈 🧋 🥙 🥫,He bought a can of fruit juice melon pear and a sandwich,He sat in the sun and sat in the sun,t5_fallback,0.5133763895843986,394.2411659954814,4.085507150363302
+🧉 🧋 🏣 🥒 🔶,The post office served tea cucumber and a large orange gem,He sat in the sun and sat in the sun,t5_fallback,0.5120881586082797,391.64324999728706,3.7968017775955714
+🧉 🧋 🏣 🥒 🔶,She drank tea and ate a cucumber near the orange diamond building,He sat in the sun and sat in the sun,t5_fallback,0.5120881586082797,407.32908400241286,4.085507150363302
+🥪 🌾 🥥 🌮 🥜,The sandwich taco and peanuts were made with rice and coconut,He sat in the sun and sat in the sun,t5_fallback,0.4744636155726807,409.12337500049034,3.7968017775955714
+🥪 🌾 🥥 🌮 🥜,He prepared a meal of peanuts coconut rice bread and tacos,He sat in the sun and sat in the sun,t5_fallback,0.4744636155726807,389.39970799401635,4.515183688171633
+🍲 🥖 🥪 🥑 🍴,The fork was used for the soup bread sandwich and avocado,He sat in the sun and sat in the sun,t5_fallback,0.4854679196981894,401.786832997459,4.515183688171633
+🍲 🥖 🥪 🥑 🍴,She ate the avocado soup and baguette sandwich with a fork,He sat in the sun and sat in the sun,t5_fallback,0.4854679196981894,418.25212499679765,4.515183688171633
+🥦 🍐 🥒 🍲 💪,The strong man ate broccoli pear cucumber and soup,He sat in the sun and sat in the sun,t5_fallback,0.48100758337267213,428.2070420013042,4.196114906296549
+🥦 🍐 🥒 🍲 💪,He built muscle by eating soup broccoli cucumber and pears,He sat in the sun and sat in the sun,t5_fallback,0.48100758337267213,399.94879200094147,4.990049701936832
+🥝 🍐 🥨 🍲 🧀,The cheese soup came with a pretzel kiwi and pear,Eat the pretzel with cheese,tm_retrieval_high,0.6132892646796047,0.5217910002102144,5.171845311465849
+🥝 🍐 🥨 🍲 🧀,She dipped the pretzel in cheese soup and ate the fruit,Eat the pretzel with cheese,tm_retrieval_high,0.6132892646796047,0.3312499975436367,7.1212974649072365
+💵 🎤 🔬 🙁 🏫,The school bought a microphone and microscope with the dollar bills,He sat in the sun and sat in the sun,t5_fallback,0.5195838591586529,387.28083300520666,4.515183688171633
+💵 🎤 🔬 🙁 🏫,He frowned because the school spent money on audio and science gear,He sat in the sun and sat in the sun,t5_fallback,0.5195838591586529,405.77141600078903,4.521356896113449
+🦽 🤠 😭 😏 😘,The cowboy in the wheelchair cried and then kissed his friend,He sat in the sun and sat in the sun,t5_fallback,0.4725796109231514,401.36858299956657,8.403703759902122
+🦽 🤠 😭 😏 😘,He smirked and kissed the crying cowboy who sat in the wheelchair,He sat in the sun and sat in the sun,t5_fallback,0.4725796109231514,380.5025000037858,15.20797122409784
+🏜️ 🌞 💋 0️⃣ 🖕,The sun shone on the desert kiss and the zero finger sign,He sat in the sun and ate a meal,t5_fallback,0.4699158009303398,340.7690420062863,4.4959869933858485
+🏜️ 🌞 💋 0️⃣ 🖕,He showed a rude finger and a kiss in the hot desert sun,He sat in the sun and ate a meal,t5_fallback,0.4699158009303398,345.1476249974803,8.046371859135371
+🥁 🚪 🐮 🧻 🦻,The cow heard the drum through the door and grabbed the tissue,He sat in the sun and sat in the sun,t5_fallback,0.4815914095585618,346.72349999891594,4.521356896113449
+🥁 🚪 🐮 🧻 🦻,We heard the drum and cow behind the door with our ear,He sat in the sun and sat in the sun,t5_fallback,0.4815914095585618,413.06479199556634,4.521356896113449
+🐻 👉 🚪 😑 🤐,The bear pointed at the door and kept his mouth shut,He sat in the sun and sat in the sun,t5_fallback,0.486253638505906,344.23616700223647,4.515183688171633
+🐻 👉 🚪 😑 🤐,He pointed the bear to the door and remained silent,He sat in the sun and sat in the sun,t5_fallback,0.486253638505906,387.40545800101245,5.934202609760488
+🔟 🤢 🥭 🗻 6️⃣,The sick person ate mango near the mountain at ten and six,The saxophone screamed at the girl,t5_fallback,0.44259249253396044,404.99762499530334,3.9297526283216277
+🔟 🤢 🥭 🗻 6️⃣,He felt nauseous after eating six or ten mangoes on the mountain,The saxophone screamed at the girl,t5_fallback,0.44259249253396044,416.57683399535017,2.9859662827819125
+🍳 📕 🐷 🐶 🥁,The pig and dog played the drum while reading the cookbook,He sat in the sun and sat in the sun,t5_fallback,0.4862127512404343,388.04158399580047,4.996872151825361
+🍳 📕 🐷 🐶 🥁,She cooked with a pan while the animals played music and read,He sat in the sun and sat in the sun,t5_fallback,0.4862127512404343,390.7797499996377,4.085507150363302
+🏦 🧗 🦊 👏 😠,The angry fox clapped for the climber at the bank,He sat in the sun and sat in the sun,t5_fallback,0.5381158861894552,433.5440840004594,4.990049701936832
+🏦 🧗 🦊 👏 😠,He climbed the bank wall while the angry fox applauded,He sat in the sun and sat in the sun,t5_fallback,0.5381158861894552,399.9984999973094,5.522397783539471
+🎓 🏊 🥂 👦 😄,The graduate swam and drank champagne with the happy boy,He sat in the sun and sat in the sun,t5_fallback,0.47413349742940397,412.89762499945937,4.990049701936832
+🎓 🏊 🥂 👦 😄,The happy boy wore a graduation cap while swimming and drinking,He sat in the sun and sat in the sun,t5_fallback,0.47413349742940397,411.855917001958,3.7968017775955714
+🥯 😶 🌗 💼 🥎,The silent worker carried a briefcase bagel and softball,He sat in the sun and sat in the sun,t5_fallback,0.47742741792648075,391.5579579988844,4.196114906296549
+🥯 😶 🌗 💼 🥎,He ate a bagel and held his case under the half moon,He sat in the sun and sat in the sun,t5_fallback,0.47742741792648075,408.7359999975888,4.521356896113449
+🧛 🎁 👂 🚣 💺,The vampire listened to the gift on the boat seat,He sat in the sun and sat in the sun,t5_fallback,0.4787480181436041,379.0569999982836,4.990049701936832
+🧛 🎁 👂 🚣 💺,A vampire in the rowboat seat heard a sound from the box,He sat in the sun and sat in the sun,t5_fallback,0.4787480181436041,400.61495800182456,7.603985612048923
+🧅 💲 💷 🚣 ☁️,The cloud floated over the boat filled with onions and money,He sat in the sun and sat in the sun,t5_fallback,0.4978751356697355,383.144583000103,4.515183688171633
+🧅 💲 💷 🚣 ☁️,He paid pounds and dollars for the onions on the cloudy boat,He sat in the sun and sat in the sun,t5_fallback,0.4978751356697355,392.35679100238485,4.85851417160653
+🚚 👹 🛑 🥻 🧅,The truck carried an ogre onions a sari and a stop sign,He sat in the sun and sat in the sun,t5_fallback,0.4822368883636341,393.8906660041539,3.435488317233919
+🚚 👹 🛑 🥻 🧅,We stopped the truck to see the monster wearing a dress,He sat in the sun and sat in the sun,t5_fallback,0.4822368883636341,380.7897500009858,4.515183688171633
+➗ 🦹 🦣 🆕 🚚,The superhero divided the new mammoth into the truck,He sat in the sun and sat in the sun,t5_fallback,0.4774129236933972,385.69579199975124,4.990049701936832
+➗ 🦹 🦣 🆕 🚚,A new truck arrived with a mammoth and a math villain,He sat in the sun and sat in the sun,t5_fallback,0.4774129236933972,396.7891249994864,3.7968017775955714
+🤺 🛌 🥯 🚆 🥎,The fencer slept on the train with a bagel and ball,He sat in the sun and sat in the sun,t5_fallback,0.473563584143568,380.6062910007313,4.515183688171633
+🤺 🛌 🥯 🚆 🥎,She played softball then slept in the train bed with bread,He sat in the sun and sat in the sun,t5_fallback,0.473563584143568,381.79045900324127,7.593603555191143
+🔔 🧆 🏩 ❔ 🗣️,The hotel bell rang and the person spoke about the falafel,He sat in the sun and sat in the sun,t5_fallback,0.4549111684998249,382.59629200183554,4.996872151825361
+🔔 🧆 🏩 ❔ 🗣️,He asked a question about the food and bell at the love hotel,He sat in the sun and sat in the sun,t5_fallback,0.4549111684998249,383.2443339997553,4.396165418527572
+🥗 💱 🚉 🍗 🧷,The salad and chicken were exchanged at the station safely,He sat in the sun and sat in the sun,t5_fallback,0.47815505360850985,407.32450000359677,4.990049701936832
+🥗 💱 🚉 🍗 🧷,He used a safety pin to hold the money for the chicken salad,He sat in the sun and sat in the sun,t5_fallback,0.47815505360850985,386.79195899749175,4.091092899898373
+✴️ 🥗 🔓 🚚 📃,The truck document listed a salad unlock code and star,He sat in the sun and sat in the sun,t5_fallback,0.5391983492903901,382.6845829971717,4.196114906296549
+✴️ 🥗 🔓 🚚 📃,He unlocked the truck to find the paper salad and orange star,He sat in the sun and sat in the sun,t5_fallback,0.5391983492903901,384.35724999726517,4.85851417160653
+🆓 💸 🏩 ✡️ ⛏️,The miner found free money and a star at the hotel,He sat in the sun and sat in the sun,t5_fallback,0.4522174844818722,383.52149999991525,4.515183688171633
+🆓 💸 🏩 ✡️ ⛏️,He used a pickaxe to get the cash and star from the building,He sat in the sun and sat in the sun,t5_fallback,0.4522174844818722,384.0466249966994,4.396165418527572
+📼 🎲 🤽 💴 🌨️,The gamer played water polo in the snow with a tape and money,He sat in the sun and sat in the sun,t5_fallback,0.46374820411068873,376.88633300422225,6.8803707079889325
+📼 🎲 🤽 💴 🌨️,He watched a video of the snowy water sport and rolled the die,He sat in the sun and sat in the sun,t5_fallback,0.46374820411068873,411.48108399647754,4.396165418527572
+🚣 🧐 🦬 🐮 🧝,The elf and rich man rowed past the cow and buffalo,He sat in the sun and sat in the sun,t5_fallback,0.4677685973388313,396.41245899838395,4.515183688171633
+🚣 🧐 🦬 🐮 🧝,A magical elf saw the bison cow and rower wearing a monocle,He sat in the sun and sat in the sun,t5_fallback,0.4677685973388313,404.16616699803853,4.085507150363302
+🔞 🥩 🤤 👃 👰,The bride smelled the steak and drooled in the restricted area,He sat in the sun and sat in the sun,t5_fallback,0.5060800531409532,380.91029199858895,9.030367376343264
+🔞 🥩 🤤 👃 👰,The hungry bride smelled the meat in the adults only zone,He sat in the sun and sat in the sun,t5_fallback,0.5060800531409532,407.6356669975212,8.403703759902122
+🤬 ❗ 7️⃣ 🛢️ ☪️,He cursed at the oil drum number seven and the crescent star,The saxophone sat on the floor,t5_fallback,0.5280799274465441,372.96958299702965,2.9859662827819125
+🤬 ❗ 7️⃣ 🛢️ ☪️,The angry face shouted near the fuel drum and religious symbol,The saxophone sat on the floor,t5_fallback,0.5280799274465441,422.5447909993818,4.194930905450255
+😶 🍑 🦩 🌾 🥁,The flamingo played the drum silently near the peach and rice,He sat in the sun and sat in the sun,t5_fallback,0.49373091942146535,423.5590000025695,4.996872151825361
+😶 🍑 🦩 🌾 🥁,He beat the drum for the bird and fruit without speaking,He sat in the sun and sat in the sun,t5_fallback,0.49373091942146535,396.06983400153695,5.369488567517933
+➡️ 🥒 💔 😐 🦽,The arrow pointed to the cucumber broken heart and wheelchair,He sat in the sun and sat in the sun,t5_fallback,0.5381488699548522,410.7167920010397,4.990049701936832
+➡️ 🥒 💔 😐 🦽,He sat in the wheelchair with a neutral face and broken heart,He sat in the sun and sat in the sun,t5_fallback,0.5381488699548522,393.1967909957166,22.741221234802104
+💩 🤏 🤮 ⚔️ 😵,The smell of poop made him vomit and feel dizzy in the fight,He sat in the sun and sat in the sun,t5_fallback,0.4852693271157973,373.22737499926006,6.8803707079889325
+💩 🤏 🤮 ⚔️ 😵,He felt sick and dizzy after seeing the waste and swords,He sat in the sun and sat in the sun,t5_fallback,0.4852693271157973,417.12033299700124,4.996872151825361
+🚒 🥡 🤥 💯 ✴️,The fire truck brought a hundred boxes of food and stars,He sat in the sun and sat in the sun,t5_fallback,0.5208437939572214,395.129917000304,3.7968017775955714
+🚒 🥡 🤥 💯 ✴️,The liar said there were one hundred takeout boxes on the truck,He sat in the sun and sat in the sun,t5_fallback,0.5208437939572214,401.05879100156017,3.435488317233919
+🏙️ 🚗 🤗 🥖 ⚧️,The car drove through the city with bread and a hug,He sat in the sun and sat in the sun,t5_fallback,0.4569006374721901,396.0894160045427,4.515183688171633
+🏙️ 🚗 🤗 🥖 ⚧️,We shared a hug and baguette in the car near the transgender symbol,He sat in the sun and sat in the sun,t5_fallback,0.4569006374721901,384.0038749985979,7.39343948260436
+🧼 📜 🧞 💶 📒,The genie came from the scroll with soap money and a book,He sat in the sun and sat in the sun,t5_fallback,0.47504439589995295,393.983207999554,4.085507150363302
+🧼 📜 🧞 💶 📒,She wrote in the ledger about the magic genie soap and cash,He sat in the sun and sat in the sun,t5_fallback,0.47504439589995295,450.72220899601234,8.171014300726602
+🥋 😮 🔩 🔗 🤫,The martial artist was shocked by the nut link and silence,He sat in the sun and sat in the sun,t5_fallback,0.46284458129997536,426.70958300004713,4.515183688171633
+🥋 😮 🔩 🔗 🤫,He quietly linked the metal bolt while wearing his karate uniform,He sat in the sun and sat in the sun,t5_fallback,0.46284458129997536,461.8900420027785,4.515183688171633
+💍 🤓 💷 🕰️ 🔊,The nerd bought a ring and clock with his pound notes,He sat in the sun and sat in the sun,t5_fallback,0.47029431012273715,399.1526250028983,3.7968017775955714
+💍 🤓 💷 🕰️ 🔊,He turned up the volume when the nerd showed the ring and money,He sat in the sun and sat in the sun,t5_fallback,0.47029431012273715,389.64016599493334,4.396165418527572
+🚪 🏃 🙁 👈 🗺️,He ran out the door frowning and pointing at the map,He sat in the sun and sat in the sun,t5_fallback,0.4918588912224663,385.27150000300026,5.369488567517933
+🚪 🏃 🙁 👈 🗺️,The runner left the door sad while pointing to the map,He sat in the sun and sat in the sun,t5_fallback,0.4918588912224663,398.4834160000901,4.515183688171633
+🛢️ ⛰️ 🏄 📻 🏡,He listened to the radio while surfing near the house and oil drum,He sat in the sun and sat in the sun,t5_fallback,0.46724685573367203,382.6312080054777,4.396165418527572
+🛢️ ⛰️ 🏄 📻 🏡,The house near the mountain had an oil drum and radio for the surfer,He sat in the sun and sat in the sun,t5_fallback,0.46724685573367203,385.0978749978822,3.701773936489291
+🚟 🚚 🧥 🔬 💔,The scientist with a broken heart left his coat in the truck,He sat in the sun and sat in the sun,t5_fallback,0.4787972117277395,418.1270840053912,6.870976634467838
+🚟 🚚 🧥 🔬 💔,She took the train and truck to move the microscope and coat,He sat in the sun and sat in the sun,t5_fallback,0.4787972117277395,388.22887500282377,4.521356896113449
+😬 🥯 🙃 🍾 👉,He made a grimace while pointing at the bagel and champagne,He sat in the sun and sat in the sun,t5_fallback,0.49288890391440526,400.9960840048734,4.996872151825361
+😬 🥯 🙃 🍾 👉,The upside down face pointed at the bagel and popping bottle,He sat in the sun and sat in the sun,t5_fallback,0.49288890391440526,395.673999999417,4.515183688171633
+🥵 2️⃣ 💤 📖 🔬,The hot student fell asleep reading two books near the microscope,He sat on the couch,t5_fallback,0.4334743545869531,230.33920799935004,3.217409328795944
+🥵 2️⃣ 💤 📖 🔬,He felt hot and sleepy after studying two slides under the microscope,He sat on the couch,t5_fallback,0.4334743545869531,183.01174999942305,3.132599824355824
+⛵ 🥶 👨 👧 📐,The man and girl felt cold on the boat measuring with a ruler,He sat in the sun and sat in the sun,t5_fallback,0.4618348666088906,344.99816699826624,3.696719741302181
+⛵ 🥶 👨 👧 📐,A cold man and girl used a ruler on the sailboat,He sat in the sun and sat in the sun,t5_fallback,0.4618348666088906,390.81725000141887,4.515183688171633
+💍 📠 😊 🏙️ 🔉,The office in the city sent a fax about the ring with a smile,He sat in the sun and sat in the sun,t5_fallback,0.49816397664920176,384.5299590029754,6.225616866546953
+💍 📠 😊 🏙️ 🔉,She smiled at the ring while the city fax machine beeped,He sat in the sun and sat in the sun,t5_fallback,0.49816397664920176,408.47370799747296,4.515183688171633
+🦓 🚆 🌞 🤤 🧎,The zebra watched the train under the sun while the person kneeled,He sat in the sun and sat in the sun,t5_fallback,0.46636087720984487,383.32433300092816,7.603985612048923
+🦓 🚆 🌞 🤤 🧎,He kneeled and drooled looking at the zebra and sunny train,He sat in the sun and sat in the sun,t5_fallback,0.46636087720984487,387.7957500008051,4.996872151825361
+💵 🏋️ ✋ 😕 🔔,The confused lifter held up a hand when the bell rang for money,He sat in the sun and sat in the sun,t5_fallback,0.4702232208423241,388.7539999996079,3.1085583786586426
+💵 🏋️ ✋ 😕 🔔,He paid dollars to lift weights but stopped at the bell,He sat in the sun and sat in the sun,t5_fallback,0.4702232208423241,390.62074999674223,4.515183688171633
+🦙 🐐 🦋 🗃️ 🌹,The llama and goat found a rose and butterfly in the file box,He sat in the sun and sat in the sun,t5_fallback,0.4624324870432917,388.96749999548774,6.8803707079889325
+🦙 🐐 🦋 🗃️ 🌹,A butterfly and rose were kept in the box near the llama and goat,He sat in the sun and sat in the sun,t5_fallback,0.4624324870432917,389.7933749976801,6.68986069184485
+🦔 🍜 🐀 🌹 🌷,The hedgehog and rat ate noodles near the rose and tulip,Tulips and roses are flowers,tm_retrieval_high,0.6412581481403399,0.51299999904586,3.217409328795944
+🦔 🍜 🐀 🌹 🌷,A rat and hedgehog shared a bowl of noodles in the flower garden,Tulips and roses are flowers,tm_retrieval_high,0.6412581481403399,0.3190420029568486,2.156693969393993
+🍜 🥐 🕊️ 🦉 🦈,The owl and dove watched the shark eat noodles and a croissant,He sat in the sun and sat in the sun,t5_fallback,0.4790161941931004,384.2455410049297,4.085507150363302
+🍜 🥐 🕊️ 🦉 🦈,A shark ate a croissant and noodles while birds watched,He sat in the sun and sat in the sun,t5_fallback,0.4790161941931004,380.1203330003773,4.196114906296549
+🦖 🦫 🥡 🦢 🐦,The dinosaur and beaver shared a takeout box with the swan,He sat in the sun and sat in the sun,t5_fallback,0.5049678943728766,386.6965409979457,4.515183688171633
+🦖 🦫 🥡 🦢 🐦,A bird and swan watched the beaver and dinosaur eat takeout,He sat in the sun and sat in the sun,t5_fallback,0.5049678943728766,394.1107499995269,4.515183688171633
+🐀 🦎 🐛 🐣 🥡,The rat lizard and bug found food in the takeout box,He sat in the sun and sat in the sun,t5_fallback,0.46922660772716424,379.2067090034834,8.403703759902122
+🐀 🦎 🐛 🐣 🥡,A chick and lizard ate from the takeout box with the rat and bug,He sat in the sun and sat in the sun,t5_fallback,0.46922660772716424,383.9971670022351,3.701773936489291
+🦎 🌿 🦢 🥡 🐂,The lizard and ox ate herbs and takeout near the swan,He sat in the sun and sat in the sun,t5_fallback,0.4920305086841156,387.18708400119795,4.515183688171633
+🦎 🌿 🦢 🥡 🐂,A swan and ox found herbs and a box for the lizard,He sat in the sun and sat in the sun,t5_fallback,0.4920305086841156,391.60316600464284,4.085507150363302
+🦘 🥡 🧰 ✖️ 🦇,The kangaroo put the takeout and bat in the toolbox,He sat in the sun and sat in the sun,t5_fallback,0.4464843560398091,384.774500002095,9.980099403873663
+🦘 🥡 🧰 ✖️ 🦇,A bat and kangaroo marked the toolbox and food with a cross,He sat in the sun and sat in the sun,t5_fallback,0.4464843560398091,381.17762500041863,4.085507150363302
+🦎 🌹 🍺 🦢 🦙,The lizard and llama drank beer near the rose and swan,He sat in the sun and sat in the sun,t5_fallback,0.49781561003174074,387.50645899563096,4.515183688171633
+🦎 🌹 🍺 🦢 🦙,A swan and lizard sat by the rose and beer with the llama,He sat in the sun and sat in the sun,t5_fallback,0.49781561003174074,392.7265839956817,4.396165418527572
+🐦 🍺 🦖 📶 🐗,The dinosaur and boar drank beer near the bird and signal,He sat in the sun and sat in the sun,t5_fallback,0.46935295357838386,389.1853750028531,4.515183688171633
+🐦 🍺 🦖 📶 🐗,A bird perched on the signal while the boar and dino had beer,He sat in the sun and sat in the sun,t5_fallback,0.46935295357838386,399.6659160038689,4.091092899898373
+🦈 🥐 🕸️ 🦘 🐏,The shark and kangaroo found a croissant in the spider web,He sat in the sun and sat in the sun,t5_fallback,0.4702232208423241,394.3911659953301,8.403703759902122
+🦈 🥐 🕸️ 🦘 🐏,A ram and kangaroo saw a shark eating a croissant near the web,He sat in the sun and sat in the sun,t5_fallback,0.4702232208423241,380.68220899731386,3.696719741302181
+🥕 🥫 🧇 📙 🍐,She read the book while eating a waffle carrot and pear,He sat in the sun and sat in the sun,t5_fallback,0.49939015088647165,378.55566699727206,4.515183688171633
+🥕 🥫 🧇 📙 🍐,The meal was canned food waffles carrots and a fresh pear,He sat in the sun and sat in the sun,t5_fallback,0.49939015088647165,383.8365000046906,3.7968017775955714
+📙 🍴 🥛 🥜 🔩,He read the book while eating peanuts with milk and a fork,He sat in the sun and sat in the sun,t5_fallback,0.49150320078813053,384.59333399805473,4.521356896113449
+📙 🍴 🥛 🥜 🔩,The mechanic ate peanuts and milk with a fork near the bolt,He sat in the sun and sat in the sun,t5_fallback,0.49150320078813053,384.50920800096355,4.085507150363302
+🥩 🍐 🧀 🌾 🏢,The office worker ate meat cheese pear and rice for lunch,He sat in the sun and sat in the sun,t5_fallback,0.49525903802879506,376.23758299741894,3.7968017775955714
+🥩 🍐 🧀 🌾 🏢,He brought a lunch of steak cheese and pear to the building,He sat in the sun and sat in the sun,t5_fallback,0.49525903802879506,381.8768330020248,4.521356896113449
+🍷 🍎 🧂 🍲 🥫,The cook used wine salt and an apple in the canned soup,He sat in the sun and sat in the sun,t5_fallback,0.5252190856861113,386.58708299772115,7.603985612048923
+🍷 🍎 🧂 🍲 🥫,She made a stew with canned food apple wine and salt,He sat in the sun and sat in the sun,t5_fallback,0.5252190856861113,383.1672919986886,3.7968017775955714
+🥙 🍞 🥫 🍐 🍎,The picnic included flatbread bread canned fruit pear and apple,He sat in the sun and sat in the sun,t5_fallback,0.5195087794597717,385.496000002604,4.196114906296549
+🥙 🍞 🥫 🍐 🍎,He ate a sandwich with an apple pear and canned food,He sat in the sun and sat in the sun,t5_fallback,0.5195087794597717,380.84283299394883,4.515183688171633
+🥟 🥦 🥕 🍖 🥄,She used a spoon to eat the dumpling meat broccoli and carrot,Eat broccoli and carrots,tm_retrieval_high,0.6189919423514008,0.5339999988791533,4.323577299262492
+🥟 🥦 🥕 🍖 🥄,The stew contained carrots broccoli dumplings and meat,Eat broccoli and carrots,tm_retrieval_high,0.6189919423514008,0.323874999594409,7.733712583165139
+🌾 🥚 🧁 🥔 🍋,The recipe needs rice eggs potatoes lemon and a cupcake,He sat in the sun and sat in the sun,t5_fallback,0.47650312957511365,381.7402499989839,4.196114906296549
+🌾 🥚 🧁 🥔 🍋,She baked a cupcake and cooked eggs potatoes and rice with lemon,He sat in the sun and sat in the sun,t5_fallback,0.47650312957511365,387.8131250021397,3.435488317233919
+🧂 🧊 🍐 🍑 🥨,The snack was a salted pretzel with ice pear and peach,He sat in the sun and sat in the sun,t5_fallback,0.5084131892094675,401.9372080001631,3.7968017775955714
+🧂 🧊 🍐 🍑 🥨,He ate a peach and pear with a salty pretzel and ice,He sat in the sun and sat in the sun,t5_fallback,0.5084131892094675,390.24254200194264,4.085507150363302
+🥛 🧊 🥟 🥔 📙,He read the book while eating dumplings potatoes and iced milk,He sat in the sun and sat in the sun,t5_fallback,0.47875691434445067,392.44829199742526,4.996872151825361
+🥛 🧊 🥟 🥔 📙,The meal was cold milk dumplings and potatoes near the book,He sat in the sun and sat in the sun,t5_fallback,0.47875691434445067,392.20050000585616,4.515183688171633
+🍲 🥩 🥔 🥄 🧊,She ate the hot meat and potato stew with a spoon and ice water,He sat in the sun and sat in the sun,t5_fallback,0.5043041354544571,382.6252079961705,3.3449303459224256
+🍲 🥩 🥔 🥄 🧊,The spoon was used for the meat and potato soup served with ice,He sat in the sun and sat in the sun,t5_fallback,0.5043041354544571,385.98116699722596,3.696719741302181
+💤 🥗 📍 💍 🌃,She fell asleep at night after eating salad and finding the ring,He sat in the sun and sat in the sun,t5_fallback,0.5044772900035492,382.28637499560136,4.085507150363302
+💤 🥗 📍 💍 🌃,He pinned the location of the ring and salad before sleeping,He sat in the sun and sat in the sun,t5_fallback,0.5044772900035492,388.56466700235615,5.369488567517933
+💣 🎷 👹 🔑 🏝️,The ogre on the island played the sax and held the key and bomb,He sat in the sun and sat in the sun,t5_fallback,0.49991910917672655,393.63279200188117,3.701773936489291
+💣 🎷 👹 🔑 🏝️,A monster with a key and bomb played jazz on the desert island,He sat in the sun and sat in the sun,t5_fallback,0.49991910917672655,387.77775000198744,3.696719741302181
+❕ 🍗 🧙 6️⃣ 🧳,The wizard packed six chicken legs in his luggage!,The saxophone sat on the floor,t5_fallback,0.45344835276533796,410.4420840012608,4.167251645138561
+❕ 🍗 🧙 6️⃣ 🧳,Alert! The mage put six turkey legs in the suitcase,The saxophone sat on the floor,t5_fallback,0.45344835276533796,408.43204200064065,4.194930905450255
+🥯 🌘 🥁 🧅 🦻,He heard the drum beat while eating a bagel and onion at night,He sat in the sun and sat in the sun,t5_fallback,0.47566266365930926,392.9650420031976,4.091092899898373
+🥯 🌘 🥁 🧅 🦻,Under the moon the ear heard a drum while he ate an onion bagel,He sat in the sun and sat in the sun,t5_fallback,0.47566266365930926,395.9213750058552,3.3449303459224256
+🤽 💃 🕳️ 🔗 🔵,The dancer and water polo player found a hole linked to the blue circle,He sat in the sun and sat in the sun,t5_fallback,0.4713443444221391,391.6364579999936,3.3449303459224256
+🤽 💃 🕳️ 🔗 🔵,She danced near the blue circle and the linked hole in the water,He sat in the sun and sat in the sun,t5_fallback,0.4713443444221391,392.0776249942719,7.39343948260436
+🤺 🧿 🎇 👠 🚺,The fencer with heels held a sparkler and amulet in the ladies room,He sat in the sun and sat in the sun,t5_fallback,0.485291159272183,385.022750000644,6.8803707079889325
+🤺 🧿 🎇 👠 🚺,A woman fencing wore heels and carried a charm and fireworks,He sat in the sun and sat in the sun,t5_fallback,0.485291159272183,383.462582998618,3.7968017775955714
+💵 ❕ 📠 🔙 🎅,Santa sent a fax about the money and said go back!,He sat in the sun and sat in the sun,t5_fallback,0.49232898034245204,383.4659160056617,4.085507150363302
+💵 ❕ 📠 🔙 🎅,Santa Claus faxed a dollar bill and an alert to return,He sat in the sun and sat in the sun,t5_fallback,0.49232898034245204,393.2904589964892,3.7968017775955714
+🔚 🔟 🌨️ 🏫 👰,The bride left the school at the end of the ten snowy days,He sat in the sun and sat in the sun,t5_fallback,0.5107936359448498,395.0580410019029,3.696719741302181
+🔚 🔟 🌨️ 🏫 👰,After ten days of snow the bride went to the school end,He sat in the sun and sat in the sun,t5_fallback,0.5107936359448498,396.44729199790163,4.085507150363302
+💿 🎲 🥍 6️⃣ ✡️,He played lacrosse and rolled a six with the star and cd,The saxophone sat on the floor,t5_fallback,0.4551130423416137,434.3458329967689,2.9859662827819125
+💿 🎲 🥍 6️⃣ ✡️,The game included a disc a die showing six a star and lacrosse,The saxophone sat on the floor,t5_fallback,0.4551130423416137,412.95029199682176,2.5275658895144484
+🔚 🔤 ➗ 🚉 🦹,The villain ended the math lesson at the train station,The villain weighed the alphabet,tm_retrieval_low,0.559618761814666,0.5156249972060323,8.697972365316726
+🔚 🔤 ➗ 🚉 🦹,At the station the supervillain divided the letters at the end,The villain weighed the alphabet,tm_retrieval_low,0.559618761814666,0.30641600460512564,3.217409328795944
+🦌 🐦 🏙️ 👉 🤱,The mother pointed at the deer and bird in the city,He sat in the sun and sat in the sun,t5_fallback,0.4805053959048733,388.8509999960661,9.030367376343264
+🦌 🐦 🏙️ 👉 🤱,She fed the baby and pointed to the bird and deer in town,He sat in the sun and sat in the sun,t5_fallback,0.4805053959048733,395.1369589995011,4.396165418527572
+🧲 🤞 🤏 🐂 🚗,He crossed his fingers that the magnet would pull the ox and car,He sat in the sun and sat in the sun,t5_fallback,0.47612801190517723,392.80758300446905,4.396165418527572
+🧲 🤞 🤏 🐂 🚗,The driver used a small magnet to fix the ox cart and car,He sat in the sun and sat in the sun,t5_fallback,0.47612801190517723,395.6750000070315,3.696719741302181
+🎅 🍾 🐗 🐱 🌿,Santa opened champagne with the cat and boar in the herbs,He sat in the sun and sat in the sun,t5_fallback,0.46636087720984487,388.0597500028671,9.030367376343264
+🎅 🍾 🐗 🐱 🌿,The cat and boar watched Santa pop the cork near the plants,He sat in the sun and sat in the sun,t5_fallback,0.46636087720984487,385.9310829939204,4.521356896113449
+📼 🥡 🥟 👉 🥎,He pointed at the video tape takeout dumplings and softball,He sat in the sun and sat in the sun,t5_fallback,0.47421958123921937,391.0838329975377,5.522397783539471
+📼 🥡 🥟 👉 🥎,She ate a dumpling watched a tape and pointed to the ball,He sat in the sun and sat in the sun,t5_fallback,0.47421958123921937,392.2189170043566,4.085507150363302
+🥜 😎 📘 🐦 🦜,The cool bird and parrot ate peanuts on the blue book,He sat in the sun and sat in the sun,t5_fallback,0.46054113481648584,400.06608400290133,4.515183688171633
+🥜 😎 📘 🐦 🦜,He wore sunglasses reading a book about parrots and peanuts,He sat in the sun and sat in the sun,t5_fallback,0.46054113481648584,399.13466700090794,4.990049701936832
+🧅 🧞 🧻 👚 👈,The genie pointed at the onion toilet paper and clothes,He sat in the sun and sat in the sun,t5_fallback,0.4899484557063137,394.2405420020805,4.990049701936832
+🧅 🧞 🧻 👚 👈,She pointed left to the genie holding paper onions and a shirt,He sat in the sun and sat in the sun,t5_fallback,0.4899484557063137,391.1824580063694,4.085507150363302
+🔬 🦬 🐃 🌘 🔷,The scientist studied the bison and buffalo under the moon and diamond,He sat in the sun and sat in the sun,t5_fallback,0.4657688249502666,386.55245800327975,4.521356896113449
+🔬 🦬 🐃 🌘 🔷,We used a microscope to see the diamond on the buffalo at night,He sat in the sun and sat in the sun,t5_fallback,0.4657688249502666,390.64279200101737,3.696719741302181
+📕 🦷 🌍 1️⃣ 🗝️,The first key opened the book about the world and teeth,He sat in the sun and ate a cup,t5_fallback,0.4652362069032415,362.6040000017383,4.540013809283726
+📕 🦷 🌍 1️⃣ 🗝️,One tooth and a key were found on the map in the book,He sat in the sun and ate a cup,t5_fallback,0.4652362069032415,317.54279199958546,7.270717733704594
+🦽 🗯️ 🦜 👏 🧘,The parrot clapped for the person meditating in the wheelchair,He sat in the sun and sat in the sun,t5_fallback,0.4583607307588819,347.2279999987222,9.287528999566801
+🦽 🗯️ 🦜 👏 🧘,He sat in the wheelchair and clapped while the parrot meditated,He sat in the sun and sat in the sun,t5_fallback,0.4583607307588819,389.7791249983129,26.305014340253436
+🐗 🥵 🚒 ⚖️ 🦘,The hot boar and kangaroo saw the fire truck and scale,He sat in the sun and sat in the sun,t5_fallback,0.4739674935885738,384.2742080014432,4.515183688171633
+🐗 🥵 🚒 ⚖️ 🦘,A kangaroo and boar felt hot near the fire engine and scales,He sat in the sun and sat in the sun,t5_fallback,0.4739674935885738,382.123582996428,4.085507150363302
