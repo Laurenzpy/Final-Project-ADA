@@ -27,11 +27,14 @@ _TRANSLATOR: Optional[FinalEmojiTranslator] = None
 
 
 def get_translator() -> FinalEmojiTranslator:
+    """
+    Baut den Translator genau so, wie final_emoji_translator.py ihn erwartet.
+    Wichtig: TM nur aus Stage 1–4 (kein Leakage).
+    """
     global _TRANSLATOR
     if _TRANSLATOR is not None:
         return _TRANSLATOR
 
-    # WICHTIG: TM nur aus Stage 1–4 (Stage 5 niemals)
     cfg = HybridConfig(
         tm_train_paths=[
             str(BASE_DIR / "data" / "emoji_dataset_stage1_e2t.csv"),
@@ -39,14 +42,15 @@ def get_translator() -> FinalEmojiTranslator:
             str(BASE_DIR / "data" / "emoji_dataset_stage3_e2t.csv"),
             str(BASE_DIR / "data" / "emoji_dataset_stage4_e2t.csv"),
         ],
-        t5_dir=str(BASE_DIR / "artifacts" / "t5_e2t"),
-        exact_match_first=True,
-        retrieval_high_threshold=0.85,
-        retrieval_low_threshold=0.55,
-        t5_min_score_to_skip=0.25,
+        # passt zu HybridConfig in final_emoji_translator.py
+        t5_model_dir=str(BASE_DIR / "artifacts" / "t5_e2t"),
+        retrieval_high_conf=0.60,
+        retrieval_low_conf=0.35,
+        t5_fallback_below_conf=0.55,
         enable_t5_fallback=True,
-        enable_llm_fallback=False,
-        device=None,  # oder "mps"
+        device="auto",
+        max_new_tokens=32,
+        num_beams=4,
     )
 
     _TRANSLATOR = FinalEmojiTranslator(cfg)
@@ -70,9 +74,9 @@ async def api_translate(request: Request):
       - {"emoji": "..."}
       - raw string body
 
-    UND liefert mehrere Response-Felder (Frontend-sicher):
-      - output (unser Standard)
-      - result / translation / text (Legacy/Frontend)
+    Liefert:
+      - prediction (neues Backend-Feld)
+      - output/result/translation/text (Legacy/Frontend-kompatibel)
     """
     try:
         body = await request.body()
@@ -101,18 +105,19 @@ async def api_translate(request: Request):
             )
 
         tr = get_translator()
-        out = tr.translate(emoji_seq)  # dict mit output/mode/score/...
+        out = tr.translate(emoji_seq)  # liefert dict mit "prediction", "mode", "retrieval_score", ...
 
-        # Frontend-Kompatibilität: liefere zusätzlich "result"/"translation"/"text"
-        result_text = out.get("output", "")
+        # Frontend-Kompatibilität: viele UIs erwarten "output" oder "result"
+        result_text = out.get("prediction", "")
 
         response = {
             # Legacy keys (damit UI NICHT "Error" zeigt)
+            "output": result_text,
             "result": result_text,
             "translation": result_text,
             "text": result_text,
 
-            # unser Standard
+            # unser Standard / Debug-Infos
             **out,
         }
         return JSONResponse(response)

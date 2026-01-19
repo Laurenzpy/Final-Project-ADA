@@ -4,13 +4,14 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import asdict
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-from final_emoji_translator import HybridConfig, FinalEmojiTranslator
+# ✅ WICHTIG: evaluiere exakt den Backend-Translator
+from backend.final_emoji_translator import HybridConfig, FinalEmojiTranslator
 
 # Metrics
 try:
@@ -19,6 +20,13 @@ try:
 except Exception:
     sacrebleu = None
     HAS_SACREBLEU = False
+
+try:
+    from rouge_score import rouge_scorer
+    HAS_ROUGE = True
+except Exception:
+    rouge_scorer = None
+    HAS_ROUGE = False
 
 
 # ----------------------------
@@ -51,20 +59,27 @@ def safe_read_csv(path: str) -> pd.DataFrame:
 def corpus_bleu(refs: List[str], hyps: List[str]) -> float:
     if not HAS_SACREBLEU:
         return float("nan")
-    return float(sacrebleu.corpus_bleu(hyps, [refs]).score)
+    return float(sacrebleu.corpus_bleu(hyps, [refs]).score)  # 0..100
 
 
 def corpus_chrf(refs: List[str], hyps: List[str]) -> float:
     if not HAS_SACREBLEU:
         return float("nan")
-    return float(sacrebleu.corpus_chrf(hyps, [refs]).score)
+    return float(sacrebleu.corpus_chrf(hyps, [refs]).score)  # 0..100
+
+
+def corpus_rougeL(refs: List[str], hyps: List[str]) -> float:
+    if not HAS_ROUGE:
+        return float("nan")
+    scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=True)
+    scores = []
+    for r, h in zip(refs, hyps):
+        s = scorer.score(r, h)["rougeL"].fmeasure
+        scores.append(s)
+    return float(np.mean(scores))  # 0..1
 
 
 def sentence_bleu(ref: str, hyp: str) -> float:
-    """
-    Version-robust sentence BLEU (no effective_order).
-    Used ONLY for qualitative / per-mode analysis.
-    """
     if not HAS_SACREBLEU:
         return float("nan")
     try:
@@ -98,9 +113,17 @@ def bucket(score: float) -> str:
 # ----------------------------
 # Evaluation
 # ----------------------------
-def run_eval(name: str, cfg: HybridConfig, stage5: pd.DataFrame) -> Dict[str, Any]:
+def run_eval(
+    name: str,
+    cfg: HybridConfig,
+    stage5: pd.DataFrame,
+    max_samples: Optional[int] = None,
+) -> Dict[str, Any]:
     print(f"\n=== RUN: {name} ===")
     tr = FinalEmojiTranslator(cfg)
+
+    if max_samples is not None and max_samples > 0:
+        stage5 = stage5.sample(n=min(max_samples, len(stage5)), random_state=42).reset_index(drop=True)
 
     rows, latencies = [], []
     mode_counts, score_buckets, bleu_by_mode = {}, {}, {}
@@ -111,10 +134,10 @@ def run_eval(name: str, cfg: HybridConfig, stage5: pd.DataFrame) -> Dict[str, An
     for _, r in tqdm(stage5.iterrows(), total=len(stage5)):
         out = tr.translate(r["input"])
 
-        pred = out["prediction"]
-        mode = out["mode"]
-        score = float(out["retrieval_score"])
-        lat = float(out["latency_ms"])
+        pred = out.get("prediction", "")
+        mode = out.get("mode", "unknown")
+        score = float(out.get("retrieval_score", 0.0))
+        lat = float(out.get("latency_ms", float("nan")))
 
         hyps.append(pred)
         latencies.append(lat)
@@ -136,11 +159,9 @@ def run_eval(name: str, cfg: HybridConfig, stage5: pd.DataFrame) -> Dict[str, An
 
     df = pd.DataFrame(rows)
 
-    # qualitative
+    # qualitative (nur wenn sacrebleu da ist)
     if HAS_SACREBLEU:
-        df["sentence_bleu"] = [
-            sentence_bleu(g, p) for g, p in zip(df["gt"], df["pred"])
-        ]
+        df["sentence_bleu"] = [sentence_bleu(g, p) for g, p in zip(df["gt"], df["pred"])]
         df.sort_values("sentence_bleu", ascending=False).head(25).to_csv(
             f"{OUT_DIR}/qualitative_best__{name}.csv", index=False
         )
@@ -151,57 +172,71 @@ def run_eval(name: str, cfg: HybridConfig, stage5: pd.DataFrame) -> Dict[str, An
     summary = {
         "run": name,
         "config": asdict(cfg),
-        "num_samples": len(stage5),
+        "num_samples": int(len(stage5)),
         "corpus_bleu": corpus_bleu(refs, hyps),
         "corpus_chrf": corpus_chrf(refs, hyps),
+        "corpus_rougeL_f": corpus_rougeL(refs, hyps),
         "exact_match_accuracy": float((df["gt"] == df["pred"]).mean()),
         "mode_distribution": mode_counts,
-        "avg_sentence_bleu_by_mode": {
-            k: float(np.mean(v)) for k, v in bleu_by_mode.items()
-        },
+        "avg_sentence_bleu_by_mode": {k: float(np.mean(v)) for k, v in bleu_by_mode.items()},
         "retrieval_score_buckets": score_buckets,
         "latency": quantiles_ms(latencies),
         "avg_pred_len_words": float(np.mean([len(x.split()) for x in hyps])),
         "avg_gt_len_words": float(np.mean([len(x.split()) for x in refs])),
-        "has_sacrebleu": HAS_SACREBLEU,
+        "has_sacrebleu": bool(HAS_SACREBLEU),
+        "has_rouge": bool(HAS_ROUGE),
     }
 
     df.to_csv(f"{OUT_DIR}/final_pipeline_outputs__{name}.csv", index=False)
-    with open(f"{OUT_DIR}/final_pipeline_summary__{name}.json", "w") as f:
+    with open(f"{OUT_DIR}/final_pipeline_summary__{name}.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
 
     print(json.dumps(summary, indent=2))
     return summary
 
 
-# ----------------------------
-# Main
-# ----------------------------
 def main():
     stage5 = safe_read_csv(STAGE5_PATH)
-    print(f"\nLoaded {len(stage5)} Stage-5 samples")
+    print(f"\nLoaded {len(stage5)} Stage-5 samples from: {STAGE5_PATH}")
 
-    summaries = {}
+    summaries: Dict[str, Any] = {}
 
+    # 1) Retrieval only (Baseline)
     summaries["retrieval_only"] = run_eval(
         "retrieval_only",
-        HybridConfig(TM_TRAIN_PATHS, enable_t5_fallback=False),
+        HybridConfig(
+            tm_train_paths=TM_TRAIN_PATHS,
+            t5_model_dir=T5_DIR,
+            enable_t5_fallback=False,
+        ),
         stage5,
     )
 
-    summaries["hybrid_t5_under_low"] = run_eval(
-        "hybrid_t5_under_low",
-        HybridConfig(TM_TRAIN_PATHS, t5_fallback_below_conf=0.35),
-        stage5,
-    )
-
-    summaries["hybrid_t5_under_055"] = run_eval(
+    # 2) Hybrid: T5 only when retrieval score is really low
+    summaries["hybrid_t5_under_0_55"] = run_eval(
         "hybrid_t5_under_0_55",
-        HybridConfig(TM_TRAIN_PATHS, t5_fallback_below_conf=0.55),
+        HybridConfig(
+            tm_train_paths=TM_TRAIN_PATHS,
+            t5_model_dir=T5_DIR,
+            t5_fallback_below_conf=0.55,
+            enable_t5_fallback=True,
+        ),
         stage5,
     )
 
-    with open(f"{OUT_DIR}/final_pipeline_comparison.json", "w") as f:
+    # 3) Hybrid more aggressive
+    summaries["hybrid_t5_under_0_35"] = run_eval(
+        "hybrid_t5_under_0_35",
+        HybridConfig(
+            tm_train_paths=TM_TRAIN_PATHS,
+            t5_model_dir=T5_DIR,
+            t5_fallback_below_conf=0.35,
+            enable_t5_fallback=True,
+        ),
+        stage5,
+    )
+
+    with open(f"{OUT_DIR}/final_pipeline_comparison.json", "w", encoding="utf-8") as f:
         json.dump(summaries, f, indent=2)
 
     print("\n=== DONE ===")

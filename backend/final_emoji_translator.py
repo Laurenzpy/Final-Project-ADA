@@ -1,319 +1,197 @@
-# final_emoji_translator.py
 from __future__ import annotations
 
 import os
-import re
 import time
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Any
+from typing import List, Optional, Dict, Any
 
 import numpy as np
 import pandas as pd
-
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-# ----------------------------
-# Normalization helpers
-# ----------------------------
-_WS_RE = re.compile(r"\s+")
-
-
-def normalize_emoji_seq(s: str) -> str:
-    """
-    Normalize emoji input so TM exact-match works reliably.
-
-    Handles both:
-      - "🎵 🐶 🏠" (space separated)
-      - "🎵🐶🏠"    (no spaces, best-effort split by codepoints)
-
-    Note: Emoji grapheme clusters can be multi-codepoint, but in our dataset
-    most sequences are single-codepoint emojis or already spaced.
-    """
-    if s is None:
-        return ""
-    s = str(s).strip()
-    if not s:
-        return ""
-
-    # collapse whitespace
-    s = _WS_RE.sub(" ", s).strip()
-
-    # if there are spaces -> treat as tokens
-    if " " in s:
-        toks = [t for t in s.split(" ") if t]
-        return " ".join(toks)
-
-    # otherwise best-effort split into codepoints
-    toks = list(s)
-    return " ".join([t for t in toks if t.strip()])
-
-
-def normalize_text(s: str) -> str:
-    if s is None:
-        return ""
-    s = str(s).strip()
-    s = _WS_RE.sub(" ", s)
-    return s
-
-
-# ----------------------------
-# Config + Translator
-# ----------------------------
 @dataclass
 class HybridConfig:
-    # Translation Memory from TRAIN ONLY (stage1-4)
+    # CSVs mit Emoji2Text-Pairs (wird weiterhin geladen, aber nur als Notnagel-Fallback)
     tm_train_paths: List[str]
 
-    # T5 fallback model dir (local)
-    t5_model_dir: str = "artifacts/t5_e2t"
+    # lokaler HuggingFace Ordner (euer trainiertes T5)
+    t5_model_dir: Optional[str] = None
 
-    # Retrieval thresholds (cosine sim in TF-IDF space)
+    # --- RETRIEVAL PARAMS (für Notnagel-Fallback + Debug; werden nicht mehr für die Entscheidung genutzt) ---
     retrieval_high_conf: float = 0.60
     retrieval_low_conf: float = 0.35
+    t5_fallback_below_conf: float = 0.55  # bleibt drin, wird in T5-only nicht mehr gebraucht
 
-    # NEW:
-    # Use T5 already when similarity is below this value (if available).
-    # If None, defaults to retrieval_low_conf (i.e., old behavior: T5 only under "low").
-    #
-    # Typical values:
-    # - 0.35  -> T5 only for very low similarity (rare)
-    # - 0.50  -> T5 often
-    # - 0.55  -> T5 very often (recommended if you want it used more)
-    # - 0.60  -> T5 for everything not "high" retrieval
-    t5_fallback_below_conf: Optional[float] = 0.55
-
-    # Safety: allow disabling T5 completely
+    # T5 soll jetzt der Hauptpfad sein
     enable_t5_fallback: bool = True
+    device: str = "auto"  # "auto" | "cpu" | "cuda"
 
-    # Device selection: "auto" | "cpu" | "mps" | "cuda"
-    device: str = "auto"
-
-    # generation settings
     max_new_tokens: int = 32
     num_beams: int = 4
 
 
 class FinalEmojiTranslator:
     """
-    Single Source of Truth pipeline:
+    T5-ONLY (Primary): Das trainierte T5-Modell ist das eigentliche System.
+    Retrieval/TM wird nur noch als Notnagel genutzt:
+      - falls T5 nicht verfügbar ist (nicht geladen / Ordner fehlt)
+      - oder falls die Generierung aus irgendeinem Grund fehlschlägt
 
-    1) Build TM from Stage1-4 (emoji->text) ONLY (no leakage)
-    2) Inference (Stage5):
-       - exact match -> direct
-       - retrieval high -> retrieval result
-       - else:
-           - if similarity < t5_fallback_below_conf: try T5
-           - otherwise: retrieval low
-       - if similarity < retrieval_low_conf and T5 not used/available: retrieval very_low (grounded)
+    WICHTIG: Deine e2t CSVs haben Spalten: input,output
+    (aus deiner ZIP: data/emoji_dataset_stage*_e2t.csv)
     """
 
     def __init__(self, cfg: HybridConfig):
         self.cfg = cfg
-
-        # Load TM pairs
-        self.tm_exact: Dict[str, str] = {}
-        self._tm_inputs: List[str] = []
-        self._tm_outputs: List[str] = []
-
-        self._vectorizer: Optional[TfidfVectorizer] = None
-        self._tm_matrix = None  # sparse matrix
-
-        # Lazy-loaded T5
-        self._t5_tokenizer = None
-        self._t5_model = None
-        self._t5_device = None
         self._t5_available = False
 
+        # Wir laden TM weiterhin, aber es ist nur Fallback/Debug.
         self._load_tm()
-        self._build_retrieval_index()
-        self._init_t5_if_possible()
+        self._init_t5()
 
-    # ----------------------------
-    # TM build
-    # ----------------------------
     def _load_tm(self) -> None:
-        rows = []
+        dfs = []
+        debug_infos = []
+
+        # ✅ passt direkt zu deinen CSVs (input,output)
+        emoji_cols = ["emoji", "emoji_sequence", "input", "source", "src", "x"]
+        text_cols = ["text", "target", "output", "translation", "tgt", "y"]
+
         for p in self.cfg.tm_train_paths:
-            if not os.path.exists(p):
-                raise FileNotFoundError(f"TM train file not found: {p}")
-            df = pd.read_csv(p)
-            if "input" not in df.columns or "output" not in df.columns:
-                raise ValueError(f"CSV must contain columns input,output: {p}")
-            rows.append(df[["input", "output"]])
+            try:
+                df = pd.read_csv(p)
+                debug_infos.append((p, list(df.columns)))
 
-        df = pd.concat(rows, ignore_index=True)
-        df["input"] = df["input"].astype(str).map(normalize_emoji_seq)
-        df["output"] = df["output"].astype(str).map(normalize_text)
+                e_col = next((c for c in emoji_cols if c in df.columns), None)
+                t_col = next((c for c in text_cols if c in df.columns), None)
 
-        grouped = df.groupby("input")["output"].apply(list).reset_index()
+                if e_col and t_col:
+                    tmp = df[[e_col, t_col]].copy()
+                    tmp.columns = ["emoji", "text"]
+                    dfs.append(tmp)
+            except Exception as e:
+                debug_infos.append((p, f"READ_FAIL: {type(e).__name__}: {e}"))
 
-        def choose_canonical(outputs: List[str]) -> str:
-            outs = [normalize_text(o) for o in outputs if normalize_text(o)]
-            if not outs:
-                return ""
-            counts: Dict[str, int] = {}
-            for o in outs:
-                counts[o] = counts.get(o, 0) + 1
-            mx = max(counts.values())
-            cand = [o for o, c in counts.items() if c == mx]
-            cand.sort(key=lambda s: (len(s.split()), len(s)))
-            return cand[0]
+        if not dfs:
+            msg_lines = [
+                "No usable TM data loaded. None of the CSV files contained a valid (emoji/text) column pair.",
+                "Expected one emoji column from: " + ", ".join(emoji_cols),
+                "Expected one text  column from: " + ", ".join(text_cols),
+                "Files inspected (path -> columns):",
+            ]
+            for info in debug_infos[:50]:
+                msg_lines.append(f" - {info[0]} -> {info[1]}")
+            raise RuntimeError("\n".join(msg_lines))
 
-        grouped["output"] = grouped["output"].apply(choose_canonical)
-        grouped = grouped[grouped["input"].str.len() > 0]
-        grouped = grouped[grouped["output"].str.len() > 0].reset_index(drop=True)
+        self.tm = pd.concat(dfs, ignore_index=True)
+        self.tm["emoji"] = self.tm["emoji"].astype(str).fillna("")
+        self.tm["text"] = self.tm["text"].astype(str).fillna("")
+        self.tm["emoji_norm"] = self.tm["emoji"]
 
-        self.tm_exact = dict(zip(grouped["input"].tolist(), grouped["output"].tolist()))
-        self._tm_inputs = grouped["input"].tolist()
-        self._tm_outputs = grouped["output"].tolist()
+        # Char ngram TF-IDF funktioniert gut für Emoji-Sequenzen
+        self.vectorizer = TfidfVectorizer(analyzer="char", ngram_range=(1, 3))
+        self.X = self.vectorizer.fit_transform(self.tm["emoji_norm"])
 
-    def _build_retrieval_index(self) -> None:
-        self._vectorizer = TfidfVectorizer(
-            analyzer="word",
-            token_pattern=r"[^ ]+",
-            lowercase=False,
-            min_df=1,
-        )
-        self._tm_matrix = self._vectorizer.fit_transform(self._tm_inputs)
-
-    # ----------------------------
-    # T5
-    # ----------------------------
-    def _resolve_device(self) -> str:
-        if self.cfg.device != "auto":
-            return self.cfg.device
-        try:
-            import torch
-            if torch.cuda.is_available():
-                return "cuda"
-            if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
-                return "mps"
-        except Exception:
-            pass
-        return "cpu"
-
-    def _init_t5_if_possible(self) -> None:
+    def _init_t5(self) -> None:
+        # In T5-only wollen wir T5 wirklich laden; wenn’s nicht geht, fällt er später auf Retrieval zurück.
         if not self.cfg.enable_t5_fallback:
-            self._t5_available = False
+            return
+        if not self.cfg.t5_model_dir:
             return
         if not os.path.isdir(self.cfg.t5_model_dir):
-            self._t5_available = False
+            # Ordner fehlt → T5 aus
             return
 
-        from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+        try:
+            from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+            import torch
 
-        device = self._resolve_device()
+            self.t5_tokenizer = AutoTokenizer.from_pretrained(self.cfg.t5_model_dir)
+            self.t5_model = AutoModelForSeq2SeqLM.from_pretrained(self.cfg.t5_model_dir)
 
-        self._t5_tokenizer = AutoTokenizer.from_pretrained(self.cfg.t5_model_dir)
-        self._t5_model = AutoModelForSeq2SeqLM.from_pretrained(self.cfg.t5_model_dir)
+            if self.cfg.device == "auto":
+                self.device = "cuda" if torch.cuda.is_available() else "cpu"
+            else:
+                self.device = self.cfg.device
 
-        import torch
-        self._t5_device = device
-        self._t5_model.to(device)
-        self._t5_model.eval()
-        self._t5_available = True
+            self.t5_model.to(self.device)
+            self._t5_available = True
+        except Exception:
+            self._t5_available = False
 
-    def _t5_generate(self, emoji_in: str) -> str:
+    def _t5_generate(self, emoji_seq: str) -> Optional[str]:
         if not self._t5_available:
-            return ""
+            return None
+
         import torch
 
-        inp = normalize_emoji_seq(emoji_in)
-        inputs = self._t5_tokenizer([inp], return_tensors="pt", truncation=True)
-        inputs = {k: v.to(self._t5_device) for k, v in inputs.items()}
-
+        inputs = self.t5_tokenizer(emoji_seq, return_tensors="pt").to(self.device)
         with torch.no_grad():
-            out = self._t5_model.generate(
+            outputs = self.t5_model.generate(
                 **inputs,
                 max_new_tokens=self.cfg.max_new_tokens,
                 num_beams=self.cfg.num_beams,
-                early_stopping=True,
             )
+        return self.t5_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-        txt = self._t5_tokenizer.batch_decode(out, skip_special_tokens=True)[0]
-        return normalize_text(txt)
+    def _retrieval_fallback(self, norm_in: str) -> Dict[str, Any]:
+        """
+        Retrieval ist nur noch Fallback + Debug:
+        liefert best_out + score + match.
+        """
+        q = self.vectorizer.transform([norm_in])
+        sims = cosine_similarity(q, self.X)[0]
+        idx = int(np.argmax(sims))
+        best_score = float(sims[idx])
+        best_inp = self.tm.iloc[idx]["emoji"]
+        best_out = self.tm.iloc[idx]["text"]
+        return {
+            "best_score": best_score,
+            "best_inp": best_inp,
+            "best_out": best_out,
+        }
 
-    # ----------------------------
-    # API
-    # ----------------------------
     def translate(self, emoji_in: str) -> Dict[str, Any]:
         """
-        Returns:
-          {
-            "input": ...,
-            "prediction": ...,
-            "mode": "tm_exact" | "tm_retrieval_high" | "tm_retrieval_low" | "tm_retrieval_very_low" | "t5_fallback",
-            "retrieval_score": float,
-            "retrieval_match_input": str,
-            "retrieval_match_output": str,
-            "latency_ms": float
-          }
+        T5-ONLY:
+          1) Versuche immer T5
+          2) Wenn T5 nicht verfügbar oder Generation None/leer → Retrieval-Notnagel
         """
         t0 = time.perf_counter()
-        norm_in = normalize_emoji_seq(emoji_in)
+        norm_in = str(emoji_in)
 
-        # 1) exact match
-        if norm_in in self.tm_exact:
-            pred = self.tm_exact[norm_in]
-            latency_ms = (time.perf_counter() - t0) * 1000
-            return {
-                "input": emoji_in,
-                "prediction": pred,
-                "mode": "tm_exact",
-                "retrieval_score": 1.0,
-                "retrieval_match_input": norm_in,
-                "retrieval_match_output": pred,
-                "latency_ms": latency_ms,
-            }
+        # Retrieval-Infos immer berechnen? -> kostets etwas, aber hilft Debug/Eval.
+        # Wenn du es noch schneller willst, kann man es nur im Fallback rechnen.
+        ret = self._retrieval_fallback(norm_in)
+        best_score = float(ret["best_score"])
+        best_inp = ret["best_inp"]
+        best_out = ret["best_out"]
 
-        # 2) retrieval
-        assert self._vectorizer is not None and self._tm_matrix is not None
-        q = self._vectorizer.transform([norm_in])
-        sims = cosine_similarity(q, self._tm_matrix).reshape(-1)
-        best_idx = int(np.argmax(sims))
-        best_score = float(sims[best_idx])
-        best_out = self._tm_outputs[best_idx]
-        best_inp = self._tm_inputs[best_idx]
+        pred = ""
+        mode = ""
 
-        # Determine T5 trigger threshold
-        t5_trigger = self.cfg.t5_fallback_below_conf
-        if t5_trigger is None:
-            t5_trigger = self.cfg.retrieval_low_conf
-
-        # 3) decision
-        if best_score >= self.cfg.retrieval_high_conf:
-            mode = "tm_retrieval_high"
-            pred = best_out
-        else:
-            # If we want T5 more often: try T5 already below t5_trigger
-            if self._t5_available and best_score < float(t5_trigger):
-                t5_pred = self._t5_generate(norm_in)
-                if t5_pred:
-                    mode = "t5_fallback"
-                    pred = t5_pred
-                else:
-                    # grounded fallback
-                    if best_score >= self.cfg.retrieval_low_conf:
-                        mode = "tm_retrieval_low"
-                    else:
-                        mode = "tm_retrieval_very_low"
-                    pred = best_out
+        # ✅ Primary: T5
+        if self._t5_available:
+            t5_pred = self._t5_generate(norm_in)
+            if t5_pred and t5_pred.strip():
+                pred = t5_pred.strip()
+                mode = "t5_only"
             else:
-                # retrieval path
-                if best_score >= self.cfg.retrieval_low_conf:
-                    mode = "tm_retrieval_low"
-                    pred = best_out
-                else:
-                    mode = "tm_retrieval_very_low"
-                    pred = best_out
+                pred = best_out
+                mode = "t5_failed_fallback_retrieval"
+        else:
+            pred = best_out
+            mode = "t5_unavailable_fallback_retrieval"
 
-        latency_ms = (time.perf_counter() - t0) * 1000
+        latency_ms = (time.perf_counter() - t0) * 1000.0
+
         return {
             "input": emoji_in,
             "prediction": pred,
             "mode": mode,
+            # wir geben Retrieval-Debug weiterhin mit aus (für Analyse/Eval)
             "retrieval_score": best_score,
             "retrieval_match_input": best_inp,
             "retrieval_match_output": best_out,
