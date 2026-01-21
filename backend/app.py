@@ -11,8 +11,7 @@ from fastapi.templating import Jinja2Templates
 
 from backend.final_emoji_translator import FinalEmojiTranslator, HybridConfig
 
-
-BASE_DIR = Path(__file__).resolve().parent.parent  # Projekt-Root
+BASE_DIR = Path(__file__).resolve().parent.parent  # project root
 TEMPLATES_DIR = BASE_DIR / "templates"
 STATIC_DIR = BASE_DIR / "static"
 
@@ -27,10 +26,6 @@ _TRANSLATOR: Optional[FinalEmojiTranslator] = None
 
 
 def get_translator() -> FinalEmojiTranslator:
-    """
-    Baut den Translator genau so, wie final_emoji_translator.py ihn erwartet.
-    Wichtig: TM nur aus Stage 1–4 (kein Leakage).
-    """
     global _TRANSLATOR
     if _TRANSLATOR is not None:
         return _TRANSLATOR
@@ -42,14 +37,15 @@ def get_translator() -> FinalEmojiTranslator:
             str(BASE_DIR / "data" / "emoji_dataset_stage3_e2t.csv"),
             str(BASE_DIR / "data" / "emoji_dataset_stage4_e2t.csv"),
         ],
-        # passt zu HybridConfig in final_emoji_translator.py
-        t5_model_dir=str(BASE_DIR / "artifacts" / "t5_e2t"),
-        retrieval_high_conf=0.60,
-        retrieval_low_conf=0.35,
-        t5_fallback_below_conf=0.55,
-        enable_t5_fallback=True,
+        ranker_model_dir=str(BASE_DIR / "artifacts" / "t5_ranker"),
+        use_ranker=True,
+        require_ranker=True,
+
+        top_k=8,
+        compute_retrieval_debug=False,  # demo: keep response smaller
         device="auto",
-        max_new_tokens=32,
+        max_src_length=256,
+        max_new_tokens=4,
         num_beams=4,
     )
 
@@ -61,29 +57,16 @@ def get_translator() -> FinalEmojiTranslator:
 async def index(request: Request):
     if templates is not None and (TEMPLATES_DIR / "index.html").exists():
         return templates.TemplateResponse("index.html", {"request": request})
-    return HTMLResponse("<h1>Emoji Translator Backend läuft</h1>")
+    return HTMLResponse("<h1>Emoji Translator Backend läuft (RAG-Ranker)</h1>")
 
 
 @app.post("/api/translate")
 async def api_translate(request: Request):
-    """
-    Akzeptiert mehrere Body-Formate (Frontend-sicher):
-      - {"emoji_sequence": "..."}
-      - {"text": "..."}
-      - {"input": "..."}
-      - {"emoji": "..."}
-      - raw string body
-
-    Liefert:
-      - prediction (neues Backend-Feld)
-      - output/result/translation/text (Legacy/Frontend-kompatibel)
-    """
     try:
         body = await request.body()
         if not body:
             return JSONResponse({"error": "empty body"}, status_code=400)
 
-        # JSON oder raw string
         try:
             payload = json.loads(body.decode("utf-8"))
             if not isinstance(payload, dict):
@@ -99,28 +82,40 @@ async def api_translate(request: Request):
         )
 
         if not emoji_seq or not isinstance(emoji_seq, str):
-            return JSONResponse(
-                {"error": "missing input. Use emoji_sequence/text/input"},
-                status_code=422,
-            )
+            return JSONResponse({"error": "missing input (emoji_sequence/text/input)"}, status_code=422)
 
         tr = get_translator()
-        out = tr.translate(emoji_seq)  # liefert dict mit "prediction", "mode", "retrieval_score", ...
+        out = tr.translate(emoji_seq)
 
-        # Frontend-Kompatibilität: viele UIs erwarten "output" oder "result"
         result_text = out.get("prediction", "")
-
         response = {
-            # Legacy keys (damit UI NICHT "Error" zeigt)
             "output": result_text,
             "result": result_text,
             "translation": result_text,
             "text": result_text,
-
-            # unser Standard / Debug-Infos
             **out,
         }
         return JSONResponse(response)
 
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+    
+
+def get_translator() -> FinalEmojiTranslator:
+    global _TRANSLATOR
+    if _TRANSLATOR is not None:
+        return _TRANSLATOR
+
+    cfg = HybridConfig(
+        # ✅ use training-only final memory (Stage1-4 + Stage5_train)
+        tm_train_paths=[str(BASE_DIR / "data" / "final_train_e2t.csv")],
+        # ✅ your trained T5 generator
+        t5_model_dir=str(BASE_DIR / "artifacts" / "t5_e2t"),
+        enable_t5=True,
+        device="auto",        # ✅ now supports mps in final_emoji_translator.py
+        max_new_tokens=64,
+        num_beams=4,
+    )
+
+    _TRANSLATOR = FinalEmojiTranslator(cfg)
+    return _TRANSLATOR

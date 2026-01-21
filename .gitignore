@@ -43,3 +43,25 @@ project_share.tar.gz
 train_*.txt
 __pycache__/
 *.pyc
+
+# env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# artifacts / outputs
+artifacts/
+checkpoints/
+eval_results/
+eval_results*/
+eval_iid_k16/
+eval_ood_stage5_k16/
+quick_sanity_out/
+
+# large zips / exports
+*.zip
+
+# generated split files (reproducible)
+data/final_*_e2t.csv
+data/iid_*_e2t.csv
