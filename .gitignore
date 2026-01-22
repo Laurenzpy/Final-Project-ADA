@@ -1,56 +1,33 @@
-# Python
+############################
+# Python / Cache
+############################
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
+.cache/
 
+############################
 # Virtual environments
+############################
 .venv/
 venv/
 
-# macOS
+############################
+# OS / Editor
+############################
 .DS_Store
 
-# Logs & outputs
+############################
+# Logs & text outputs
+############################
 *.log
+train_*.txt
 train_log*.txt
 eval_*.txt
 
-# Model artifacts
-artifacts/
-checkpoints/
-*.pt
-
-# temp export folder
-_share/
-*_share
-
-.venv/
-__pycache__/
-.ipynb_checkpoints/
-*.pyc
-.cache/
-wandb/
-
-# Local artifacts (do not commit)
-project_share.tar.gz
-check_dataset.py
-check_datset.py
-train_*.txt
-.DS_Store
-
-# Local / temp
-.DS_Store
-project_share.tar.gz
-train_*.txt
-__pycache__/
-*.pyc
-
-# env
-.venv/
-__pycache__/
-*.pyc
-.DS_Store
-
-# artifacts / outputs
+############################
+# Model artifacts & outputs
+############################
 artifacts/
 checkpoints/
 eval_results/
@@ -58,41 +35,44 @@ eval_results*/
 eval_iid_k16/
 eval_ood_stage5_k16/
 quick_sanity_out/
+wandb/
 
-# large zips / exports
+############################
+# Large binaries / exports
+############################
+*.pt
 *.zip
+*.tar.gz
+*.parquet
 
-# generated split files (reproducible)
+############################
+# Data exports / merged files
+############################
+full_emoji.csv
+merged_emoji_*.csv
+merged_emoji_*.parquet
+
+############################
+# Generated split files (reproducible)
+############################
 data/final_*_e2t.csv
 data/iid_*_e2t.csv
 
-__pycache__/
-*.pyc
-
-__pycache__/
-*.pyc
-
-# office temp / notes
+############################
+# Office / notes / temp
+############################
 *.docx
 ~$*
 
-# big exports / merged data
-*.parquet
-*.tar.gz
-*.zip
-full_emoji.csv
-merged_emoji_df.parquet
-merged_emoji_sample.csv
+############################
+# Local / temp folders
+############################
+_share/
+*_share
+project_share.tar.gz
 
-# artifacts (should never be tracked)
-artifacts/
-checkpoints/
-eval_results*/
-eval_results/
-quick_sanity_out/
-
-__pycache__/
-*.pyc
-
-*.docx
-~$*
+############################
+# One-off local scripts (never commit)
+############################
+check_dataset.py
+check_datset.py
