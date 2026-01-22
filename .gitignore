@@ -65,3 +65,34 @@ quick_sanity_out/
 # generated split files (reproducible)
 data/final_*_e2t.csv
 data/iid_*_e2t.csv
+
+__pycache__/
+*.pyc
+
+__pycache__/
+*.pyc
+
+# office temp / notes
+*.docx
+~$*
+
+# big exports / merged data
+*.parquet
+*.tar.gz
+*.zip
+full_emoji.csv
+merged_emoji_df.parquet
+merged_emoji_sample.csv
+
+# artifacts (should never be tracked)
+artifacts/
+checkpoints/
+eval_results*/
+eval_results/
+quick_sanity_out/
+
+__pycache__/
+*.pyc
+
+*.docx
+~$*
